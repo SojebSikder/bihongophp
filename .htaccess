@@ -1,0 +1,29 @@
+# Turn Rewrite Engine on
+
+RewriteEngine on
+
+FallbackResource public/index.php
+
+# NC makes the rule of non case sensitive
+# L makes this the last rule that this specific condition will match
+
+# Rewrite for profile.php?user=****
+RewriteRule ^profile/([0-9a-zA-Z-]+) profile.php?user=$1 [NC,L]
+
+# For denied directory listing
+Options -Indexes
+
+# can be deleted
+Options +FollowSymLinks
+
+RewriteCond %{REQUEST_FILENAME} !d
+RewriteCond %{REQUEST_FILENAME} !f
+RewriteRule ^index.php [L]
+
+
+
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-l
+
+#RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
