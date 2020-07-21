@@ -1,12 +1,14 @@
 <?php 
 
-class IndexController extends Controller{
+class BlogController extends Controller{
 	public function __construct(){
 	 	parent::__construct();
 	}
 
 	public function home(){
-	 	view("home");
+		 //$this->load->view("blog");
+		view("blog");
 	}
+
 }
 ?>

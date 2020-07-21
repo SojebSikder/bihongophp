@@ -1,2 +1,2 @@
 # bihongo-php-framework
-php framework
+a simple php framework
