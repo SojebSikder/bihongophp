@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bihongo</title>
+    <base href="<?php echo ROOT ?>">
+    <meta charset="UTF-8">
+    <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Welcome to <?php echo TITLE ?></title>
+    <link rel="stylesheet" href="<?php echo ASSET ?>css/style.css">
 </head>
-
-<style>
- html {
-    background: #e6e9e9;
-    background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-    -webkit-font-smoothing: antialiased;
-}
-
-body {
-    background: #fff;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-    color: #545454;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 2em 2em 4em;
-}
-</style>
 
 <body>
 
-	<center><h1>Hello, Welcome to Binhongo Framework</h1></center>
+	<center><h1>Hello, Welcome to <?php echo TITLE ?> Framework</h1></center>
+    <p>You can find this page on <a style="color: violet;">app/views/home.php<a></p>
+    <p class="footer"><?php echo  'Bihongo Version <strong>' . B_VERSION . '</strong>'?></p>
+
 
 </body>
 </html>

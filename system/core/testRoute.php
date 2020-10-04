@@ -52,7 +52,6 @@ $match = $router->resolve("/blog/posts/foo/bar");
 //dispatch
 if($match){
     call_user_func_array(array(new $match->class, $match->method), $match->params);
-    
 }
 
 

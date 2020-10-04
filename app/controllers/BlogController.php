@@ -6,8 +6,7 @@ class BlogController extends Controller{
 	}
 
 	public function home(){
-		 //$this->load->view("blog");
-		view("blog");
+		$this->load->view("blog");
 	}
 
 }

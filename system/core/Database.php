@@ -2,7 +2,7 @@
 /*
 *Database Class
 */
-include "config/dbconfig.php";
+//include "config/config.php";
 class Database{
     
     
