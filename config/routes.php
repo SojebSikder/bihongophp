@@ -12,7 +12,7 @@
 
  
 $route['default_controller'] = 'Index';
-$route['blog'] = 'Blog';
+$route['blog'] = 'Blog/home';
 
 
 

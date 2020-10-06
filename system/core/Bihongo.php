@@ -9,6 +9,7 @@ if($url != NULL){
 }
 
 foreach ($route as $key => $value) {
+    $breakKey = explode("/", filter_var($key, FILTER_SANITIZE_URL));
     $break = explode("/", filter_var($value, FILTER_SANITIZE_URL));
 
     
@@ -40,7 +41,6 @@ foreach ($route as $key => $value) {
         //$method = $break[1];
         //$perameter = $break[2];
 
-
         /**
          * $url[0] = controller
          * $url[1] = method
@@ -58,13 +58,26 @@ foreach ($route as $key => $value) {
             }else{
                 if(isset($break[1])){
                     $method = $break[1];
-                    $ur->$method();
+                    
+                    /**
+                     * New addition for peramiter
+                     */
+                    if((isset($url[1])) && (!isset($url[2])))
+                    {
+                        $ur->$method($url[1]);
+
+                    }else if(isset($url[2])){
+                        $ur->$method($url[1], $url[2]);
+                    }else{
+                        $ur->$method();
+                    }
+                    //end that  
+                    
                 }else{
                     $ur->home();
                 }
             }
     
-
         }else
         {
             include BASE.$application_folder."\/controllers/".$break[0]."Controller.php";
