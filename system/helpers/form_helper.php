@@ -7,6 +7,16 @@ if (!function_exists('form_open'))
 {
     function form_open($action = '', $attributes = array(), $hidden = array())
     {
+        /**
+         * CSRF Protection
+         */
+        //session_start();
+        if(empty($_SESSION['token'])){
+            $_SESSION['token'] = bin2hex(random_bytes(32));
+        }
+        $token = $_SESSION['token'];
+        //End that
+
         $attr = '';
         foreach ($attributes as $attribute => $value) {
 
@@ -18,6 +28,7 @@ if (!function_exists('form_open'))
         }
         
         $form = '<form '.$attr.' action="'.ROOT.$action.'"'.">\n";
+        $form .= '<input name="token" type="hidden" value="'.$token.'">';
         return $form;
     }
 }
