@@ -66,9 +66,16 @@ foreach ($route as $key => $value) {
                     {
                         $ur->$method($url[1]);
 
-                    }else if(isset($url[2])){
+                    }else if(isset($url[2]) && (!isset($url[3]))){
                         $ur->$method($url[1], $url[2]);
-                    }else{
+
+                    }else if(isset($url[3]) && (!isset($url[4])) ){
+                        $ur->$method($url[1], $url[2], $url[3]);
+
+                    }else if(isset($url[4]) && (!isset($url[5]))){
+                        $ur->$method($url[1], $url[2], $url[3], $url[4]);
+                    }
+                    else{
                         $ur->$method();
                     }
                     //end that  

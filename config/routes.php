@@ -2,17 +2,25 @@
 /**
  * Setup Route
  * 
- * There are three reserved routes:
- * $route['default_controller'] = 'welcome';
+ * There are have some reserved routes:
+ * $route['default_controller'] = 'welcome'; 
  * 
  * Example:
  * $route['path_name'] = 'Controller/Method'
+ * If you not put method then home() method autometically invoke
  * 
  */
 
  
-$route['default_controller'] = 'Index';
-$route['blog'] = 'Blog/home';
+/**
+ * DO NOT DELETE THIS ROUTE NAME (default_controller)
+ * Only can change value such as
+ * ->$route['default_controller'] = 'Index';
+ * change to
+ * ->$route['default_controller'] = 'your site';
+ */
+$route['default_controller'] = 'Index'; //DO NOT DELETE THIS ROUTE NAME (default_controller)
+$route['home'] = 'Index/home';
 
 
 

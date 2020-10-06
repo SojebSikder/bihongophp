@@ -1,2 +1,2 @@
 # bihongo-php-framework
-a simple php framework
+Php framework for making stunning website

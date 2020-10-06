@@ -1,4 +1,7 @@
 <?php 
+/**
+ * DO NOT Touch Here
+ */
 define("BASE","");
 $routes = array();
 $mail = array();
@@ -61,7 +64,6 @@ switch (ENVIRONMENT)
 		echo 'The application environment is not set correctly.';
 		exit(1); // EXIT_ERROR
 }
-
 
 
 require BASE.$system_path."/core/Bihongo.php";

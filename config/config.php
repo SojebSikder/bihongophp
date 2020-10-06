@@ -1,6 +1,9 @@
 <?php
 /**DO NOT DELETE ANYTHING HERE */
 /**
+ * Setup only there have (Changeable) placeholder
+ */
+/**
  * Config
  */
 $config = array(
@@ -8,14 +11,14 @@ $config = array(
 	//web information
 	"web" => array(
 		"info" => array(
-			"web_icon" => "assets/images/default/avatar.png",
-			"web_title" => "Bihongo",
-			"web_slogan" => "Let's create awesome"
+			"web_icon" => "youricon.png", 		   //web icon (Changable)
+			"web_title" => "Bihongo", 			   //web title (Changable)
+			"web_slogan" => "Let's create awesome" //web slogan  (Changable)
 		),
 		//user information
 		"user" => array(
-			"user_name" => "",
-			"user_email" => ""
+			"user_name" => "", //author name (Changable)
+			"user_email" => "" //author email (Changable)
 		)
 	),
 
@@ -25,14 +28,14 @@ $config = array(
 			"host" => "localhost", //DB Host (Changeable)
 			"username" => "root", //DB user (Changeable)
 			"password" => "", //DB Password (Changeable)
-			"dbname" => "askme", //DB name (Changeable)
+			"dbname" => "", //DB name (Changeable)
 			'dbdriver' => 'mysql', //DB Driver (Changeable)
 		)
 	),
 
 	//For urls
 	"url" => array(
-		"baseUrl" => "http://localhost/bihongophp/", //base url (Changeable) exe: http://localhost/bihongophp/
+		"baseUrl" => "http://localhost/bihongophp/", //base url (Changeable) like: http://localhost/bihongophp/
 		"asset" => "app/views/"
 	),
 
@@ -40,7 +43,7 @@ $config = array(
 /**
  * Set Database connection which to use
  */
-$active_db = 'mysql';
+$active_db = 'mysql'; //select database (Changable)
 /**
  * Set mode
  * For develpment : 'development'
@@ -51,7 +54,7 @@ $active_db = 'mysql';
  * 
  * 
  */
-$config['mode'] = 'development';
+$config['mode'] = 'development'; //select mode (Changable)
 /**
  * Application folder
  */
