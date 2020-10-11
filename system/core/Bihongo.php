@@ -1,4 +1,9 @@
 <?php
+/**
+ * BihongoPHP Version
+ */
+const B_VERSION = '1.0';
+
 //Core
 $url = isset($_GET['url']) ? $_GET['url'] : NULL;
 if($url != NULL){

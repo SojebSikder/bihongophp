@@ -85,8 +85,5 @@ defined("ASSET") //Get assets url ex. js/css etc.
 	or define("ASSET", $config['url']['asset']);
 defined("ICON") //Get Icon
 	or define("ICON", $config['web']['info']['web_icon']);
-/**
- * Bihongo PHP Version
- */
-define("B_VERSION", "1.0")
+
 ?>
