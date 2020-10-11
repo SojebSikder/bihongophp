@@ -5,41 +5,61 @@
  */
 /**
  * Config
+ * PHP VERSION: 7.4.1
  */
-$config = array(
 
-	//web information
-	"web" => array(
-		"info" => array(
-			"web_icon" => "youricon.png", 		   //web icon (Changable)
-			"web_title" => "Bihongo", 			   //web title (Changable)
-			"web_slogan" => "Let's create awesome" //web slogan  (Changable)
-		),
-		//user information
-		"user" => array(
-			"user_name" => "", //author name (Changable)
-			"user_email" => "" //author email (Changable)
-		)
-	),
+/**
+ * URL to your project root. This will your base URL, with a trailing slash:
+ *  http://example.com
+ * 
+ * WARNING: You MUST set baseUrl value
+ */
+$config['url'] = [
+	/**
+	 * base url (Changeable) like: http://localhost/bihongophp/
+	 * Access this value on project using ROOT constant
+	 */
+	"baseUrl" => "http://localhost/bihongophp/",
+	/**
+	 * asset url for use asset(js/css etc.)
+	 * Access this value on project using ASSET constant
+	 */
+	"asset" => "app/views/"
+];
+ 
 
-	//For Database
-	"db" => array(
-		"mysql" => array(
-			"host" => "localhost", //DB Host (Changeable)
-			"username" => "root", //DB user (Changeable)
-			"password" => "", //DB Password (Changeable)
-			"dbname" => "", //DB name (Changeable)
-			'dbdriver' => 'mysql', //DB Driver (Changeable)
-		)
-	),
+/**
+ * Web Information
+ */
+$config['web'] = [
+	"info" => [
+		"web_icon" => "youricon.png", 		   //web icon (Changable)
+		"web_title" => "Bihongo", 			   //web title (Changable)
+		"web_slogan" => "Let's create awesome" //web slogan  (Changable)
+	]
+];
+/**
+ * User Information
+ */
+$config['user'] = [
+	"user" => [
+		"user_name" => "", //author name (Changable)
+		"user_email" => "" //author email (Changable)
+	]
+];
 
-	//For urls
-	"url" => array(
-		"baseUrl" => "http://localhost/bihongophp/", //base url (Changeable) like: http://localhost/bihongophp/
-		"asset" => "app/views/"
-	),
-
-);
+/**
+ * For Database
+ */
+$config['db'] = [
+	"mysql" => [
+		"host" => "localhost", 	//DB Host (Changeable)
+		"username" => "root", 	//DB user (Changeable)
+		"password" => "", 		//DB Password (Changeable)
+		"dbname" => "", 		//DB name (Changeable)
+		'dbdriver' => 'mysql' 	//DB Driver (Changeable)
+	]
+ ];
 /**
  * Set Database connection which to use
  */
@@ -61,6 +81,13 @@ $config['mode'] = 'development'; //select mode (Changable)
  $system_path = "system";
  $application_folder = "app";
  $view_folder = "";
+
+ /**
+  * Default Character charset
+  */
+  $config['charset'] = 'UTF-8';
+
+
 /**
  * Important constants DO NOT TOUCH THIS
  */
@@ -85,5 +112,10 @@ defined("ASSET") //Get assets url ex. js/css etc.
 	or define("ASSET", $config['url']['asset']);
 defined("ICON") //Get Icon
 	or define("ICON", $config['web']['info']['web_icon']);
+
+
+/**
+ * User can define constant here
+ */
 
 ?>

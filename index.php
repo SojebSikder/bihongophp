@@ -2,32 +2,10 @@
 /**
  * DO NOT Touch Here
  */
-define("BASE","");
-$routes = array();
-$mail = array();
 /**
- * Setup Files
+ * Load Config
  */
 include "config/config.php";
-include "config/routes.php";
-include "config/email.php";
-/**
- * Core Files
- */
-include BASE.$system_path."/core/Controller.php";
-include BASE.$system_path."/core/Model.php";
-include BASE.$system_path."/core/Load.php";
-include BASE.$system_path."/core/Input.php";
-include BASE.$system_path."/core/Benchmark.php";
-
-/**
- * Database Files
- */
-include BASE.$system_path."/database/drivers/MySQLAdapter.php";
-include BASE.$system_path."/database/Dbase.php";
-//include BASE.$system_path."/core/Database.php";
-//include_once BASE.$system_path."/core/Route.php";
-
 
 /**
  * Exceptions
@@ -65,7 +43,9 @@ switch (ENVIRONMENT)
 		exit(1); // EXIT_ERROR
 }
 
-
-require BASE.$system_path."/core/Bihongo.php";
+/**
+ * Load Bootstrap file
+ */
+require $system_path."/core/Bihongo.php";
 
 ?>

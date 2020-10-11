@@ -1,5 +1,33 @@
 <?php
 /**
+ * Load Framework
+ */
+$routes = array();
+$mail = array();
+/**
+ * Setup Files
+ */
+//include "config/config.php";
+include "config/routes.php";
+include "config/email.php";
+/**
+ * Core Files
+ */
+include $system_path."/core/Controller.php";
+include $system_path."/core/Model.php";
+include $system_path."/core/Load.php";
+include $system_path."/core/Input.php";
+include $system_path."/core/Benchmark.php";
+
+/**
+ * Database Files
+ */
+include $system_path."/database/drivers/MySQLAdapter.php";
+include $system_path."/database/Dbase.php";
+//include BASE.$system_path."/core/Database.php";
+//include_once BASE.$system_path."/core/Route.php";
+
+/**
  * BihongoPHP Version
  */
 const B_VERSION = '1.0';
@@ -21,7 +49,7 @@ foreach ($route as $key => $value) {
     if(!isset($url[0])){
         if($route['default_controller'] != null){
 
-            include BASE.$application_folder."\/controllers/".$break[0]."Controller.php";
+            include $application_folder."\/controllers/".$break[0]."Controller.php";
             $class = $break[0]."Controller";
             $ur = new $class();
             if(isset($break[1])){
@@ -54,7 +82,7 @@ foreach ($route as $key => $value) {
         if(isset($break[0]))
         {
 
-            include BASE.$application_folder."/"."controllers/".$break[0]."Controller.php";
+            include $application_folder."/"."controllers/".$break[0]."Controller.php";
             $s = $break[0]."Controller";
             $ur = new $s();
             if(isset($break[2])){
@@ -92,7 +120,7 @@ foreach ($route as $key => $value) {
     
         }else
         {
-            include BASE.$application_folder."\/controllers/".$break[0]."Controller.php";
+            include $application_folder."\/controllers/".$break[0]."Controller.php";
             $class = $break[0]."Controller";
             $ur = new $class();
             if(isset($break[1])){
