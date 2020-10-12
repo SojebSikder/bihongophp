@@ -3,51 +3,73 @@
  * Input Class
  */
 
-
-
  class Input
  {
     public function post($url){
-        session_start();
+        global $config;
 
-        if(!empty($_POST['token'])){
-            if(hash_equals($_SESSION['token'], $_POST['token']))
-            {
-                if(isset($_POST[$url])){
-                    return $_POST[$url];
+        if($config['csrf_protection'] == FALSE){
+            if(isset($_POST[$url])){
+                return $_POST[$url];
+            }
+        }else{
+
+            session_start();
+
+            if(!empty($_POST[$config['csrf_token_name']])){
+                if(hash_equals($_SESSION[$config['csrf_token_name']], $_POST[$config['csrf_token_name']]))
+                {
+                    if(isset($_POST[$url])){
+                        return $_POST[$url];
+                    }
                 }
             }
 
-            
         }
         
     }
 
     public function get($url){
-        session_start();
+        global $config;
 
-        if(!empty($_GET['token'])){
-            if(hash_equals($_SESSION['token'], $_GET['token']))
-            {
+        if($config['csrf_protection'] == FALSE){
+            if(isset($_GET[$url])){
+                return $_GET[$url];
+            }
+        }else{
+            session_start();
 
-                if(isset($_GET[$url])){
-                    return $_GET[$url];
+            if(!empty($_GET[$config['csrf_token_name']])){
+                if(hash_equals($_SESSION[$config['csrf_token_name']], $_GET[$config['csrf_token_name']]))
+                {
+                    if(isset($_GET[$url])){
+                        return $_GET[$url];
+                    }
                 }
             }
+
         }
     }
 
     public function request($url){
-        session_start();
-        
-        if(!empty($_REQUEST['token'])){
-            if(hash_equals($_SESSION['token'], $_REQUEST['token']))
-            {
+        global $config;
+        if($config['csrf_protection'] == FALSE){
+            if(isset($_REQUEST[$url])){
+                return $_REQUEST[$url];
+            }
+        }else{
 
-                if(isset($_REQUEST[$url])){
-                    return $_REQUEST[$url];
+            session_start();
+            
+            if(!empty($_REQUEST[$config['csrf_token_name']])){
+                if(hash_equals($_SESSION[$config['csrf_token_name']], $_REQUEST[$config['csrf_token_name']]))
+                {
+                    if(isset($_REQUEST[$url])){
+                        return $_REQUEST[$url];
+                    }
                 }
             }
+
         }
     }
      

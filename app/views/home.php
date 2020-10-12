@@ -24,6 +24,5 @@
     <p class="footer"><?php echo  'Bihongo Version <strong>' . B_VERSION . '</strong>'?></p>
 
 
-
 </body>
 </html>

@@ -21,7 +21,7 @@ $config['url'] = [
 	 */
 	"baseUrl" => "http://localhost/bihongophp/",
 	/**
-	 * asset url for use asset(js/css etc.)
+	 * asset url for use assets(js/css etc.)
 	 * Access this value on project using ASSET constant
 	 */
 	"asset" => "app/views/"
@@ -49,7 +49,7 @@ $config['user'] = [
 ];
 
 /**
- * For Database
+ * Database Connections
  */
 $config['db'] = [
 	"mysql" => [
@@ -63,7 +63,7 @@ $config['db'] = [
 /**
  * Set Database connection which to use
  */
-$active_db = 'mysql'; //select database (Changable)
+$active_db = 'mysql'; //select database (Changeable)
 /**
  * Set mode
  * For develpment : 'development'
@@ -78,15 +78,21 @@ $config['mode'] = 'development'; //select mode (Changable)
 /**
  * Application folder
  */
- $system_path = "system";
- $application_folder = "app";
- $view_folder = "";
+$system_path = "system";
+$application_folder = "app";
+$view_folder = "";
 
- /**
-  * Default Character charset
-  */
-  $config['charset'] = 'UTF-8';
+/**
+ * Default Character charset
+ */
+$config['charset'] = 'UTF-8';
 
+/**
+ * CSRF Protection
+ * If csrf_protection False then csrf protection will be off.
+*/
+$config['csrf_protection'] = TRUE;
+$config['csrf_token_name'] = 'csrf_token_name';
 
 /**
  * Important constants DO NOT TOUCH THIS

@@ -7,29 +7,37 @@ if (!function_exists('form_open'))
 {
     function form_open($action = '', $attributes = array(), $hidden = array())
     {
-        /**
-         * CSRF Protection
-         */
-        //session_start();
-        if(empty($_SESSION['token'])){
-            $_SESSION['token'] = bin2hex(random_bytes(32));
-        }
-        $token = $_SESSION['token'];
-        //End that
+        global $config;
+        if($config['csrf_protection'] == FALSE){
 
-        $attr = '';
-        foreach ($attributes as $attribute => $value) {
-
-          /*  if (stripos($attribute, 'method') === FALSE)
-            {
-                $attribute .= ' method';
-            } */
-            $attr .= $attribute."= ".$value."  ";
+            $attr = '';
+            foreach ($attributes as $attribute => $value) {
+                $attr .= $attribute."= ".$value."  ";
+            }
+            $form = '<form '.$attr.' action="'.ROOT.$action.'"'.">\n";
+            return $form;
         }
-        
-        $form = '<form '.$attr.' action="'.ROOT.$action.'"'.">\n";
-        $form .= '<input name="token" type="hidden" value="'.$token.'">';
-        return $form;
+        else{
+            /**
+             * CSRF Protection
+             */
+            //session_start();
+            $tokenName = $config['csrf_token_name'];
+            if(empty($_SESSION[$tokenName])){
+                $_SESSION[$tokenName] = bin2hex(random_bytes(32));
+            }
+            $token = $_SESSION[$tokenName];
+            //End that
+
+            $attr = '';
+            foreach ($attributes as $attribute => $value) {
+                $attr .= $attribute."= ".$value."  ";
+            }
+            
+            $form = '<form '.$attr.' action="'.ROOT.$action.'"'.">\n";
+            $form .= '<input name='.$tokenName.' type="hidden" value="'.$token.'">';
+            return $form;
+        }
     }
 }
 
@@ -38,15 +46,39 @@ if (!function_exists('form_open_multipart'))
 {
     function form_open_multipart($action = '', $attributes = array(), $hidden = array())
     {
-        $attr = '';
-        foreach ($attributes as $attribute => $value) {
-            $attr .= $attribute."= ".$value."  ";
-        }
-        
-        $form = '<form '.$attr.' enctype="multipart/form-data" action="'.ROOT.$action.'"'.">\n";
-        return $form;
+        global $config;
+        if($config['csrf_protection'] == FALSE){
 
+            $attr = '';
+            foreach ($attributes as $attribute => $value) {
+                $attr .= $attribute."= ".$value."  ";
+            }
+            $form = '<form '.$attr.' enctype="multipart/form-data" action="'.ROOT.$action.'"'.">\n";
+            return $form;
+        }
+        else{
+            /**
+             * CSRF Protection
+             */
+            //session_start();
+            $tokenName = $config['csrf_token_name'];
+            if(empty($_SESSION[$tokenName])){
+                $_SESSION[$tokenName] = bin2hex(random_bytes(32));
+            }
+            $token = $_SESSION[$tokenName];
+            //End that
+
+            $attr = '';
+            foreach ($attributes as $attribute => $value) {
+                $attr .= $attribute."= ".$value."  ";
+            }
+            
+            $form = '<form '.$attr.' enctype="multipart/form-data" action="'.ROOT.$action.'"'.">\n";
+            $form .= '<input name='.$tokenName.' type="hidden" value="'.$token.'">';
+            return $form;
+        }
     }
+
 }
 
 if (!function_exists('form_close'))
