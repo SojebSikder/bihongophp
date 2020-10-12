@@ -24,7 +24,6 @@ class Load{
                 if(isset($file[2])){
                     include $application_folder."/"."views/".$filename;
                 }else{
-                    //include $application_folder."/"."views/".$filename.".php";
                     include "Perser.php";
 
                     // Initialize object
@@ -45,7 +44,6 @@ class Load{
                     foreach ($data as $key => $value) {
                         $tpl->set($key, $value);
                     }
-                   
                     $tpl->render();
                 }
                 

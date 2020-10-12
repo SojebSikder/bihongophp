@@ -17,7 +17,7 @@
 
 	<center>
     <h1>Hello, Welcome to {TITLE} Framework</h1>
-    <h3>This example of Blade</h3>
+    <h3>This is example of Blade</h3>
     <h3>{SLOGAN}</h3>
 
     </center>
