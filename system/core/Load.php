@@ -115,10 +115,17 @@ class Load{
                 
             }
         }else{
-            if(!file_exists($system_path."/"."libraries/".$libraryname.".php")){
-                echo "Library File not found: ".$system_path."/"."libraries/".$libraryname.".php";
-            }else{
-                include $system_path."/"."libraries/".$libraryname.".php";
+
+            if(file_exists($application_folder."/"."libraries/".$libraryname.".php")){
+                include $application_folder."/"."libraries/".$libraryname.".php";
+                
+            }elseif(!file_exists($application_folder."/"."libraries/".$libraryname.".php")){
+                if(file_exists($system_path."/"."libraries/".$libraryname.".php")){
+                    include $system_path."/"."libraries/".$libraryname.".php";
+                }
+                elseif(!file_exists($system_path."/"."libraries/".$libraryname.".php")){
+                    echo "Library File not found: ".$system_path."/"."libraries/".$libraryname.".php";
+                }
             }
             
         }

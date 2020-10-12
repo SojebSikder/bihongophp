@@ -74,7 +74,7 @@ $active_db = 'mysql'; //select database (Changeable)
  * 
  * 
  */
-$config['mode'] = 'development'; //select mode (Changable)
+$config['mode'] = 'development'; //select mode (Changeable)
 /**
  * Application folder
  */
@@ -92,7 +92,7 @@ $config['charset'] = 'UTF-8';
  * If csrf_protection False then csrf protection will be off.
 */
 $config['csrf_protection'] = TRUE;
-$config['csrf_token_name'] = 'csrf_token_name';
+$config['csrf_token_name'] = 'csrf_token_name'; //(Changeable)
 
 /**
  * Important constants DO NOT TOUCH THIS
