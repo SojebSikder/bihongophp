@@ -52,18 +52,18 @@ $config['user'] = [
  * Database Connections
  */
 $config['db'] = [
-	"mysql" => [
+	"mysqli" => [
 		"host" => "localhost", 	//DB Host (Changeable)
 		"username" => "root", 	//DB user (Changeable)
 		"password" => "", 		//DB Password (Changeable)
 		"dbname" => "", 		//DB name (Changeable)
-		'dbdriver' => 'mysql' 	//DB Driver (Changeable)
+		'dbdriver' => 'mysqli' 	//DB Driver (Changeable)
 	]
  ];
 /**
  * Set Database connection which to use
  */
-$active_db = 'mysql'; //select database (Changeable)
+$active_db = 'mysqli'; //select database (Changeable)
 /**
  * Set mode
  * For develpment : 'development'
@@ -98,13 +98,13 @@ $config['csrf_token_name'] = 'csrf_token_name'; //(Changeable)
  * Important constants DO NOT TOUCH THIS
  */
 defined("DB_HOST")
-	or define("DB_HOST", $config['db']['mysql']['host']);
+	or define("DB_HOST", $config['db']['mysqli']['host']);
 defined("DB_USER")
-	or define("DB_USER", $config['db']['mysql']['username']);
+	or define("DB_USER", $config['db']['mysqli']['username']);
 defined("DB_PASS")
-	or define("DB_PASS", $config['db']['mysql']['password']);
+	or define("DB_PASS", $config['db']['mysqli']['password']);
 defined("DB_NAME")
-	or define("DB_NAME", $config['db']['mysql']['dbname']);
+	or define("DB_NAME", $config['db']['mysqli']['dbname']);
 /**
  * Web Info
  */
