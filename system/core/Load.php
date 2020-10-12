@@ -15,20 +15,59 @@ class Load{
         }
 
         $file = explode(".", $filename);
+
+        /**
+         * For using Blade
+         */
         if(isset($file[1])){
-            if(!file_exists($application_folder."/"."views/".$filename)){
-                echo "View File not found: ".$application_folder."/"."views/".$filename;
-            }else{
-                include $application_folder."/"."views/".$filename;
+            if($file[1] == "blade"){
+                if(isset($file[2])){
+                    include $application_folder."/"."views/".$filename;
+                }else{
+                    //include $application_folder."/"."views/".$filename.".php";
+                    include "Perser.php";
+
+                    // Initialize object
+                    $tpl = new Perser($application_folder."/"."views/".$filename.".php");
+                    /**
+                     * Predefined Value
+                     */
+                    $tpl->set('ROOT', ROOT);
+                    $tpl->set('ICON', ICON);
+                    $tpl->set('TITLE', TITLE);
+                    $tpl->set('SLOGAN', SLOGAN);
+                    $tpl->set('ASSET', ASSET);
+                    $tpl->set('B_VERSION', B_VERSION);
+
+                    /**
+                     * Custom Value
+                     */
+                    foreach ($data as $key => $value) {
+                        $tpl->set($key, $value);
+                    }
+                   
+                    $tpl->render();
+                }
+                
             }
-            
+            //End Blade
         }else{
-            if(!file_exists($application_folder."/"."views/".$filename.".php")){
-               echo "View File not found: ".$application_folder."/"."views/".$filename.".php";
+
+            if(isset($file[1])){
+                if(!file_exists($application_folder."/"."views/".$filename)){
+                    echo "View File not found: ".$application_folder."/"."views/".$filename;
+                }else{
+                    include $application_folder."/"."views/".$filename;
+                }
+                
             }else{
-                include $application_folder."/"."views/".$filename.".php";
+                if(!file_exists($application_folder."/"."views/".$filename.".php")){
+                echo "View File not found: ".$application_folder."/"."views/".$filename.".php";
+                }else{
+                    include $application_folder."/"."views/".$filename.".php";
+                }
+                
             }
-            
         }
         
     }

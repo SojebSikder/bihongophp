@@ -13,5 +13,13 @@ class IndexController extends Controller{
 	public function home(){
 		$this->load->view("home");
 	}
+
+	public function blade(){
+		$data = array(
+			"title" => "Blade Template",
+			"name" => "sojeb sikder"
+		);
+		$this->load->view("test.blade", $data);
+	}
 }
 ?>
