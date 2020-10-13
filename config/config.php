@@ -118,7 +118,8 @@ defined("ASSET") //Get assets url ex. js/css etc.
 	or define("ASSET", $config['url']['asset']);
 defined("ICON") //Get Icon
 	or define("ICON", $config['web']['info']['web_icon']);
-
+defined("CHARSET") //Get Charset
+	or define("CHARSET", $config['charset']);
 
 /**
  * User can define constant here

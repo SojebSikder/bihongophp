@@ -2,7 +2,7 @@
 <html>
 <head>
     <base href="{ROOT}">
-    <meta charset="UTF-8">
+    <meta charset="{CHARSET}">
     <link rel="icon" href="{ICON}" type="image/png" sizes="16x16">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -23,8 +23,8 @@
     </center>
 
     <a href="">Home</a>
-    
-    <?php echo "Hello My name is {name}"; ?>
+    <br>
+    <?php echo "Hello, I'm {name}"; ?>
 
     <p>If you see the source code of this page you can see TE Templating code</p>
     

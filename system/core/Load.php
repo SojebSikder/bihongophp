@@ -8,7 +8,7 @@ class Load{
      */
     public function view($filename, $data = false)
     {
-        global $application_folder, $system_path;
+        global $application_folder, $system_path, $config;
 
         if($data == true){
             extract($data);
@@ -32,11 +32,14 @@ class Load{
                      * Predefined Value
                      */
                     $tpl->set('ROOT', ROOT);
+                    $tpl->set('CHARSET', $config['charset']);
                     $tpl->set('ICON', ICON);
                     $tpl->set('TITLE', TITLE);
                     $tpl->set('SLOGAN', SLOGAN);
                     $tpl->set('ASSET', ASSET);
                     $tpl->set('B_VERSION', B_VERSION); 
+
+                    $tpl->set('csrf_token_name', CHARSET);
 
                     /**
                      * Custom Value

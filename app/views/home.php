@@ -2,7 +2,7 @@
 <html>
 <head>
     <base href="<?php echo ROOT ?>">
-    <meta charset="UTF-8">
+    <meta charset="<?php echo CHARSET ?>">
     <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
     <meta name="description" content="">
     <meta name="keywords" content="">
