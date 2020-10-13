@@ -20,6 +20,9 @@
     <h3><?php echo SLOGAN ?></h3>
 
     </center>
+
+    <a href="te">See TE Example</a>
+
     <p>You can find this page on <a style="color: violet;">app/views/home.php<a></p>
     <p class="footer"><?php echo  'Bihongo Version <strong>' . B_VERSION . '</strong>'?></p>
 

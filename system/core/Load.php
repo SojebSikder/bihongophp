@@ -17,10 +17,10 @@ class Load{
         $file = explode(".", $filename);
 
         /**
-         * For using Blade
+         * For using Template Engine
          */
         if(isset($file[1])){
-            if($file[1] == "blade"){
+            if($file[1] == "te"){
                 if(isset($file[2])){
                     include $application_folder."/"."views/".$filename;
                 }else{
@@ -51,7 +51,7 @@ class Load{
                 }
                 
             }
-            //End Blade
+            //End Template Engine
         }else{
 
             if(isset($file[1])){

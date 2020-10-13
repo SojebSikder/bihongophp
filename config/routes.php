@@ -21,7 +21,7 @@
  */
 $route['default_controller'] = 'Index'; //DO NOT DELETE THIS ROUTE NAME (default_controller)
 $route['home'] = 'Index/home';
-$route['blade'] = 'Index/blade';
+$route['te'] = 'Index/te';
 
 
 
