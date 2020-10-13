@@ -24,6 +24,7 @@
 
     <a href="">Home</a>
     <br>
+    {page}
     <?php echo "Hello, I'm {name}"; ?>
     <p>If you see the source code of this page you can see TE Templating code</p>
     
