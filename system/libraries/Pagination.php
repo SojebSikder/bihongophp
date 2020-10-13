@@ -20,11 +20,11 @@ class Pagination
         //$total = $this->total_rows;
         //$limit =  $this->per_page;
         
-        $number_page = (int) ceil($this->total_rows / $this->per_page);
+        $number_page = (int) ceil($this->total_rows / $this->per_page)+1;
 
         $el = '';
         for ($i=1; $i < $number_page; $i++) { 
-            $el = $el.'<a href="'.$this->base_url.number_format($i).'">'.$i.'</a>';
+            $el = $el.'<a href="'.$this->base_url.number_format($i*$this->per_page).'">'.$i.'</a>';
         }
         return $el;
     }
