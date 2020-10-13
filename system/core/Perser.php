@@ -90,7 +90,7 @@ class Perser
     private function replaceTags()
     {
         foreach ($this->tags as $tag => $value) {
-            $this->template = str_replace('{'.$tag.'}', $value, $this->template);
+            $this->template = str_replace($this->l_delim.$tag.$this->r_delim, $value, $this->template);
         }
 
         return true;

@@ -32,24 +32,22 @@ class Load{
                      * Predefined Value
                      */
                     $tpl->set('ROOT', ROOT);
-                    $tpl->set('CHARSET', $config['charset']);
+                    $tpl->set('CHARSET', CHARSET);
                     $tpl->set('ICON', ICON);
                     $tpl->set('TITLE', TITLE);
                     $tpl->set('SLOGAN', SLOGAN);
                     $tpl->set('ASSET', ASSET);
                     $tpl->set('B_VERSION', B_VERSION); 
-
-                    $tpl->set('csrf_token_name', CHARSET);
+                    $tpl->set('csrf_token_name', $config['csrf_token_name']);
 
                     /**
                      * Custom Value
                      */
                     if($data){
-
                         foreach ($data as $key => $value) {
                             $tpl->set($key, $value);
                         } 
-                    } 
+                    }
                     $tpl->render();
                 }
                 

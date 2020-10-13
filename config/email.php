@@ -1,6 +1,7 @@
 <?php
 /**
  * Email Setup
+ * BihongoPHP uses PHPMailer Library to sending email.
  */
 /**
  * Host Address

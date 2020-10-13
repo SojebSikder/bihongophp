@@ -19,12 +19,13 @@ $config['url'] = [
 	 * base url (Changeable) like: http://localhost/bihongophp/
 	 * Access this value on project using ROOT constant
 	 */
-	"baseUrl" => "http://localhost/bihongophp/",
+	"baseUrl" => "http://localhost/bihongophp/", //(Changable)
 	/**
 	 * asset url for use assets(js/css etc.)
 	 * Access this value on project using ASSET constant
+	 * If you want to change your asset/resource directory then you can
 	 */
-	"asset" => "app/views/"
+	"asset" => "app/views/" 					//(Changable)
 ];
  
 
@@ -43,8 +44,8 @@ $config['web'] = [
  */
 $config['user'] = [
 	"user" => [
-		"user_name" => "", //author name (Changable)
-		"user_email" => "" //author email (Changable)
+		"user_name" => "", 						//author name (Changable)
+		"user_email" => "" 						//author email (Changable)
 	]
 ];
 
@@ -53,17 +54,17 @@ $config['user'] = [
  */
 $config['db'] = [
 	"mysqli" => [
-		"host" => "localhost", 	//DB Host (Changeable)
-		"username" => "root", 	//DB user (Changeable)
-		"password" => "", 		//DB Password (Changeable)
-		"dbname" => "", 		//DB name (Changeable)
-		'dbdriver' => 'mysqli' 	//DB Driver (Changeable)
+		"host" => "localhost", 					//DB Host (Changeable)
+		"username" => "root", 					//DB user (Changeable)
+		"password" => "", 						//DB Password (Changeable)
+		"dbname" => "", 						//DB name (Changeable)
+		'dbdriver' => 'mysqli' 					//DB Driver (Changeable)
 	]
  ];
 /**
  * Set Database connection which to use
  */
-$active_db = 'mysqli'; //select database (Changeable)
+$active_db = 'mysqli'; 							//select database (Changeable)
 /**
  * Set mode
  * For develpment : 'development'
@@ -74,7 +75,7 @@ $active_db = 'mysqli'; //select database (Changeable)
  * 
  * 
  */
-$config['mode'] = 'development'; //select mode (Changeable)
+$config['mode'] = 'development'; 				//select mode (Changeable)
 /**
  * Application folder
  */
@@ -90,6 +91,7 @@ $config['charset'] = 'UTF-8';
 /**
  * CSRF Protection
  * If csrf_protection False then csrf protection will be off.
+ * Also you can change csrf token name as your requirements.
 */
 $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'csrf_token_name'; //(Changeable)
