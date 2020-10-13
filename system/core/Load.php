@@ -53,22 +53,38 @@ class Load{
                 
             }
             //End Template Engine
-        }else{
 
-            if(isset($file[1])){
+
+            else if($file[1] == "php"){
                 if(!file_exists($application_folder."/"."views/".$filename)){
                     echo "View File not found: ".$application_folder."/"."views/".$filename;
                 }else{
                     include $application_folder."/"."views/".$filename;
                 }
                 
-            }else{
+            }else if($file[1] != "php"){
+                if(!file_exists($application_folder."/"."views/".$filename)){
+                    echo "View File not found: ".$application_folder."/"."views/".$filename;
+                }else{
+                    include $application_folder."/"."views/".$filename;
+                }
+                
+            }
+            else{
                 if(!file_exists($application_folder."/"."views/".$filename.".php")){
-                echo "View File not found: ".$application_folder."/"."views/".$filename.".php";
+                    echo "View File not found: ".$application_folder."/"."views/".$filename.".php";
                 }else{
                     include $application_folder."/"."views/".$filename.".php";
                 }
                 
+            }
+
+
+        }else{
+            if(!file_exists($application_folder."/"."views/".$filename.".php")){
+                echo "View File not found: ".$application_folder."/"."views/".$filename.".php";
+            }else{
+                include $application_folder."/"."views/".$filename.".php";
             }
         }
         
