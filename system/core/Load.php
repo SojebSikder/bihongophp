@@ -24,7 +24,7 @@ class Load{
                 if(isset($file[2])){
                     include $application_folder."/"."views/".$filename;
                 }else{
-                    include "Perser.php";
+                    require_once "Perser.php";
 
                     // Initialize object
                     $tpl = new Perser($application_folder."/"."views/".$filename.".php");
@@ -36,14 +36,17 @@ class Load{
                     $tpl->set('TITLE', TITLE);
                     $tpl->set('SLOGAN', SLOGAN);
                     $tpl->set('ASSET', ASSET);
-                    $tpl->set('B_VERSION', B_VERSION);
+                    $tpl->set('B_VERSION', B_VERSION); 
 
                     /**
                      * Custom Value
                      */
-                    foreach ($data as $key => $value) {
-                        $tpl->set($key, $value);
-                    }
+                    if($data){
+
+                        foreach ($data as $key => $value) {
+                            $tpl->set($key, $value);
+                        } 
+                    } 
                     $tpl->render();
                 }
                 

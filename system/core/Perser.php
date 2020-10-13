@@ -4,12 +4,22 @@
  */
 class Perser
 {
+    /**
+     * Left Delimeter
+     */
+    public $l_delim = '{';
+    /**
+     * right delimiter
+     */
+    public $r_delim = '}';
+    
     // Tags array
-    private $tags = [];
+    public $tags = [];
 
     // Template file
-    private $template;
+    public $template;
 
+    
     public function __construct($templateFile)
     {
         $this->template = $this->getFile($templateFile);
@@ -19,12 +29,15 @@ class Perser
             return "Error! Can't load the template file $templateFile";
         }
 
-    }
+    } 
+
+
 
     // Render the build template
     public function render()
     {
         $this->replaceTags();
+
         $this->replaceHTMLTags();
         $this->replaceIncludeTags();
 
@@ -48,8 +61,24 @@ class Perser
     {
         if(file_exists($file))
         {
-            $file = file_get_contents($file);
-            return $file;
+            /*$file = file_get_contents($file);
+            return $file;*/
+
+            if (!ini_get('short_open_tag'))
+            {
+                $code = eval('?>'.preg_replace('/;*\s*\?>/', '; ?>', str_replace('<?=', '<?php echo ', file_get_contents($file))));
+                echo $code;
+            }
+            else
+            {
+                include($file);
+            }
+
+            
+            $buffer = ob_get_contents();
+            @ob_end_clean();
+            return $buffer;
+
         }
         else
         {
@@ -76,6 +105,7 @@ class Perser
 
         return true;
     }
+
 
 
      private function replaceIncludeTags()

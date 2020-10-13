@@ -15,11 +15,12 @@ class IndexController extends Controller{
 	}
 
 	public function blade(){
-		$data = array(
-			"title" => "Blade Template",
-			"name" => "sojeb sikder"
-		);
-		$this->load->view("test.blade", $data);
+		$this->benchmark->mark('start');
+
+		$this->load->view("home.blade");
+
+		$this->benchmark->mark('end');
+		echo "Page render in ".$this->benchmark->elapsed_time('start', 'end');
 	}
 }
 ?>
