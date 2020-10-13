@@ -3,9 +3,9 @@
  * Form Helper
  */
 
-if (!function_exists('form_open'))
+if (!function_exists('formOpen'))
 {
-    function form_open($action = '', $attributes = array(), $hidden = array())
+    function formOpen($action = '', $attributes = array(), $hidden = array())
     {
         global $config;
         if($config['csrf_protection'] == FALSE){
@@ -42,9 +42,9 @@ if (!function_exists('form_open'))
 }
 
 
-if (!function_exists('form_open_multipart'))
+if (!function_exists('formOpen_multipart'))
 {
-    function form_open_multipart($action = '', $attributes = array(), $hidden = array())
+    function formOpen_multipart($action = '', $attributes = array(), $hidden = array())
     {
         global $config;
         if($config['csrf_protection'] == FALSE){
@@ -81,9 +81,9 @@ if (!function_exists('form_open_multipart'))
 
 }
 
-if (!function_exists('form_close'))
+if (!function_exists('formClose'))
 {
-    function form_close()
+    function formClose()
     {
         return "</form>";
     }

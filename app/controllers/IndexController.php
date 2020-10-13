@@ -26,7 +26,7 @@ class IndexController extends Controller{
 		
 		$this->benchmark->mark('start');
 
-		$config['base_url'] = 'http://example.com/index.php/test/page/';
+		$config['base_url'] = ROOT.'index/home/page/';
 		$config['total_rows'] = 50;
 		$config['per_page'] = 5;
 

@@ -2,7 +2,7 @@
 /**
  * Cookie Helper
  */
-if ( ! function_exists('set_cookie'))
+if ( ! function_exists('setCookie'))
 {
 	/**
 	 * Set cookie
@@ -10,19 +10,19 @@ if ( ! function_exists('set_cookie'))
 	 * Accepts seven parameters, or you can submit an associative
 	 * array in the first parameter containing all the values.
 	 */
-	function set_cookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL)
+	function setCookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL)
 	{
         setcookie($name, $value, $expire, $path, $domain, $secure);		
 	}
 }
 
 
-if ( ! function_exists('get_cookie'))
+if ( ! function_exists('getCookie'))
 {
 	/**
 	 * Fetch an item from the COOKIE array
 	 */
-	function get_cookie($index, $xss_clean = NULL)
+	function getCookie($index, $xss_clean = NULL)
 	{
 		if(isset($_COOKIE[$index])){
             return $_COOKIE[$index];
@@ -31,12 +31,12 @@ if ( ! function_exists('get_cookie'))
 }
 
 
-if ( ! function_exists('delete_cookie'))
+if ( ! function_exists('deleteCookie'))
 {
 	/**
 	 * Delete a COOKIE
 	 */
-	function delete_cookie($name, $domain = '', $path = '/', $prefix = '')
+	function deleteCookie($name, $domain = '', $path = '/', $prefix = '')
 	{
 		set_cookie($name, '', '', $domain, $path, $prefix);
 	}

@@ -2,12 +2,12 @@
 /**
  * Path Helper
  */
-if ( ! function_exists('set_realpath'))
+if ( ! function_exists('setRealpath'))
 {
 	/**
 	 * Set Realpath
 	 */
-	function set_realpath($path, $check_existance = FALSE)
+	function setRealpath($path, $check_existance = FALSE)
 	{
 		// Security check to make sure the path is NOT a URL. No remote file inclusion!
 		if (preg_match('#^(http:\/\/|https:\/\/|www\.|ftp|php:\/\/)#i', $path) OR filter_var($path, FILTER_VALIDATE_IP) === $path)

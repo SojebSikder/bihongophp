@@ -14,14 +14,14 @@ if(!function_exists('textShorten')){
 }
 
 
-if ( ! function_exists('highlight_code'))
+if ( ! function_exists('highlightCode'))
 {
 	/**
 	 * Code Highlighter
 	 *
 	 * Colorizes code strings
 	 */
-	function highlight_code($str)
+	function highlightCode($str)
 	{
 		/* The highlight string function encodes and highlights
 		 * brackets so we need them to start raw.

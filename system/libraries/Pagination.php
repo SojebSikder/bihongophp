@@ -29,12 +29,6 @@ class Pagination
         return $el;
     }
 
-    public function getAllRecords()
-    {
-        $query = 'SELECT * FROM tbl_animal';
-        $totalRecords = $this->ds->getRecordCount($query);
-        return $totalRecords;
-    }
 
 }
 
