@@ -25,7 +25,6 @@
     <a href="">Home</a>
     <br>
     <?php echo "Hello, I'm {name}"; ?>
-    
     <p>If you see the source code of this page you can see TE Templating code</p>
     
     <p>You can find this page on <a style="color: violet;">app/views/home.te.php<a></p>
