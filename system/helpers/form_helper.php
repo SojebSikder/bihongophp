@@ -53,7 +53,7 @@ if (!function_exists('formOpen_multipart'))
             foreach ($attributes as $attribute => $value) {
                 $attr .= $attribute."= ".$value."  ";
             }
-            $form = '<form '.$attr.' enctype="multipart/form-data" action="'.ROOT.$action.'"'.">\n";
+            $form = '<form '.$attr.' enctype="multipart/form-data" method="post" accept-charset="utf-8" action="'.ROOT.$action.'"'.">\n";
             return $form;
         }
         else{
@@ -73,7 +73,7 @@ if (!function_exists('formOpen_multipart'))
                 $attr .= $attribute."= ".$value."  ";
             }
             
-            $form = '<form '.$attr.' enctype="multipart/form-data" action="'.ROOT.$action.'"'.">\n";
+            $form = '<form '.$attr.' enctype="multipart/form-data" method="post" accept-charset="utf-8" action="'.ROOT.$action.'"'.">\n";
             $form .= '<input name='.$tokenName.' type="hidden" value="'.$token.'">';
             return $form;
         }
