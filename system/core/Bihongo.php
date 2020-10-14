@@ -30,7 +30,7 @@ include $system_path."/database/Dbase.php";
 /**
  * BihongoPHP Version
  */
-const B_VERSION = '1.0.0';
+const B_VERSION = '1.0.1';
 
 //Core
 $url = isset($_GET['url']) ? $_GET['url'] : NULL;

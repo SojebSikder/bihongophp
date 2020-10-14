@@ -10,5 +10,6 @@ use system\Inspiring;
 
 Command::set('inspire', function(){
     Command::comment(Inspiring::quote());
+
 })->describe('Display an inspiration qoute');
 

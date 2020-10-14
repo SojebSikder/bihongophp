@@ -25,6 +25,30 @@ class Command
         echo self::$white; //white
     }
 
+    public static function success($text)
+    {
+        echo self::$green.$text; //yellow
+        echo self::$white; //white
+    }
+
+    public static function danger($text)
+    {
+        echo self::$red.$text; //yellow
+        echo self::$white; //white
+    }
+
+    public static function text($text)
+    {
+        echo self::$white.$text; //yellow
+        echo self::$white; //white
+    }
+
+    public static function blue($text)
+    {
+        echo self::$blue.$text; //yellow
+        echo self::$white; //white
+    }
+
     public static function set($command, $callback)
     {
         global $argc, $argv, $application_folder;
