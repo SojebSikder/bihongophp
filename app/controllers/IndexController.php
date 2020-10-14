@@ -22,17 +22,19 @@ class IndexController extends Controller{
 		echo "Page render in ".$this->benchmark->elapsed_time('start', 'end');
 	}
 
-	public function te(){
+	public function te($id = false){
 		
 		$this->benchmark->mark('start');
 
-		$config['base_url'] = ROOT.'index/home/page/';
+		$config['base_url'] = ROOT.'te/';
 		$config['total_rows'] = 50;
 		$config['per_page'] = 5;
 
 		$pagi = new Pagination();
 		$pagi->init($config);
 		$page = $pagi->createLink();
+
+		echo $id;
 
 
 		$this->load->view("home.te", [
