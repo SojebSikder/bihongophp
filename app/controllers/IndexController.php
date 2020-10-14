@@ -8,8 +8,6 @@
 class IndexController extends Controller{
 	public function __construct(){
 		parent::__construct();
-
-		$this->load->library('Pagination');
 	}
 
 	public function home(){
@@ -26,23 +24,9 @@ class IndexController extends Controller{
 		
 		$this->benchmark->mark('start');
 
-		$config['base_url'] = ROOT.'te/';
-		$config['total_rows'] = 50;
-		$config['per_page'] = 5;
-
-		$pagi = new Pagination();
-		$pagi->init($config);
-		$page = $pagi->createLink();
-
-		echo $id;
-
-
 		$this->load->view("home.te", [
-				'name' => 'BihongoPHP',
-			 	'page'=>$page
+				'name' => 'BihongoPHP'
 			 ]);
-
-		
 
 		$this->benchmark->mark('end');
 		echo "Page render in ".$this->benchmark->elapsed_time('start', 'end');
