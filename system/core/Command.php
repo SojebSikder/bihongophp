@@ -5,6 +5,30 @@
 require $system_path."/"."helpers/"."file_helper.php";
 class Command
 {
+    public static $customCmd;
+    public static $description;
+    public static $_instance = null;
+
+    public static function set($command, $callback){
+        global $argc, $argv, $application_folder;
+        self::$customCmd = $command;
+
+        if(self::$customCmd == $argv[1]){
+            $callback();
+        }
+
+        if (self::$_instance === null) {
+            self::$_instance = new self;
+        }
+
+        return self::$_instance;
+        
+    }
+
+    public function describe($des){
+        self::$description = $des;
+        return $this;
+    }
 
     public static function execute()
     {
@@ -17,10 +41,16 @@ class Command
 
             //make:controller HelloController
 
-            $main = $split['0'];
-            $type = $split['1'];
-            $name = $argv[2];
-
+            if(isset($split['0'])){
+                $main = $split['0'];
+            }
+            if(isset($split['1'])){
+                $type = $split['1'];
+            }
+            if(isset($argv[2])){
+                $name = $argv[2];
+            }
+            
             if($main == "make"){
                 if($type == "controller"){
                     writeFile($application_folder."/"."controllers/".$name.".php", self::createController($name));
