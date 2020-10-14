@@ -10,7 +10,7 @@
 */
 require "config/config.php";
 require $system_path."/"."core/"."Command.php";
-require "config/Console.php";
+require "config/console.php";
 
 Command::execute();
 

@@ -1,10 +1,14 @@
 <?php
+require $system_path."/"."Inspire.php";
+use system\Inspiring;
 /**
  * Create console command
+ * 
+ * Here you can define your own console based command
  */
 
-Command::set('sojeb', function(){
-    echo "workinng sojeb sikder";
-})->describe('description');
 
-?>
+Command::set('inspire', function(){
+    Command::comment(Inspiring::quote());
+})->describe('Display an inspiration qoute');
+

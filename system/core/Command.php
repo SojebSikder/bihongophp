@@ -9,7 +9,24 @@ class Command
     public static $description;
     public static $_instance = null;
 
-    public static function set($command, $callback){
+    /**
+     * Command Promt Color
+     */
+    public static $red = "\033[31mRed";
+    public static $green = "\033[32mGreen";
+    public static $yellow = "\033[33mYellow";
+    public static $blue = "\033[34mBlue";
+    public static $white = "\033[37m";
+
+
+    public static function comment($text)
+    {
+        echo self::$yellow.$text; //yellow
+        echo self::$white; //white
+    }
+
+    public static function set($command, $callback)
+    {
         global $argc, $argv, $application_folder;
         self::$customCmd = $command;
 
@@ -19,13 +36,14 @@ class Command
 
         if (self::$_instance === null) {
             self::$_instance = new self;
-        }
+        } 
 
-        return self::$_instance;
+        return self::$_instance;//new static;
         
     }
 
-    public function describe($des){
+    public function describe($des)
+    {
         self::$description = $des;
         return $this;
     }
