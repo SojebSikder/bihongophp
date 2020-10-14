@@ -1,2 +1,2 @@
 # bihongo-php-framework
-Php framework for making stunning website
+BihongoPHP is a fast, simple and lightweight web framework for Php.
