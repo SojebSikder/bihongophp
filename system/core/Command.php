@@ -25,31 +25,31 @@ class Command
      */
     public static function comment($text)
     {
-        echo self::$yellow.$text;
+        echo self::$yellow.$text."\n";
         echo self::$white; //white
     }
 
     public static function success($text)
     {
-        echo self::$green.$text;
+        echo self::$green.$text."\n";
         echo self::$white; //white
     }
 
     public static function danger($text)
     {
-        echo self::$red.$text;
+        echo self::$red.$text."\n";
         echo self::$white; //white
     }
 
     public static function text($text)
     {
-        echo self::$white.$text;
+        echo self::$white.$text."\n";
         echo self::$white; //white
     }
 
     public static function blue($text)
     {
-        echo self::$blue.$text;
+        echo self::$blue.$text."\n";
         echo self::$white; //white
     }
 
@@ -111,7 +111,10 @@ class Command
         if(isset($argv[1])){
    
             if($argv[1] == "help"){
-                echo self::$description[$argv[2]];
+                self::comment('Description:');
+                echo "  ".self::$description[$argv[2]]."\n";
+                self::comment('Usage:');
+                echo "  ".$argv[2]."\n";
             }
         }
 
