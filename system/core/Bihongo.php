@@ -8,7 +8,6 @@ $mail = array();
  * Setup Files
  */
 //include "config/config.php";
-include "config/migration.php";
 include "config/routes.php";
 include "config/email.php";
 /**
