@@ -4,18 +4,20 @@
  */
 require $system_path."/"."helpers/"."file_helper.php";
 
+function current_migrate($row){
+    global $system_path;
+
+    $db = new Database();
+    $result = $db->select("SELECT * FROM migration")->fetch_assoc();
+    return $result[$row];
+}
+
 class Command
 {
     public static $customCmd;
     public static $customCmdArray = array();
     public static $description = array();
     public static $_instance = null;
-
-    /**
-     * Database
-     */
-    public static $current_migrate ='';
-    public static $current_migrate_name ='';
 
     /**
      * Command Promt Color
@@ -103,17 +105,19 @@ class Command
                 require $system_path."/core/Database.php";
                 require $system_path."/core/Database/Builder.php";
                 require $system_path."/core/Database/Schema.php";
-                require $application_folder."/"."migrations/".self::$current_migrate.".php";
+                require $application_folder."/"."migrations/".current_migrate('migration').".php";
                 if(isset($argv[2])){
                     //find current migrations
-                    $test = new self::$current_migrate_name();
+                    $class = current_migrate('class');
+                    $test = new $class();
                     $method = $argv[2];
                     $test->$method();
                     //end that
                     self::success("$method Migration: ");
                 }else{     
                     //find current migrations
-                    $test = new self::$current_migrate_name();
+                    $class = current_migrate('class');
+                    $test = new $class();
                     $test->up();
                     //end that
                     self::success("Created Migration: ");
@@ -166,11 +170,13 @@ class Command
                  * Create Migration
                  */
                 if($type == "migration"){
-                    $time = date('F_j_Y_g_i_a', time());
-                    writeFile($application_folder."/"."migrations/".$time."_".$name.".php", self::createMigration($name, $time."_".$name));
-                    //self::$current_migrate = $time."_".$name;
-                    //self::$current_migrate_name = $name;
-                    self::success("Created Migration: ".$time."_".$name);
+                    if(isset($name)){      
+                        $time = date('F_j_Y_g_i_a', time());
+                        writeFile($application_folder."/"."migrations/".$time."_".$name.".php", self::createMigration($name, $time."_".$name, $name));
+                        self::success("Created Migration: ".$time."_".$name);
+                    }else{
+                        self::danger("2nd Argument not found");
+                    }
                 break;
                 }
             }
@@ -257,7 +263,7 @@ class '.$modelName.' extends Model{
     }
 
 
-    public static function createMigration($migrationName, $version){
+    public static function createMigration($migrationName, $version, $class){
         global $system_path;
         /**
          * Create Database
@@ -268,19 +274,18 @@ class '.$modelName.' extends Model{
 
         $db = new Database();
         Schema::create(function(Builder $table){
-            $table->create_table('migration', false, [
+            $table->create_table('migration', true, [
                 'id' => 'INT(11) NOT NULL',
+                'class' => 'VARCHAR(255) NOT NULL',
                 'migration' => 'VARCHAR(255) NOT NULL'
             ])->add_key('id', true);
 
         });
         
-        
-        $db->insert("INSERT INTO migration(migration) VALUES('$version')");
-
-
+        $db->insert("INSERT INTO migration(migration, class) VALUES('$version', '$class')");
 
          //end That
+
 
         $data ='<?php
 
