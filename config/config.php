@@ -97,6 +97,11 @@ $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'csrf_token_name'; //(Changeable)
 
 /**
+ * Migration Directory Root
+ */
+$config['migration_path'] = ROOT.$application_folder.'\/migrations/';
+
+/**
  * Important constants DO NOT TOUCH THIS
  */
 defined("DB_HOST")
