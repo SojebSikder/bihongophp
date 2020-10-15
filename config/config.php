@@ -57,7 +57,7 @@ $config['db'] = [
 		"host" => "localhost", 					//DB Host (Changeable)
 		"username" => "root", 					//DB user (Changeable)
 		"password" => "", 						//DB Password (Changeable)
-		"dbname" => "", 						//DB name (Changeable)
+		"dbname" => "test", 						//DB name (Changeable)
 		'dbdriver' => 'mysqli' 					//DB Driver (Changeable)
 	]
  ];

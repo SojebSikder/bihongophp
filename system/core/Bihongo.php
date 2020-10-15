@@ -8,6 +8,7 @@ $mail = array();
  * Setup Files
  */
 //include "config/config.php";
+include "config/migration.php";
 include "config/routes.php";
 include "config/email.php";
 /**
@@ -22,15 +23,23 @@ include $system_path."/core/Benchmark.php";
 /**
  * Database Files
  */
-include $system_path."/database/drivers/MySQLAdapter.php";
+//include $system_path."/database/drivers/MySQLAdapter.php";
 include $system_path."/database/Dbase.php";
-//include BASE.$system_path."/core/Database.php";
+include $system_path."/core/Database.php";
 //include_once BASE.$system_path."/core/Route.php";
+
+/**
+ * Migration Files
+ */
+include $system_path."/core/Database/Builder.php";
+include $system_path."/core/Database/Migration.php";
+include $system_path."/core/Database/Schema.php";
+
 
 /**
  * BihongoPHP Version
  */
-const B_VERSION = '1.0.1';
+const B_VERSION = '1.0.2';
 
 //Core
 $url = isset($_GET['url']) ? $_GET['url'] : NULL;

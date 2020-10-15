@@ -13,8 +13,7 @@ class IndexController extends Controller{
 	public function home(){
 		//This is for measuring page speed
 		$this->benchmark->mark('start');
-
-		$this->load->helper('form_helper');
+		
 		$this->load->view("home");
 		
 		$this->benchmark->mark('end');

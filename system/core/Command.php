@@ -69,7 +69,7 @@ class Command
 
     public static function execute()
     {
-        global $argc, $argv, $application_folder;
+        global $argc, $argv, $application_folder, $system_path;
 
         /**
          * Display Help
@@ -87,6 +87,30 @@ class Command
                     echo "  Diplays help for a command\n";
                     self::comment('Usage:');
                     echo "  help [tropic]\n";
+                }
+            }
+
+            /**
+             * Predefined Command
+             */
+            if($argv[1] == "migrate"){
+                require $system_path."/core/Database.php";
+                require $system_path."/core/Database/Builder.php";
+                require $system_path."/core/Database/Schema.php";
+                require $application_folder."/"."migrations/test.php";
+                if(isset($argv[2])){
+                    //find current migrations
+                    $test = new Test();
+                    $method = $argv[2];
+                    $test->$method();
+                    //end that
+                    self::success("$method Migration: ");
+                }else{     
+                    //find current migrations
+                    $test = new Test();
+                    $test->up();
+                    //end that
+                    self::success("Created Migration: ");
                 }
             }
         }
