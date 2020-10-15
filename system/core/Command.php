@@ -3,6 +3,7 @@
  * Command Class
  */
 require $system_path."/"."helpers/"."file_helper.php";
+
 class Command
 {
     public static $customCmd;
@@ -19,39 +20,6 @@ class Command
     public static $blue = "\033[34m";
     public static $white = "\033[37m";
 
-
-    /**
-     * Output Functions
-     */
-    public static function comment($text)
-    {
-        echo self::$yellow.$text."\n";
-        echo self::$white; //white
-    }
-
-    public static function success($text)
-    {
-        echo self::$green.$text."\n";
-        echo self::$white; //white
-    }
-
-    public static function danger($text)
-    {
-        echo self::$red.$text."\n";
-        echo self::$white; //white
-    }
-
-    public static function text($text)
-    {
-        echo self::$white.$text."\n";
-        echo self::$white; //white
-    }
-
-    public static function blue($text)
-    {
-        echo self::$blue.$text."\n";
-        echo self::$white; //white
-    }
 
     /**
      * Accass Command Prompt Arguments
@@ -82,12 +50,11 @@ class Command
             $callback();
         }
 
+
         if (self::$_instance === null) {
             self::$_instance = new self;
-        } 
-
+        }
         return self::$_instance;//new static;
-        
     }
 
     /**
@@ -97,7 +64,6 @@ class Command
     public function describe($des)
     {
         self::$description[self::$customCmd] = $des;
-
         return $this;
     }
 
@@ -111,13 +77,19 @@ class Command
         if(isset($argv[1])){
    
             if($argv[1] == "help"){
-                self::comment('Description:');
-                echo "  ".self::$description[$argv[2]]."\n";
-                self::comment('Usage:');
-                echo "  ".$argv[2]."\n";
+                if(isset($argv[2])){
+                    self::comment('Description:');
+                    echo "  ".self::$description[$argv[2]]."\n";
+                    self::comment('Usage:');
+                    echo "  ".$argv[2]."\n";
+                }else{
+                    self::comment('Description:');
+                    echo "  Diplays help for a command\n";
+                    self::comment('Usage:');
+                    echo "  help [tropic]\n";
+                }
             }
         }
-
 
 
         /**
@@ -158,6 +130,41 @@ class Command
 
 
     }
+
+
+    /**
+     * Output Functions
+     */
+    public static function comment($text)
+    {
+        echo self::$yellow.$text."\n";
+        echo self::$white; //white
+    }
+
+    public static function success($text)
+    {
+        echo self::$green.$text."\n";
+        echo self::$white; //white
+    }
+
+    public static function danger($text)
+    {
+        echo self::$red.$text."\n";
+        echo self::$white; //white
+    }
+
+    public static function text($text)
+    {
+        echo self::$white.$text."\n";
+        echo self::$white; //white
+    }
+
+    public static function blue($text)
+    {
+        echo self::$blue.$text."\n";
+        echo self::$white; //white
+    }
+
 
     /**
      * Functions
