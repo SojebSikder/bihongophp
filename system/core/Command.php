@@ -6,7 +6,8 @@ require $system_path."/"."helpers/"."file_helper.php";
 class Command
 {
     public static $customCmd;
-    public static $description;
+    public static $customCmdArray = array();
+    public static $description = array();
     public static $_instance = null;
 
     /**
@@ -19,6 +20,9 @@ class Command
     public static $white = "\033[37m";
 
 
+    /**
+     * Output Functions
+     */
     public static function comment($text)
     {
         echo self::$yellow.$text;
@@ -49,12 +53,32 @@ class Command
         echo self::$white; //white
     }
 
+    /**
+     * Accass Command Prompt Arguments
+     */
+    public static function args($args){
+        global $argc, $argv, $application_folder;
+        if(isset($argv[$args])){
+            return $argv[$args];
+        }else{
+            self::danger($args."nd argument not found");
+        }
+
+    }
+
+    /**
+     * Set Custom Commands
+     */
     public static function set($command, $callback)
     {
         global $argc, $argv, $application_folder;
         self::$customCmd = $command;
 
-        if(self::$customCmd == $argv[1]){
+        self::$customCmdArray = [
+            self::$customCmd => self::$customCmd
+        ];
+
+        if(self::$customCmdArray[self::$customCmd] == $argv[1]){
             $callback();
         }
 
@@ -66,15 +90,36 @@ class Command
         
     }
 
+    /**
+     * Describe Commands
+     */
+
     public function describe($des)
     {
-        self::$description = $des;
+        self::$description[self::$customCmd] = $des;
+
         return $this;
     }
 
     public static function execute()
     {
         global $argc, $argv, $application_folder;
+
+        /**
+         * Display Help
+         */
+        if(isset($argv[1])){
+   
+            if($argv[1] == "help"){
+                echo self::$description[$argv[2]];
+            }
+        }
+
+
+
+        /**
+         * Predefined Command
+         */
         for ($i=1; $i < $argc; $i++) {
 
             $cmd = $argv[1];
