@@ -138,15 +138,31 @@ class Command
             }
             
             if($main == "make"){
+                /**
+                 * Create Controller
+                 */
                 if($type == "controller"){
                     writeFile($application_folder."/"."controllers/".$name.".php", self::createController($name));
-                    echo $name." controller created succesfully";
+                    self::success($name." controller created succesfully");
                 break;
                 }
 
+                /**
+                 * Create Model
+                 */
                 if($type == "model"){
                     writeFile($application_folder."/"."models/".$name.".php", self::createModel($name));
-                    echo $name." model created succesfully";
+                    self::success($name." model created succesfully");
+                break;
+                }
+
+                /**
+                 * Create Migration
+                 */
+                if($type == "migration"){
+                    $time = date('F_j_Y_g_i_a', strtotime(time()));
+                    writeFile($application_folder."/"."migrations/".$time."_".$name.".php", self::createMigration($name));
+                    self::success("Created Migration: ".$time."_".$name);
                 break;
                 }
             }
@@ -177,13 +193,13 @@ class Command
         echo self::$white; //white
     }
 
-    public static function text($text)
+    public static function line($text)
     {
         echo self::$white.$text."\n";
         echo self::$white; //white
     }
 
-    public static function blue($text)
+    public static function info($text)
     {
         echo self::$blue.$text."\n";
         echo self::$white; //white
@@ -231,7 +247,42 @@ class '.$modelName.' extends Model{
 
         return $data;
     }
+
+
+    public static function createMigration($migrationName){
+        $data ='<?php
+
+class '.$migrationName.'
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        //
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+    }
 }
+';
+
+        return $data;
+    }
+
+
+}
+
+
 
 
 
