@@ -12,40 +12,40 @@ class Command
     /**
      * Command Promt Color
      */
-    public static $red = "\033[31mRed";
-    public static $green = "\033[32mGreen";
-    public static $yellow = "\033[33mYellow";
-    public static $blue = "\033[34mBlue";
+    public static $red = "\033[31m";
+    public static $green = "\033[32m";
+    public static $yellow = "\033[33m";
+    public static $blue = "\033[34m";
     public static $white = "\033[37m";
 
 
     public static function comment($text)
     {
-        echo self::$yellow.$text; //yellow
+        echo self::$yellow.$text;
         echo self::$white; //white
     }
 
     public static function success($text)
     {
-        echo self::$green.$text; //yellow
+        echo self::$green.$text;
         echo self::$white; //white
     }
 
     public static function danger($text)
     {
-        echo self::$red.$text; //yellow
+        echo self::$red.$text;
         echo self::$white; //white
     }
 
     public static function text($text)
     {
-        echo self::$white.$text; //yellow
+        echo self::$white.$text;
         echo self::$white; //white
     }
 
     public static function blue($text)
     {
-        echo self::$blue.$text; //yellow
+        echo self::$blue.$text;
         echo self::$white; //white
     }
 
