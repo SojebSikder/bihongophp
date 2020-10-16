@@ -57,8 +57,8 @@ foreach ($route as $key => $value) {
     if(!isset($url[0])){
         if($route['default_controller'] != null){
 
-            include $application_folder."\/controllers/".$break[0]."Controller.php";
-            $class = $break[0]."Controller";
+            include $application_folder."\/controllers/".$break[0].".php"; //Controller
+            $class = ucfirst($break[0]); //Controller
             $ur = new $class();
             if(isset($break[1])){
                 $method = $break[1];
@@ -90,8 +90,8 @@ foreach ($route as $key => $value) {
         if(isset($break[0]))
         {
 
-            include $application_folder."/"."controllers/".$break[0]."Controller.php";
-            $s = $break[0]."Controller";
+            include $application_folder."/"."controllers/".$break[0].".php"; //Controller
+            $s = ucfirst($break[0]); //Controller
             $ur = new $s();
             if(isset($break[2])){
                 $method = $break[1];
@@ -128,8 +128,8 @@ foreach ($route as $key => $value) {
     
         }else
         {
-            include $application_folder."\/controllers/".$break[0]."Controller.php";
-            $class = $break[0]."Controller";
+            include $application_folder."\/controllers/".$break[0].".php"; //Controller
+            $class = ucfirst($break[0]); //Controller
             $ur = new $class();
             if(isset($break[1])){
                 $method = $break[1];

@@ -19,9 +19,9 @@
  * change to
  * ->$route['default_controller'] = 'your site';
  */
-$route['default_controller'] = 'Index'; //DO NOT DELETE THIS ROUTE NAME (default_controller)
-$route['home'] = 'Index/home';
-$route['te'] = 'Index/te';
+$route['default_controller'] = 'IndexController'; //DO NOT DELETE THIS ROUTE NAME (default_controller)
+$route['home'] = 'IndexController/home';
+$route['te'] = 'IndexController/te';
 
 
 
