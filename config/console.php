@@ -12,6 +12,7 @@ Command::set('inspire', function(){
     Command::comment(Inspiring::quote());
 })->describe('Display an inspiration qoute');
 
+
 Command::set('name', function(){
     Command::info(Command::args(2));
 })->describe('This is just a demo');
