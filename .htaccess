@@ -1,3 +1,6 @@
+Options -MultiViews -Indexes 
+Options FollowSymLinks
+
 RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-d

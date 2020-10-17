@@ -99,7 +99,11 @@ $config['csrf_token_name'] = 'csrf_token_name'; //(Changeable)
 /**
  * Migration Directory Root
  */
-$config['migration_path'] = $application_folder.'\/migrations/';
+$config['migration_path'] = $application_folder.'/database/migrations/';
+/**
+ * Seeder Directory ROOT
+ */
+$config['seed_path'] = $application_folder.'/database/seeds/';
 
 /**
  * Important constants DO NOT TOUCH THIS

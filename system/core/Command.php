@@ -37,7 +37,7 @@ class Command
         if(isset($argv[$args])){
             return $argv[$args];
         }else{
-            self::danger($args."nd argument not found");
+            self::danger($args." no. argument not found");
         }
 
     }
@@ -77,7 +77,28 @@ class Command
 
     public static function execute()
     {
-        global $argc, $argv, $application_folder, $system_path;
+        global $argc, $argv, $application_folder, $system_path, $config;
+
+        /**
+         * Db:Seed
+         */
+        
+        self::set('db:seed', function(){
+            global $application_folder, $system_path, $config;
+
+            require $system_path."/core/Database.php";
+            require $system_path."/core/Database/Builder.php";
+            require $system_path."/core/Database/Schema.php";
+
+            require $system_path."/core/Database/Seeder.php";
+            require $config['seed_path']."DatabaseSeeder.php";
+
+            $dbseeder = new DatabaseSeeder();
+            $dbseeder->run();
+
+            Command::success("Database seeding completed successfully");
+        })->describe('Database seeding command');
+
 
         /**
          * Display Help
@@ -105,7 +126,7 @@ class Command
                 require $system_path."/core/Database.php";
                 require $system_path."/core/Database/Builder.php";
                 require $system_path."/core/Database/Schema.php";
-                require $application_folder."/"."migrations/".current_migrate('migration').".php";
+                require $config['migration_path'].current_migrate('migration').".php";
                 if(isset($argv[2])){
                     //find current migrations
                     $class = current_migrate('class');
@@ -172,13 +193,26 @@ class Command
                 if($type == "migration"){
                     if(isset($name)){      
                         $time = date('F_j_Y_g_i_a', time());
-                        writeFile($application_folder."/"."migrations/".$time."_".$name.".php", self::createMigration($name, $time."_".$name, $name));
+                        writeFile($config['migration_path'].$time."_".$name.".php", self::createMigration($name, $time."_".$name, $name));
                         self::success("Created Migration: ".$time."_".$name);
                     }else{
                         self::danger("2nd Argument not found");
                     }
                 break;
                 }
+                /**
+                 * Seed
+                 */
+                if($type == "seed"){
+                    if(isset($name)){      
+                        writeFile($config['seed_path'].$name.".php", self::createSeed($name));
+                        self::success("Seeder created successfully");
+                    }else{
+                        self::danger("2nd Argument not found");
+                    }
+                break;
+                }
+                
             }
         }
 
@@ -307,6 +341,31 @@ class '.$migrationName.'
      * @return void
      */
     public function down()
+    {
+        //
+    }
+}
+';
+
+        return $data;
+
+    }
+
+    /**
+     * Create Seed
+     */
+    public static function createSeed($seedName){
+
+        $data ='<?php
+
+class '.$seedName.' extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
     {
         //
     }
