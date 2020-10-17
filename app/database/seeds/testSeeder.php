@@ -9,7 +9,6 @@ class testSeeder extends Seeder
      */
     public function run()
     {
-        $db = new Database();
-        $db->insert("INSERT INTO USERS(name, password) VALUES('sikder', '123')");
+        //
     }
 }

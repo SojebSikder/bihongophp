@@ -99,6 +99,34 @@ class Command
             Command::success("Database seeding completed successfully");
         })->describe('Database seeding command');
 
+        /**
+         * Db migrate
+         */
+        self::set('migrate', function(){
+            global $argc, $argv, $application_folder, $system_path, $config;
+
+            require $system_path."/core/Database.php";
+            require $system_path."/core/Database/Builder.php";
+            require $system_path."/core/Database/Schema.php";
+            require $config['migration_path'].current_migrate('migration').".php";
+            if(isset($argv[2])){
+                //find current migrations
+                $class = current_migrate('class');
+                $test = new $class();
+                $method = $argv[2];
+                $test->$method();
+                //end that
+                self::success("$method Migration");
+            }else{     
+                //find current migrations
+                $class = current_migrate('class');
+                $test = new $class();
+                $test->up();
+                //end that
+                self::success("Created Migration");
+            }
+        })->describe('Database migrate command');
+
 
         /**
          * Display Help
@@ -122,7 +150,7 @@ class Command
             /**
              * Predefined Command
              */
-            if($argv[1] == "migrate"){
+           /* if($argv[1] == "migrate"){
                 require $system_path."/core/Database.php";
                 require $system_path."/core/Database/Builder.php";
                 require $system_path."/core/Database/Schema.php";
@@ -142,8 +170,9 @@ class Command
                     $test->up();
                     //end that
                     self::success("Created Migration: ");
-                }
-            }
+                }     
+            } */
+
         }
 
 
