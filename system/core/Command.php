@@ -8,7 +8,7 @@ function current_migrate($row){
     global $system_path;
 
     $db = new Database();
-    $result = $db->select("SELECT * FROM migration")->fetch_assoc();
+    $result = $db->select("SELECT * FROM migration ORDER BY id DESC")->fetch_assoc();
     return $result[$row];
 }
 
@@ -105,9 +105,7 @@ class Command
         self::set('migrate', function(){
             global $argc, $argv, $application_folder, $system_path, $config;
 
-            require $system_path."/core/Database.php";
-            require $system_path."/core/Database/Builder.php";
-            require $system_path."/core/Database/Schema.php";
+            include $system_path."/core/dbloader.php";
             require $config['migration_path'].current_migrate('migration').".php";
             if(isset($argv[2])){
                 //find current migrations
@@ -221,7 +219,7 @@ class Command
                  */
                 if($type == "migration"){
                     if(isset($name)){      
-                        $time = date('F_j_Y_g_i_a', time());
+                        $time = time();//date('F_j_Y_g_i_a', time());
                         writeFile($config['migration_path'].$time."_".$name.".php", self::createMigration($name, $time."_".$name, $name, $time));
                         self::success("Created Migration: ".$time."_".$name);
                     }else{
@@ -338,7 +336,7 @@ class '.$modelName.' extends Model{
 
         Schema::create(function(Builder $table){
             $table->create_table('migration', true, [
-                'id' => 'INT(11) NOT NULL',
+                'id' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
                 'class' => 'VARCHAR(255) NOT NULL',
                 'migration' => 'VARCHAR(255) NOT NULL',
                 'version' => 'VARCHAR(255) NOT NULL'

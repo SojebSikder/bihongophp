@@ -1,6 +1,6 @@
 <?php
 
-class test
+class sikder
 {
     /**
      * Run the migrations.
@@ -9,8 +9,9 @@ class test
      */
     public function up()
     {
+        //
         Schema::create(function(Builder $table){
-            $table->create_table('users', true, [
+            $table->create_table('sikder', true, [
                 'id' => 'INT(11) NOT NULL',
                 'name' => 'VARCHAR(255) NOT NULL',
                 'password' => 'VARCHAR(255) NOT NULL'
@@ -26,6 +27,7 @@ class test
      */
     public function down()
     {
-        Schema::drop('users');
+        //
+        Schema::drop('sikder');
     }
 }
