@@ -5,7 +5,7 @@ class IndexModel extends Model{
         parent::__construct();
     }
 
-    public function dataList($query){
+    public function select($query){
         return $this->db->select($query);
     }
 }

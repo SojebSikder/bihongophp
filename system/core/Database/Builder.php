@@ -50,8 +50,8 @@ class Builder
                 $attr .= $attribute." ".$value.",";
             }
             $attr = rtrim($attr,','.PHP_EOL);
-            $sql = "CREATE TABLE IF NOT EXISTS $table ($attr) ENGINE = InnoDB;";
-            $this->db->link->query($sql);
+            $sql = "CREATE TABLE IF NOT EXISTS $table ($attr) ;"; //ENGINE = InnoDB
+            $this->db->insert($sql);
 
             $this->table = $table;
 
@@ -62,8 +62,8 @@ class Builder
                 $attr .= $attribute." ".$value.",";
             }
             $attr = rtrim($attr,','.PHP_EOL);
-            $sql = "CREATE TABLE $table ($attr) ENGINE = InnoDB;";
-            $this->db->link->query($sql);
+            $sql = "CREATE TABLE $table ($attr) ;";//ENGINE = InnoDB
+            $this->db->insert($sql);
 
             $this->table = $table;
 
@@ -73,14 +73,14 @@ class Builder
 
     public function dropIfExists($table){
         $sql = "DROP TABLE IF EXISTS $table";
-        $this->db->link->query($sql);
+        $this->db->delete($sql);
 
         return $this;
     }
 
     public function drop($table){
         $sql = "DROP TABLE $table";
-        $this->db->link->query($sql);
+        $this->db->delete($sql);
 
         return $this;
     }
@@ -90,7 +90,7 @@ class Builder
 	{
         if($primary == true){
             $sql = "ALTER TABLE $this->table CHANGE $key $key INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY ($key)";
-            $this->db->link->query($sql);
+            $this->db->update($sql);
 
             return $this;
         }

@@ -15,7 +15,7 @@ class IndexController extends Controller{
 		$this->benchmark->mark('start');
 		
 		$this->load->view("home");
-		
+
 		$this->benchmark->mark('end');
 		echo "Page render in ".$this->benchmark->elapsed_time('start', 'end');
 	}
