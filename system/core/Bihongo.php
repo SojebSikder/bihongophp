@@ -14,7 +14,7 @@ include "config/email.php";
  * Core Files
  */
 include $system_path."/core/Controller.php";
-include $system_path."/core/Model.php";
+
 include $system_path."/core/Load.php";
 include $system_path."/core/Input.php";
 include $system_path."/core/Benchmark.php";
@@ -22,7 +22,11 @@ include $system_path."/core/Benchmark.php";
 /**
  * Database Files
  */
-//include $system_path."/database/drivers/MySQLAdapter.php";
+include $system_path."/database/drivers/AdapterInterface.php";
+include $system_path."/database/drivers/MySQLAdapter.php";
+include $system_path."/database/drivers/SQLiteAdapter.php";
+
+
 include $system_path."/database/Dbase.php";
 include $system_path."/core/Database.php";
 //include_once BASE.$system_path."/core/Route.php";
@@ -33,6 +37,11 @@ include $system_path."/core/Database.php";
 include $system_path."/core/Database/Builder.php";
 include $system_path."/core/Database/Migration.php";
 include $system_path."/core/Database/Schema.php";
+
+/**
+ * Model
+ */
+include $system_path."/core/Model.php";
 
 
 /**

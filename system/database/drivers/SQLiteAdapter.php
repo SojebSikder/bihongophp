@@ -1,8 +1,7 @@
 <?php
 //namespace DB;
 //include "AdapterInterface.php";
-
-Class MySQLAdapter implements AdapterInterface{
+class SQLiteAdapter extends SQLite3 implements AdapterInterface{
  public $host   = DB_HOST;
  public $user   = DB_USER;
  public $pass   = DB_PASS;
@@ -17,13 +16,24 @@ Class MySQLAdapter implements AdapterInterface{
  }
  
   private function connectDB(){
-    $this->link = new mysqli($this->host, $this->user, $this->pass,$this->dbname);
+    global $config;
+
+    $this->link = $this->open($config['db']['sqlite']['dbname']);
     if(!$this->link){
       $this->error ="Connection fail".$this->link->connect_error;
       return false;
     }
   }
   
+  /**
+   * Create table
+   */
+  public function create_table(){
+    $sql = "CREATE TABLE COMPANY
+      (ID INT PRIMARY KEY NOT NULL,
+      NAME TEXT NOT NULL, AGE INT NOT NULL, ADDRESS CHAR(50), SALARY REAL);";
+  }
+
   // Select or Read data
   public function select($query){
     $result = $this->link->query($query) or die($this->link->error.__LINE__);

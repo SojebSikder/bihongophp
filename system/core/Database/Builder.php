@@ -13,7 +13,34 @@ class Builder
     }
 
     public function connection(){
-        $this->db = new Database();
+        $this->db = $this->DBSwitcher();
+    }
+
+    public function DBSwitcher(){
+        global $config, $active_db;
+        //$this->db = new Database();
+        switch ($config['db'][$active_db]['dbdriver']) {
+            case 'mysqli':
+                $driver = new MySQLAdapter();
+                break;
+                
+            case 'sqlite':
+                $driver = new SQLiteAdapter();
+                break;
+
+            case 'mssql':
+                $driver = new MSSQLAdapter();
+                break;
+
+            case 'mongodb':
+                $driver = new MongoDBAdapter();
+                break;
+            
+            default:
+                $driver = new MySQLAdapter();
+                break;
+        }
+        return $this->db = new Dbase($driver);
     }
 
     public function create_table($table, $if_not_exist = true, $attributes = array()){

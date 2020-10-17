@@ -5,9 +5,9 @@ Class Dbase{
 
   protected $adapter;
  
- public function __construct(AdapterInterface $adapter){
-  $this->adapter = $adapter;
- }
+  public function __construct(AdapterInterface $adapter){
+    $this->adapter = $adapter;
+  }
  
   // Select or Read data
   public function select($query){
