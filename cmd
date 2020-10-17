@@ -9,6 +9,7 @@
 * make:model ModelNameModel
 */
 require "config/config.php";
+require "config/database.php";
 require $system_path."/"."core/"."Command.php";
 require "config/console.php";
 

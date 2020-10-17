@@ -222,7 +222,7 @@ class Command
                 if($type == "migration"){
                     if(isset($name)){      
                         $time = date('F_j_Y_g_i_a', time());
-                        writeFile($config['migration_path'].$time."_".$name.".php", self::createMigration($name, $time."_".$name, $name));
+                        writeFile($config['migration_path'].$time."_".$name.".php", self::createMigration($name, $time."_".$name, $name, $time));
                         self::success("Created Migration: ".$time."_".$name);
                     }else{
                         self::danger("2nd Argument not found");
@@ -326,26 +326,28 @@ class '.$modelName.' extends Model{
     }
 
 
-    public static function createMigration($migrationName, $version, $class){
+    public static function createMigration($migrationName, $version, $class, $onlyVersion){
         global $system_path;
         /**
          * Create Database
          */
-        require $system_path."/core/Database.php";
-        require $system_path."/core/Database/Builder.php";
-        require $system_path."/core/Database/Schema.php";
+        include $system_path."/core/dbloader.php";
 
         $db = new Database();
+
+
         Schema::create(function(Builder $table){
             $table->create_table('migration', true, [
                 'id' => 'INT(11) NOT NULL',
                 'class' => 'VARCHAR(255) NOT NULL',
-                'migration' => 'VARCHAR(255) NOT NULL'
-            ])->add_key('id', true);
+                'migration' => 'VARCHAR(255) NOT NULL',
+                'version' => 'VARCHAR(255) NOT NULL'
+            ]);
 
         });
+
         
-        $db->insert("INSERT INTO migration(migration, class) VALUES('$version', '$class')");
+        $db->insert("INSERT INTO migration(migration, class, version) VALUES('$version', '$class', '$onlyVersion')");
 
          //end That
 

@@ -23,21 +23,8 @@ include $system_path."/core/Benchmark.php";
 /**
  * Database Files
  */
-include $system_path."/database/drivers/AdapterInterface.php";
-include $system_path."/database/drivers/MySQLAdapter.php";
-include $system_path."/database/drivers/SQLiteAdapter.php";
+include $system_path."/core/dbloader.php";
 
-
-include $system_path."/database/Dbase.php";
-include $system_path."/core/Database.php";
-//include_once BASE.$system_path."/core/Route.php";
-
-/**
- * Migration Files
- */
-include $system_path."/core/Database/Builder.php";
-include $system_path."/core/Database/Migration.php";
-include $system_path."/core/Database/Schema.php";
 
 /**
  * Model
