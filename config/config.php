@@ -77,7 +77,7 @@ $config['charset'] = 'UTF-8';
  * If csrf_protection False then csrf protection will be off.
  * Also you can change csrf token name as your requirements.
 */
-$config['csrf_protection'] = TRUE;
+$config['csrf_protection'] = true;
 $config['csrf_token_name'] = 'csrf_token_name'; //(Changeable)
 
 /**

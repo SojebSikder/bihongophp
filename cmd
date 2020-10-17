@@ -14,4 +14,3 @@ require "config/console.php";
 
 Command::execute();
 
-?>
