@@ -16,10 +16,17 @@ class Builder
         $this->db = $this->DBSwitcher();
     }
 
-    public function DBSwitcher(){
+    public function DBSwitcher($switch = false){
         global $config, $active_db;
         //$this->db = new Database();
-        switch ($config['db'][$active_db]['dbdriver']) {
+        
+        if($switch == false){
+            $dbsw = $config['db'][$active_db]['dbdriver'];
+        }else{
+            $dbsw = $switch;
+        }
+        
+        switch ($dbsw) {
             case 'mysqli':
                 $driver = new MySQLAdapter();
                 break;

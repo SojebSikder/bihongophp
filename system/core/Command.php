@@ -246,8 +246,8 @@ class Command
                 if($type == "migration"){
                     if(isset($name)){      
                         $time = time();//date('F_j_Y_g_i_a', time());
-                        writeFile($config['migration_path'].$time."_".$name.".php", self::createMigration($name, $time."_".$name, $name, $time));
-                        self::success("Created Migration: ".$time."_".$name);
+                        writeFile($config['migration_path'].$time."-".$name.".php", self::createMigration($name, $time."-".$name, $name, $time));
+                        self::success("Created Migration: ".$time."-".$name);
                     }else{
                         self::danger("2nd Argument not found");
                     }
