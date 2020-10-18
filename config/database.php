@@ -22,7 +22,7 @@ $config['db'] = [
 	],
 
 	"sqlite" => [
-		"url" => "test.db",
+		"url" => $application_folder."/database/test.db",
 		'dbdriver' => 'sqlite'
 	],
 
