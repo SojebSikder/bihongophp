@@ -10,6 +10,9 @@ $active_db = 'mysql';
 
 /**
  * Database Connections
+ * 
+ * You have to check out properly your perticular db driver 
+ * installed on your device
  */
 $config['db'] = [
 
@@ -33,16 +36,8 @@ $config['db'] = [
 		"password" => "pass123",
 		"dbname" => "testdb",
 		'dbdriver' => 'pgsql'
-	],
-
-	"sqlsrv" => [
-		"url" => "",
-		"host" => "localhost",
-		"username" => "root",
-		"password" => "",
-		"dbname" => "",
-		'dbdriver' => 'sqlsrv'
 	]
+
  ];
 
 /**
