@@ -56,7 +56,29 @@ if(isset($url[0])){
         $class = new IndexController();
         if(isset($url[1])){
             $method = $url[1];
-            $class->$method();
+            //$class->$method();
+            /**
+             * New addition for peramiter
+             */
+            if((isset($url[2])) && (!isset($url[3])))
+            {
+                $class->$method($url[2]);
+
+            }else if(isset($url[3]) && (!isset($url[4]))){
+                $class->$method($url[2], $url[3]);
+
+            }else if(isset($url[4]) && (!isset($url[5])) ){
+                $class->$method($url[2], $url[2], $url[4]);
+
+            }else if(isset($url[4]) && (!isset($url[5]))){
+                $class->$method($url[2], $url[3], $url[4], $url[5]);
+            }
+            else{
+                $class->$method();
+            }
+            //end that  
+
+
         }else{
             $class->home();
         }
