@@ -305,6 +305,13 @@ class Command
         echo self::$blue.$text."\n";
         echo self::$white; //white
     }
+    /**
+     * Get value from command prompt
+     */
+    public static function ask($text)
+    {
+        return readline($text);
+    }
 
 
     /**

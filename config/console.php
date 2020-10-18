@@ -13,7 +13,8 @@ Command::set('inspire', function(){
 })->describe('Display an inspiration qoute');
 
 
-Command::set('name', function(){
-    Command::info(Command::args(2));
+Command::set('ask', function(){
+    $a = Command::ask("write your name: ");
+    Command::info($a);
 })->describe('This is just a demo');
 

@@ -5,6 +5,7 @@
 include $system_path."/database/drivers/AdapterInterface.php";
 include $system_path."/database/drivers/MySQLAdapter.php";
 include $system_path."/database/drivers/SQLiteAdapter.php";
+include $system_path."/database/drivers/PostgreSQLAdapter.php";
 
 include $system_path."/database/Dbase.php";
 include $system_path."/core/Database.php";

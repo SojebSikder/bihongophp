@@ -35,12 +35,8 @@ class Builder
                 $driver = new SQLiteAdapter();
                 break;
 
-            case 'mssql':
-                $driver = new MSSQLAdapter();
-                break;
-
-            case 'mongodb':
-                $driver = new MongoDBAdapter();
+            case 'pgsql':
+                $driver = new PostgreSQLAdapter();
                 break;
             
             default:

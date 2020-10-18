@@ -26,12 +26,13 @@ $config['db'] = [
 		'dbdriver' => 'sqlite'
 	],
 
-	"postgree" => [
+	"pgsql" => [
 		"host" => "localhost",
-		"username" => "root",
-		"password" => "",
-		"dbname" => "",
-		'dbdriver' => 'postgree'
+		"port" => 5432,
+		"username" => "postgres",
+		"password" => "pass123",
+		"dbname" => "testdb",
+		'dbdriver' => 'pgsql'
 	],
 
 	"sqlsrv" => [
