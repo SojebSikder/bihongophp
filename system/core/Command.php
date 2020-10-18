@@ -125,6 +125,32 @@ class Command
             }
         })->describe('Database migrate command');
 
+        /**
+         * Migrate:rollback (Constructing)
+         */
+        self::set('migrate:rollback', function(){
+            global $argc, $argv, $application_folder, $system_path, $config;
+
+            include $system_path."/core/dbloader.php";
+            require $config['migration_path'].current_migrate('migration').".php";
+            if(isset($argv[2])){
+                //find current migrations
+                $class = current_migrate('class');
+                $test = new $class();
+                $method = $argv[2];
+                $test->$method();
+                //end that
+                self::success("$method Migration");
+            }else{     
+                //find current migrations
+                $class = current_migrate('class');
+                $test = new $class();
+                $test->down();
+                //end that
+                self::success("Created Migration");
+            }
+        })->describe('Database migrate command');
+
 
         /**
          * Display Help
