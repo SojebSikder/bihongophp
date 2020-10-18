@@ -351,7 +351,8 @@ class '.$modelName.' extends Model{
 
 
     public static function createMigration($migrationName, $version, $class, $onlyVersion){
-        global $system_path;
+        global $system_path, $config;
+        $tableName = $config['migrations'];
         /**
          * Create Database
          */
@@ -361,7 +362,7 @@ class '.$modelName.' extends Model{
 
 
         Schema::create(function(Builder $table){
-            $table->create_table('migration', true, [
+            $table->create_table($tableName, true, [
                 'id' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
                 'class' => 'VARCHAR(255) NOT NULL',
                 'migration' => 'VARCHAR(255) NOT NULL',
@@ -371,7 +372,8 @@ class '.$modelName.' extends Model{
         });
 
         
-        $db->insert("INSERT INTO migration(migration, class, version) VALUES('$version', '$class', '$onlyVersion')");
+        $db->insert("INSERT INTO $tableName (migration, class, version) 
+        VALUES('$version', '$class', '$onlyVersion')");
 
          //end That
 
