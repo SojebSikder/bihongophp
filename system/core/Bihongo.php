@@ -53,7 +53,7 @@ if(isset($url[0])){
 
     if(file_exists("app/controllers/".$url[0].".php")){
         include "app/controllers/".$url[0].".php";
-        $class = new IndexController();
+        $class = new $url[0]();
         if(isset($url[1])){
             $method = $url[1];
             //$class->$method();
