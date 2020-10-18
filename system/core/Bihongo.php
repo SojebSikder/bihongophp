@@ -46,6 +46,27 @@ if($url != NULL){
     unset($url);
 }
 
+/**
+ * Custom Model View Controller
+ */
+if(isset($url[0])){
+
+    if(file_exists("app/controllers/".$url[0].".php")){
+        include "app/controllers/".$url[0].".php";
+        $class = new IndexController();
+        if(isset($url[1])){
+            $method = $url[1];
+            $class->$method();
+        }else{
+            $class->home();
+        }
+        
+    }else{
+        //echo "Not";
+    }
+}
+// End that
+
 foreach ($route as $key => $value) {
     $breakKey = explode("/", filter_var($key, FILTER_SANITIZE_URL));
     $break = explode("/", filter_var($value, FILTER_SANITIZE_URL));
