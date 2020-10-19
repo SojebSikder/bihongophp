@@ -23,7 +23,7 @@ function sendEmail($address, $subject, $body){
         $mail->SMTPAuth = true;
         $mail->Username = $email['username'];
         $mail->Password = $email['password'];
-        $mail->SMTPSecure = PHPMAiler::ENCRYPTION_STARTTLS;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = $email['port'];
 
         //Recipients

@@ -172,7 +172,7 @@ class Command
                 //end that
                 self::success("Migration reversed");
             }
-        })->describe('Database migrate command');
+        })->describe('Database reverse migrate command');
 
 
         /**

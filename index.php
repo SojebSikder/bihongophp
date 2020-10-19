@@ -48,4 +48,3 @@ switch (ENVIRONMENT)
  */
 require $system_path."/core/Bihongo.php";
 
-?>
