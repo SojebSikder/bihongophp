@@ -373,11 +373,15 @@ class '.$modelName.' extends Model{
 
 
         Schema::create(function(Builder $table){
+            global $config;
+            $tableName = $config['migrations'];
+
             $table->create_table($tableName, true, [
                 'id' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
                 'class' => 'VARCHAR(255) NOT NULL',
                 'migration' => 'VARCHAR(255) NOT NULL',
-                'version' => 'VARCHAR(255) NOT NULL'
+                'version' => 'VARCHAR(255) NOT NULL',
+                'batch' => 'INT(11) NOT NULL AUTO_INCREMENT ,  PRIMARY KEY (batch)'
             ]);
 
         });
