@@ -14,19 +14,22 @@ include "config/email.php";
 /**
  * Core Files
  */
+/*
 include $system_path."/core/Controller.php";
 include $system_path."/core/Load.php";
 include $system_path."/core/Input.php";
 include $system_path."/core/Benchmark.php";
+*/
 /**
  * Database Files
  */
-include $system_path."/core/dbloader.php";
+//include $system_path."/core/dbloader.php";
 /**
  * Model
  */
-include $system_path."/core/Model.php";
+//include $system_path."/core/Model.php";
 
+require 'vendor/autoload.php';
 
 /**
  * BihongoPHP Version

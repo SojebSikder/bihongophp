@@ -9,5 +9,13 @@
             "email": "sojebsikder@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload":{
+        "classmap" : [
+            "system", 
+            "system/core",
+            "system/database",
+            "system/database/drivers"
+        ]
+    }
 }
