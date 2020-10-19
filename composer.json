@@ -2,6 +2,7 @@
     "name": "sojebsikder/bihongophp",
     "description": "BihongoPHP  framework",
     "type": "project",
+    "license": "MIT",
     "authors": [
         {
             "name": "Sojeb Sikder",
