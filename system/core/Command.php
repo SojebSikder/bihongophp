@@ -79,6 +79,10 @@ class Command
     {
         global $argc, $argv, $application_folder, $system_path, $config;
 
+        self::set('version', function(){
+            Command::comment("BihongoPHP Version 1.0.2");
+        })->describe("Displays BihongoPHP version");
+
         /**
          * Db:Seed
          */

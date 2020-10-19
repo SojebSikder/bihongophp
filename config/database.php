@@ -32,9 +32,9 @@ $config['db'] = [
 	"pgsql" => [
 		"host" => "localhost",
 		"port" => 5432,
-		"username" => "postgres",
-		"password" => "pass123",
-		"dbname" => "testdb",
+		"username" => "root",
+		"password" => "",
+		"dbname" => "",
 		'dbdriver' => 'pgsql'
 	]
 
