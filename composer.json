@@ -1,0 +1,12 @@
+{
+    "name": "sojebsikder/bihongophp",
+    "description": "BihongoPHP  framework",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sojeb Sikder",
+            "email": "sojebsikder@gmail.com"
+        }
+    ],
+    "require": {}
+}
