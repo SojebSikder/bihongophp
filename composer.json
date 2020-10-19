@@ -1,6 +1,7 @@
 {
     "name": "sojebsikder/bihongophp",
     "description": "BihongoPHP  framework",
+    "minimum-stability": "stable",
     "type": "project",
     "license": "MIT",
     "authors": [
