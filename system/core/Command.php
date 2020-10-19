@@ -6,9 +6,23 @@ require $system_path."/"."helpers/"."file_helper.php";
 
 function current_migrate($row){
     global $system_path;
+    //include $system_path."/core/dbloader.php";
 
     $db = new Database();
     $result = $db->select("SELECT * FROM migration ORDER BY id DESC")->fetch_assoc();
+    return $result[$row];
+}
+
+function getBatch($row, $count){
+    global $system_path;
+    //include $system_path."/core/dbloader.php";
+
+    $lastBatch = current_migrate('batch');
+
+    $min = $lastBatch - $count;
+    $db = new Database();
+    
+    $result = $db->select("SELECT * FROM migration WHERE batch = $min ORDER BY id DESC")->fetch_assoc();
     return $result[$row];
 }
 
@@ -83,6 +97,10 @@ class Command
             Command::comment("BihongoPHP Version 1.0.2");
         })->describe("Displays BihongoPHP version");
 
+        self::set('test', function(){
+            echo getBatch('migration', 1);
+        });
+
         /**
          * Db:Seed
          */
@@ -136,22 +154,23 @@ class Command
             global $argc, $argv, $application_folder, $system_path, $config;
 
             include $system_path."/core/dbloader.php";
-            require $config['migration_path'].current_migrate('migration').".php";
+
             if(isset($argv[2])){
+                require $config['migration_path'].getBatch('migration', $argv[2]).".php";
                 //find current migrations
-                $class = current_migrate('class');
-                $test = new $class();
-                $method = $argv[2];
-                $test->$method();
-                //end that
-                self::success("$method Migration");
-            }else{     
-                //find current migrations
-                $class = current_migrate('class');
+                $class = getBatch('migration', $argv[2]);
                 $test = new $class();
                 $test->down();
                 //end that
-                self::success("Created Migration");
+                self::success("Migration  reversed");
+            }else{
+                require $config['migration_path'].getBatch('migration', 1).".php";
+                //find current migrations
+                $class = getBatch('class', 1);
+                $test = new $class();
+                $test->down();
+                //end that
+                self::success("Migration reversed");
             }
         })->describe('Database migrate command');
 
