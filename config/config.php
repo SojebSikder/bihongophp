@@ -1,9 +1,6 @@
 <?php
 /**DO NOT DELETE ANYTHING HERE */
 /**
- * Setup only there have (Changeable) placeholder
- */
-/**
  * Config
  * PHP VERSION: 7.4.1
  */
@@ -19,13 +16,13 @@ $config['url'] = [
 	 * base url (Changeable) like: http://localhost/bihongophp/
 	 * Access this value on project using ROOT constant
 	 */
-	"baseUrl" => "http://localhost/bihongophp/", //(Changable)
+	"baseUrl" => "http://localhost/bihongophp/",
 	/**
 	 * asset url for use assets(js/css etc.)
 	 * Access this value on project using ASSET constant
 	 * If you want to change your asset/resource directory then you can
 	 */
-	"asset" => "app/views/" 					//(Changable)
+	"asset" => "app/views/"
 ];
  
 
@@ -34,9 +31,9 @@ $config['url'] = [
  */
 $config['web'] = [
 	"info" => [
-		"web_icon" => "youricon.png", 		   //web icon (Changable)
-		"web_title" => "Bihongo", 			   //web title (Changable)
-		"web_slogan" => "Let's create awesome" //web slogan  (Changable)
+		"web_icon" => "youricon.png", 		   
+		"web_title" => "Bihongo", 			   
+		"web_slogan" => "Let's create awesome"
 	]
 ];
 /**
@@ -44,8 +41,8 @@ $config['web'] = [
  */
 $config['user'] = [
 	"user" => [
-		"user_name" => "", 						//author name (Changable)
-		"user_email" => "" 						//author email (Changable)
+		"user_name" => "",
+		"user_email" => ""
 	]
 ];
 
@@ -59,7 +56,7 @@ $config['user'] = [
  * 
  * 
  */
-$config['mode'] = 'development'; 				//select mode (Changeable)
+$config['mode'] = 'development';
 /**
  * Application folder
  */
@@ -77,8 +74,8 @@ $config['charset'] = 'UTF-8';
  * If csrf_protection False then csrf protection will be off.
  * Also you can change csrf token name as your requirements.
 */
-$config['csrf_protection'] = true;
-$config['csrf_token_name'] = 'csrf_token_name'; //(Changeable)
+$config['csrf_protection'] = false;
+$config['csrf_token_name'] = 'csrf_token_name';
 
 /**
  * Web Info
