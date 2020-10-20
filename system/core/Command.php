@@ -480,7 +480,29 @@ class '.$seedName.' extends Seeder
 
 
 
-        $login ='
+        $login ='<!DOCTYPE html>
+<html>
+<head>
+    <base href="<?php echo ROOT ?>">
+    <meta charset="UTF-8">
+    <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Welcome to <?php echo TITLE ?></title>
+
+    <link rel="stylesheet" href="<?php echo ASSET ?>css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo ASSET ?>css/material.css">
+
+    <script src="<?php echo ASSET ?>js/jquery.min.js"></script>
+    <script src="<?php echo ASSET ?>js/jsoj.js"></script>
+    <script src="<?php echo ASSET ?>js/material.js"></script>
+</head>
+<body>
+
+
 <div class="container">
 <div class="m-justify"> 
 <div class="m-card">
@@ -518,7 +540,29 @@ class '.$seedName.' extends Seeder
         
         ';
 
-        $register = '
+        $register = '<!DOCTYPE html>
+<html>
+<head>
+    <base href="<?php echo ROOT ?>">
+    <meta charset="UTF-8">
+    <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Welcome to <?php echo TITLE ?></title>
+
+    <link rel="stylesheet" href="<?php echo ASSET ?>css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo ASSET ?>css/material.css">
+
+    <script src="<?php echo ASSET ?>js/jquery.min.js"></script>
+    <script src="<?php echo ASSET ?>js/jsoj.js"></script>
+    <script src="<?php echo ASSET ?>js/material.js"></script>
+</head>
+<body>
+
+
 <div class="container">
     <div class="m-justify">
     <div class="m-card">
