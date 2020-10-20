@@ -3,6 +3,7 @@
  * Command Class
  */
 require $system_path."/"."helpers/"."file_helper.php";
+const B_VERSION = '1.0.3';
 
 function current_migrate($row){
     global $system_path;
@@ -94,7 +95,7 @@ class Command
         global $argc, $argv, $application_folder, $system_path, $config;
 
         self::set('version', function(){
-            Command::comment("BihongoPHP Version 1.0.2");
+            Command::comment("BihongoPHP Version ".B_VERSION);
         })->describe("Displays BihongoPHP version");
 
         self::set('test', function(){

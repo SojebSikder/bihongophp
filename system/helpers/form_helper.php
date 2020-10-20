@@ -12,7 +12,7 @@ if (!function_exists('formOpen'))
 
             $attr = '';
             foreach ($attributes as $attribute => $value) {
-                $attr .= $attribute."= ".$value."  ";
+                $attr .= $attribute."= "."'".$value."'"."  ";
             }
             $form = '<form '.$attr.' action="'.ROOT.$action.'"'.">\n";
             return $form;
@@ -31,7 +31,7 @@ if (!function_exists('formOpen'))
 
             $attr = '';
             foreach ($attributes as $attribute => $value) {
-                $attr .= $attribute."= ".$value."  ";
+                $attr .= $attribute."= "."'".$value."'"."  ";
             }
             
             $form = '<form '.$attr.' action="'.ROOT.$action.'"'.">\n";
@@ -51,7 +51,7 @@ if (!function_exists('formOpen_multipart'))
 
             $attr = '';
             foreach ($attributes as $attribute => $value) {
-                $attr .= $attribute."= ".$value."  ";
+                $attr .= $attribute."= "."'".$value."'"."  ";
             }
             $form = '<form '.$attr.' enctype="multipart/form-data" method="post" accept-charset="utf-8" action="'.ROOT.$action.'"'.">\n";
             return $form;
@@ -70,7 +70,7 @@ if (!function_exists('formOpen_multipart'))
 
             $attr = '';
             foreach ($attributes as $attribute => $value) {
-                $attr .= $attribute."= ".$value."  ";
+                $attr .= $attribute."= "."'".$value."'"."  ";
             }
             
             $form = '<form '.$attr.' enctype="multipart/form-data" method="post" accept-charset="utf-8" action="'.ROOT.$action.'"'.">\n";
