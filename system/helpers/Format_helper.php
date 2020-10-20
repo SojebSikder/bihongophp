@@ -55,6 +55,9 @@ class Format{
         return $title = ucfirst($title);
     }
 
+    /**
+     * Prevent xss attack
+     */
     public static function Stext($string, $allow = null){
         if($allow == null){
             self::$conn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
@@ -66,22 +69,44 @@ class Format{
         return $text;
     }
     
-    public static function jumpTo($url, $msg, $status = "msg" , $time = 0){
 
-        $doc = "<script>function red(){ window.location='$url&?$status=$msg' }; setTimeout('red()', $time);</script>";
-        echo $doc;
+    /**
+     * goto page using javascripy
+     */
+    public static function goto($url, $int = false){
+        if($int == false){
+            $doc = "<script>function red(){ window.location='$url' }; red();</script>";
+            echo $doc;
+        }else{
+            $doc = "<script>function red(){ window.location='$url' }; setTimeout('red()', $int);</script>";
+            echo $doc;
+        }
     }
 
-    public static function goto($url){
-
-        $doc = "<script>function red(){ window.location='$url' }; setTimeout('red()', 0);</script>";
-        echo $doc;
+    /**
+     * Redirect using header
+     * This is faster than goto()
+     */
+    public static function redirect($url){
+        header("Location: ".$url);
     }
 
+    /**
+     * Hashing function
+     */
     public static function Spsk($string){
         $text = md5(self::Stext($string));
         return $text;
     }
+
+    /**
+     * Password function
+     */
+    public static function Spass($string, $option = PASSWORD_DEFAULT){
+        $text =  password_hash($string, $option);
+        return $text;
+    }
+
 
 }
 ?>
