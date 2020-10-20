@@ -24,4 +24,3 @@ $email['from'] = [
 $email['username'] = 'loginemail@mail.com'; // (Changeable)
 $email['password'] = 'loginpassword';       // (Changeable)
 
-?>

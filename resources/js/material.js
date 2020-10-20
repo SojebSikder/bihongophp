@@ -1,11 +1,11 @@
-$(function(){
-  
-  $('.m-form-control').each(function(){
+$(function () {
+
+  $('.m-form-control').each(function () {
     changeState($(this));
   });
-  
-  $('.m-form-control').on('focusout', function(){
-    changeState($(this)); 
+
+  $('.m-form-control').on('focusout', function () {
+    changeState($(this));
   });
 
   /*
@@ -13,24 +13,24 @@ $(function(){
     Msnackbar($('.m-snackbar'));
   });
   */
-  
 
-  $('.m-sb-triggar').on('click', function(){
-    Msnackbar($('.m-snackbar')); 
+
+  $('.m-sb-triggar').on('click', function () {
+    Msnackbar($('.m-snackbar'));
   });
-  
+
   //function changeState()
-  function changeState($formControl){
-    if($formControl.val().length > 0){
+  function changeState($formControl) {
+    if ($formControl.val().length > 0) {
       $formControl.addClass('has-value');
     }
-    else{
+    else {
       $formControl.removeClass('has-value');
-    }  
+    }
     //end changeSate function()
 
-    
-    
+
+
     //function wave-effect
     /*
     var buttons = document.getElementsByClassName('waves-effect');
@@ -66,11 +66,11 @@ $(function(){
 
     $class.addClass("show");
     //after 3 seconds remove the show class
-    setTimeout(function(){$class.removeClass("show")}, 3000);
+    setTimeout(function () { $class.removeClass("show") }, 3000);
 
   }//end snackbar
 
 
-  
+
 
 });
