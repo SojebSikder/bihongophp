@@ -66,9 +66,7 @@ class Command
         global $argc, $argv, $application_folder;
         self::$customCmd = $command;
 
-        self::$customCmdArray = [
-            self::$customCmd => self::$customCmd
-        ];
+        self::$customCmdArray[self::$customCmd] = self::$customCmd;
 
         if(self::$customCmdArray[self::$customCmd] == $argv[1]){
             $callback();
@@ -101,10 +99,15 @@ class Command
     {
         global $argc, $argv, $application_folder, $system_path, $config;
 
+        /**
+         * Predefined Command
+         */
+
         self::set('version', function(){
             Command::comment("BihongoPHP Version ".B_VERSION);
         })->describe("Displays BihongoPHP version");
 
+       
         /**
          * make:auth
          */
@@ -190,6 +193,76 @@ class Command
         })->describe('Database reverse migrate command');
 
 
+
+        /**
+         * Create Controller
+         */
+        self::set('make:controller', function(){
+            global $application_folder;
+            
+            $name = Command::args(2);
+            writeFile($application_folder."/"."controllers/".$name.".php", self::createController($name));
+            self::success($name." controller created succesfully");
+        })->describe("Create controller")->usage("make:controller [ControllerName]");
+        
+        /**
+         * Create Model
+         */
+        self::set('make:model', function(){
+            global $application_folder;
+            
+            $name = Command::args(2);
+            writeFile($application_folder."/"."models/".$name.".php", self::createModel($name));
+            self::success($name." model created succesfully");
+        })->describe("Create model")->usage("make:model [ModelName]");
+
+
+        /**
+         * Create Migration
+         */
+         self::set('make:migration', function(){
+            global $application_folder, $config;
+            
+            $name = Command::args(2);
+
+            if(isset($name)){      
+                $time = time();//date('F_j_Y_g_i_a', time());
+                writeFile($config['migration_path'].$time."-".$name.".php", self::createMigration($name, $time."-".$name, $name, $time));
+                self::success("Created Migration: ".$time."-".$name);
+            }else{
+                self::danger("2nd Argument not found");
+            }
+
+        })->describe("Create migration")->usage("make:migration [MigrationName]");;
+
+
+        /**
+         * Seed
+         */
+        self::set('make:seed', function(){
+            global $application_folder, $config;
+            
+            $name = Command::args(2);
+            
+            if(isset($name)){      
+                writeFile($config['seed_path'].$name.".php", self::createSeed($name));
+                self::success("Seeder created successfully");
+            }else{
+                self::danger("2nd Argument not found");
+            }
+        })->describe("Create seed")->usage("make:seed [SeedName]");;
+
+
+        /**
+         * list
+         */
+        self::set('list', function(){
+            $cmd = self::$customCmdArray;
+            foreach ($cmd as $key => $value) {
+                echo $key."\n";
+            }
+        })->describe("Displays command list")->usage("list");;
+
         /**
          * Display Help
          */
@@ -200,7 +273,12 @@ class Command
                     self::comment('Description:');
                     echo "  ".self::$description[$argv[2]]."\n";
                     self::comment('Usage:');
-                    echo "  ".$argv[2]."\n";
+                    if(self::$usage[$argv[2]] != null){
+                        echo "  ".self::$usage[$argv[2]]."\n";
+                    }else{
+                        echo "  ".$argv[2]."\n";
+                    }
+                    
                 }else{
                     self::comment('Description:');
                     echo "  Diplays help for a command\n";
@@ -209,76 +287,6 @@ class Command
                 }
             }
 
-        }
-
-
-        /**
-         * Predefined Command
-         */
-        for ($i=1; $i < $argc; $i++) {
-
-            $cmd = $argv[1];
-            $sep1 = ':';
-            $split = explode($sep1, $cmd);
-
-            //make:controller HelloController
-
-            if(isset($split['0'])){
-                $main = $split['0'];
-            }
-            if(isset($split['1'])){
-                $type = $split['1'];
-            }
-            if(isset($argv[2])){
-                $name = $argv[2];
-            }
-            
-            if($main == "make"){
-                /**
-                 * Create Controller
-                 */
-                if($type == "controller"){
-                    writeFile($application_folder."/"."controllers/".$name.".php", self::createController($name));
-                    self::success($name." controller created succesfully");
-                break;
-                }
-
-                /**
-                 * Create Model
-                 */
-                if($type == "model"){
-                    writeFile($application_folder."/"."models/".$name.".php", self::createModel($name));
-                    self::success($name." model created succesfully");
-                break;
-                }
-
-                /**
-                 * Create Migration
-                 */
-                if($type == "migration"){
-                    if(isset($name)){      
-                        $time = time();//date('F_j_Y_g_i_a', time());
-                        writeFile($config['migration_path'].$time."-".$name.".php", self::createMigration($name, $time."-".$name, $name, $time));
-                        self::success("Created Migration: ".$time."-".$name);
-                    }else{
-                        self::danger("2nd Argument not found");
-                    }
-                break;
-                }
-                /**
-                 * Seed
-                 */
-                if($type == "seed"){
-                    if(isset($name)){      
-                        writeFile($config['seed_path'].$name.".php", self::createSeed($name));
-                        self::success("Seeder created successfully");
-                    }else{
-                        self::danger("2nd Argument not found");
-                    }
-                break;
-                }
-                
-            }
         }
 
 
