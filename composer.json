@@ -1,8 +1,6 @@
 {
     "name": "sojebsikder/bihongophp",
     "description": "BihongoPHP  framework",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -24,5 +22,7 @@
             "system/database",
             "system/database/drivers"
         ]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

@@ -22,7 +22,7 @@ $config['url'] = [
 	 * Access this value on project using ASSET constant
 	 * If you want to change your asset/resource directory then you can
 	 */
-	"asset" => "app/views/"
+	"asset" => "resources/"
 ];
  
 

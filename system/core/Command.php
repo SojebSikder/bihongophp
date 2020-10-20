@@ -32,6 +32,7 @@ class Command
     public static $customCmd;
     public static $customCmdArray = array();
     public static $description = array();
+    public static $usage = array();
     public static $_instance = null;
 
     /**
@@ -90,6 +91,12 @@ class Command
         return $this;
     }
 
+    public function usage($des)
+    {
+        self::$usage[self::$customCmd] = $des;
+        return $this;
+    }
+
     public static function execute()
     {
         global $argc, $argv, $application_folder, $system_path, $config;
@@ -98,9 +105,16 @@ class Command
             Command::comment("BihongoPHP Version ".B_VERSION);
         })->describe("Displays BihongoPHP version");
 
-        self::set('test', function(){
-            echo getBatch('migration', 1);
-        });
+        /**
+         * make:auth
+         */
+        self::set('make:auth', function(){
+            global $application_folder, $system_path, $config;
+
+            self::createAuth();
+            Command::success("Authentication created");
+            
+        })->describe("Create Authentication");
 
         /**
          * Db:Seed
@@ -194,32 +208,6 @@ class Command
                     echo "  help [tropic]\n";
                 }
             }
-
-            /**
-             * Predefined Command
-             */
-           /* if($argv[1] == "migrate"){
-                require $system_path."/core/Database.php";
-                require $system_path."/core/Database/Builder.php";
-                require $system_path."/core/Database/Schema.php";
-                require $config['migration_path'].current_migrate('migration').".php";
-                if(isset($argv[2])){
-                    //find current migrations
-                    $class = current_migrate('class');
-                    $test = new $class();
-                    $method = $argv[2];
-                    $test->$method();
-                    //end that
-                    self::success("$method Migration: ");
-                }else{     
-                    //find current migrations
-                    $class = current_migrate('class');
-                    $test = new $class();
-                    $test->up();
-                    //end that
-                    self::success("Created Migration: ");
-                }     
-            } */
 
         }
 
@@ -353,7 +341,7 @@ class '.$controllerName.' extends Controller{
         $this->load->view("home");
     }
 }
-?>
+
 ';
 
         return $data;
@@ -373,8 +361,7 @@ class '.$modelName.' extends Model{
     }
 }
         
-        
-?>
+
 ';
 
         return $data;
@@ -465,6 +452,232 @@ class '.$seedName.' extends Seeder
 ';
 
         return $data;
+
+    }
+
+    public static function createAuth(){
+        global $application_folder, $system_path, $config;
+
+        include $system_path."/core/dbloader.php";
+        Schema::create(function(Builder $table){
+
+            $table->create_table('users', true, [
+                'id' => 'INT(11) NOT NULL AUTO_INCREMENT ,  PRIMARY KEY (id)',
+                'username' => 'VARCHAR(255) NOT NULL',
+                'email' => 'VARCHAR(255) NOT NULL',
+                'password' => 'VARCHAR(255) NOT NULL'
+            ]);
+
+        });
+
+
+
+        $login ='
+<div class="container">
+<div class="m-justify"> 
+<div class="m-card">
+<div class="m-card-body">
+
+
+<?php echo formOpen("login",[
+    "method"=>"post",
+        "class"=> "form-signin"
+    ]); ?>
+
+    <h5 class="m-center">Login</h5>
+
+
+    <div class="m-input-group">
+    <input type="text" name="username" class="text-dark m-form-control" autofocus>
+    <label>Username or Email</label>
+    </div>
+    
+    <div class="m-input-group">
+    <input type="password" name="password" class="text-dark m-form-control">
+    <label>Password</label>
+    </div>
+
+    <a class="float-left" href="recover">Forget Account?</a>
+    <p class="float-right">Don\'t have an account? <a href="register">Register</a></p>
+    <input class="m-btn waves-effect m-btn-primary m-btn-block" name="submit" type="submit" value="Sign in">
+
+    </form>
+    
+</div>
+</div>
+</div>
+</div>
+        
+        ';
+
+        $register = '
+<div class="container">
+    <div class="m-justify">
+    <div class="m-card">
+    <div class="m-card-body">
+
+    <?php echo formOpen("register",[
+        "method"=>"post",
+        "class"=> "form-signin"
+    ]); ?>
+
+        <h3 class="m-center">Register</h3>
+        <p class="m-center">It\'s free!</p>
+
+
+        <div class="m-input-group">
+        <input type="text" name="username" class="text-dark m-form-control" autofocus>
+        <label>Name</label>
+        </div>
+
+        <div class="m-input-group">
+        <input type="text" name="email" class="text-dark m-form-control">
+        <label>Email address</label>
+        </div>
+
+        <div class="m-input-group">
+        <input type="password" name="password" class="text-dark m-form-control">
+        <label>Password</label>
+        </div>
+
+        
+        <input class="float-left m-hidden" id="psk" type="button" ng-click="showPass()">
+        <label class="float-left" for="psk">Show Password</label>
+
+        <p class="float-right">Already have an account? <a href="login">Login</a></p>
+        <input class="m-btn waves-effect m-btn-primary m-btn-block" name="submit" type="submit" value="Register">
+        </form>
+        
+    </div>
+    </div>
+    </div>
+</div>
+        ';
+
+        $controller = '
+<?php 
+session_start(); //this will start session
+
+class RegisterController extends Controller{
+    public function __construct(){
+        parent::__construct();
+
+        /**
+         * Load Library
+         */
+        $this->load->helper("form_helper");
+        $this->load->helper("Format_helper");
+    }
+
+
+    public function register(){
+
+        $userModel =$this->load->model("RegisterModel");
+
+        if($this->input->post("submit")){
+            $username = Format::Stext($this->input->post("username"));
+            $email = Format::Stext($this->input->post("email"));
+            $password = password_hash(Format::Stext($this->input->post("password")), PASSWORD_DEFAULT);
+
+            $exe = $userModel->register($username, $email, $password);
+
+            if($exe){
+                Format::goto("login");
+            }
+        }
+
+        $this->load->view("register");
+    }
+
+    public function login(){
+        $userModel =$this->load->model("RegisterModel");
+
+        if($this->input->post("submit")){
+            $username = Format::Stext($this->input->post("username"));
+            $password = Format::Stext($this->input->post("password"));
+
+            $exe = $userModel->login($username, $password);
+
+            echo "Login successfully";	
+            Format::goto("home");
+        }
+
+        $this->load->view("login");
+    }
+
+    public function logout(){
+        session_destroy();
+        Format::goto("home");
+    }
+
+
+}
+        ';
+
+        $model = '
+<?php
+
+class RegisterModel extends Model{
+    public function __construct(){
+        parent::__construct();
+    }
+
+    public function register($username, $email, $password){
+        $result = $this->db->insert("INSERT INTO users (username, email, password) 
+        VALUES(\'$username\', \'$email\', \'$password\')");
+
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function login($username, $password){
+        $state = $this->db->select("SELECT * FROM users WHERE username=\'$username\'");
+
+        if($state){
+            if(mysqli_num_rows($state) > 0){
+                foreach ($state as $row) {
+                    if(password_verify($password, $row[\'password\'])){
+                        $_SESSION[\'username\'] = $row[\'username\'];
+                        $_SESSION[\'email\'] = $row[\'email\'];
+                    }else{
+                        return false;
+                    }
+                }
+            }
+        }else{
+            return false;
+        }
+    }
+}        
+        ';
+
+        $routes = '
+/**
+ * Login Register Route
+ */
+$route["login"] = "RegisterController/login";
+$route["register"] = "RegisterController/register";
+$route["logout"] = "RegisterController/logout";
+        ';
+
+        /**
+         * Create view file
+         */
+        writeFile($application_folder."/"."views/login.php", $login);
+        writeFile($application_folder."/"."views/register.php", $register);
+
+        /**
+         * Create route
+         */
+        file_put_contents("config/routes.php", $routes, FILE_APPEND);
+        /**
+         * create controller/Model
+         */
+        file_put_contents($application_folder."/"."controllers/RegisterController.php", $controller, FILE_APPEND);
+        file_put_contents($application_folder."/"."models/RegisterModel.php", $model, FILE_APPEND);
 
     }
 

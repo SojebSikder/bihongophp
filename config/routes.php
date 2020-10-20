@@ -25,4 +25,6 @@ $route['te'] = 'IndexController/te';
 
 
 
-?>
+        
+
+        

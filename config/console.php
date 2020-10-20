@@ -16,5 +16,5 @@ Command::set('inspire', function(){
 Command::set('ask', function(){
     $a = Command::ask("write your name: ");
     Command::danger($a);
-})->describe('This is just a demo');
+})->describe('This is just a demo')->usage('ask');
 
