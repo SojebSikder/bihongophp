@@ -111,7 +111,8 @@ foreach ($route as $key => $value) {
     }
     else
 
-    if($url[0] == $key)
+    //if($url[0] == $key)
+    if(filter_var($_GET['url'], FILTER_SANITIZE_URL) == $key)
     {
 
         /**
