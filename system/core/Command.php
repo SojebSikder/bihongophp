@@ -3,7 +3,7 @@
  * Command Class
  */
 require $system_path."/"."helpers/"."file_helper.php";
-const B_VERSION = '1.0.3';
+const B_VERSION = '1.0.4';
 
 function current_migrate($row){
     global $system_path;
