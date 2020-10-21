@@ -10,6 +10,7 @@ class IndexController extends Controller{
 		parent::__construct();
 	}
 
+
 	public function home(){
 		//This is for measuring page speed
 		$this->benchmark->mark('start');
@@ -19,6 +20,7 @@ class IndexController extends Controller{
 		$this->benchmark->mark('end');
 		echo "Page render in ".$this->benchmark->elapsed_time('start', 'end');
 	}
+
 
 	public function te($id = false){
 		
