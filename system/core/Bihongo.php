@@ -35,7 +35,7 @@ require 'vendor/autoload.php';
 /**
  * BihongoPHP Version
  */
-const B_VERSION = '1.0.4';
+const B_VERSION = '1.0.5';
 
 //Core
 $url = isset($_GET['url']) ? $_GET['url'] : NULL;

@@ -3,7 +3,7 @@
  * Command Class
  */
 require $system_path."/"."helpers/"."file_helper.php";
-const B_VERSION = '1.0.4';
+const B_VERSION = '1.0.5';
 
 function current_migrate($row){
     global $system_path;
@@ -273,7 +273,7 @@ class Command
                     self::comment('Description:');
                     echo "  ".self::$description[$argv[2]]."\n";
                     self::comment('Usage:');
-                    if(self::$usage[$argv[2]] != null){
+                    if(array_key_exists($argv[2], self::$usage)){
                         echo "  ".self::$usage[$argv[2]]."\n";
                     }else{
                         echo "  ".$argv[2]."\n";
@@ -606,8 +606,7 @@ class '.$seedName.' extends Seeder
 </div>
         ';
 
-        $controller = '
-<?php 
+        $controller = '<?php 
 session_start(); //this will start session
 
 class RegisterController extends Controller{
@@ -666,8 +665,7 @@ class RegisterController extends Controller{
 }
         ';
 
-        $model = '
-<?php
+        $model = '<?php
 
 class RegisterModel extends Model{
     public function __construct(){
