@@ -78,6 +78,10 @@ $config['csrf_protection'] = false;
 $config['csrf_token_name'] = 'csrf_token_name';
 
 /**
+ * Cache path
+ */
+$config['cache_path'] = 'storage/cache/';
+/**
  * Web Info
  */
 defined("TITLE") //Getting Web Title
@@ -92,7 +96,8 @@ defined("ICON") //Get Icon
 	or define("ICON", $config['web']['info']['web_icon']);
 defined("CHARSET") //Get Charset
 	or define("CHARSET", $config['charset']);
-
+defined("cache_path") //Get Charset
+	or define("cache_path", $config['cache_path']);
 /**
  * User can define constant here
  */
