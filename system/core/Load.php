@@ -32,19 +32,7 @@ class Load{
                     //$tpl = new Perser($application_folder."/"."views/".$filename.".php");
 
                     $tpl2 = new Perser2($application_folder."/"."views/".$filename.".php");
-                    Perser2::view($application_folder."/"."views/".$filename.".php", 
-                    [
-                        'ROOT' => ROOT,
-                        'CHARSET' => CHARSET,
-                        'ICON' => ICON,
-                        'TITLE' => TITLE,
-                        'SLOGAN' => SLOGAN,
-                        'ASSET' => ASSET,
-                        'B_VERSION' => B_VERSION,
-                        'csrf_token_name' => $config['csrf_token_name'],
-                        'bdata' => $data
-                    ]
-                    );
+                    Perser2::view($application_folder."/"."views/".$filename.".php", $data);
 
                     /**
                      * Predefined Value

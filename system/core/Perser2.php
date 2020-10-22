@@ -6,11 +6,14 @@ class Perser2 {
 
 	static $blocks = array();
 	static $cache_path = cache_path;
-	static $cache_enabled = FALSE;
+	static $cache_enabled = true;
 
-	static function view($file, $data = array()) {
+	static function view($file, $data = false) {
 		$cached_file = self::cache($file);
-	    extract($data, EXTR_SKIP);
+		if($data == true){
+			extract($data, EXTR_SKIP);
+		}
+	    
 	   	require $cached_file;
 	}
 
@@ -39,6 +42,7 @@ class Perser2 {
 		$code = self::compileEscapedEchos($code);
 		$code = self::compileEchos($code);
 		$code = self::compilePHP($code);
+		$code = self::compilePHP2($code);
 		return $code;
 	}
 
@@ -54,6 +58,10 @@ class Perser2 {
 
 	static function compilePHP($code) {
 		return preg_replace('~\{%\s*(.+?)\s*\%}~is', '<?php $1 ?>', $code);
+	}
+
+	static function compilePHP2($code) {
+		return preg_replace('~\{\s*(.+?)\s*\}~is', '<?php $1 ?>', $code);
 	}
 
 	static function compileEchos($code) {
