@@ -20,7 +20,6 @@
     <h1>Hello, Welcome to <?php echo TITLE ?> Framework</h1>
     <h3><?php echo SLOGAN ?></h3>
     <h3>This is example of TE Template Engine</h3>
-    <p>TE is now experimental!. Also TE template loading time slow then normal rendering</p>
     </center>
 
     <a href="">Home</a>
