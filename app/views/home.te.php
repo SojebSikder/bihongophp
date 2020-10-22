@@ -24,12 +24,12 @@
 
     <a href="">Home</a>
     <br>
-    <?php echo "Hello, I'm"; ?>
+    <?php echo "Hello, I'm "; ?>{{$bdata['name']}}
     <p>If you see the source code of this page you can see TE Templating code</p>
     
     <p>You can find this page on <a style="color: violet;">app/views/home.te.php<a></p>
     <p class="footer">Bihongo Version <strong>{{B_VERSION}}</strong></p>
 
-    {{$bdata['name']}}
+    
 </body>
 </html>

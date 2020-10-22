@@ -2,6 +2,7 @@
 /**
  * Load Framework
  */
+ini_set('session.save_path', $config['session_path']);
 $routes = array();
 $mail = array();
 /**

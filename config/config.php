@@ -82,6 +82,10 @@ $config['csrf_token_name'] = 'csrf_token_name';
  */
 $config['cache_path'] = 'storage/cache/';
 /**
+ * Session path
+ */
+$config['session_path'] = 'storage/sessions';
+/**
  * Web Info
  */
 defined("TITLE") //Getting Web Title
