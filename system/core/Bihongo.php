@@ -117,7 +117,10 @@ foreach ($route as $key => $value) {
         //echo $count." ";
         $fullurl ='';
         for ($i=0; $i < $count; $i++) { 
-            $fullurl .= $url[$i]."/";
+            if(isset($url[$i])){
+                $fullurl .= $url[$i]."/";
+            }
+            
         }
         $fullurl = rtrim($fullurl,'/'.PHP_EOL);
         //echo $fullurl;
