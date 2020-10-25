@@ -13,6 +13,10 @@ include "config/database.php";
 include "config/routes.php";
 include "config/email.php";
 /**
+ * Exception Files
+ */
+include $system_path."/core/Exception.php";
+/**
  * Core Files
  */
 /*
@@ -142,16 +146,41 @@ foreach ($route as $key => $value) {
              */
             if(isset($break[0]))
             {
+                if(file_exists($application_folder."/"."controllers/".$break[0].".php")){
+                    $s = ucfirst($break[0]); //Controller
+                    if(!class_exists($s)){
+                        include $application_folder."/"."controllers/".$break[0].".php"; //Controller
 
+                        if(!class_exists($s)){
+                            show_error("Class not exist: <strong>".$s."</strong>");
+                        break;
+                        }else{
+                            $ur = new $s();
+                        }
+                        
+                    }
+                }else{
+                    show_error("Controller not exist: <strong>".$break[0]."</strong>");
+                break;
+                }
+
+                /*
                 include $application_folder."/"."controllers/".$break[0].".php"; //Controller
                 $s = ucfirst($break[0]); //Controller
                 $ur = new $s();
+                */
+
                 if(isset($break[2])){
                     $method = $break[1];
                     $ur->$method($break[2]); 
                 }else{
                     if(isset($break[1])){
                         $method = $break[1];
+
+                        if(!method_exists($ur, $method)){
+                            show_error("Method not exist: <strong>".$method."</strong>");
+                        break;
+                        }
                         
                         /**
                          * New addition for peramiter
