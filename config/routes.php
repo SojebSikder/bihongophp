@@ -23,7 +23,3 @@ $route['default_controller'] = 'IndexController'; //DO NOT DELETE THIS ROUTE NAM
 $route['home'] = 'IndexController/home';
 $route['te'] = 'IndexController/te';
 
-
-$route["admin"] = "AdminController/home";
-$route["admin/test"] = "AdminController/test";
-$route["admin/login"] = "AdminController/login";

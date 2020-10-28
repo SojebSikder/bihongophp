@@ -16,23 +16,6 @@ include "config/email.php";
  * Exception Files
  */
 include $system_path."/core/Exception.php";
-/**
- * Core Files
- */
-/*
-include $system_path."/core/Controller.php";
-include $system_path."/core/Load.php";
-include $system_path."/core/Input.php";
-include $system_path."/core/Benchmark.php";
-*/
-/**
- * Database Files
- */
-//include $system_path."/core/dbloader.php";
-/**
- * Model
- */
-//include $system_path."/core/Model.php";
 
 require 'vendor/autoload.php';
 
@@ -117,7 +100,6 @@ foreach ($route as $key => $value)
     //if($url[0] == $key)
     if(filter_var($_GET['url'], FILTER_SANITIZE_URL) != null)
     {
-       
         $count = count($breakKey);
         //echo $count." ";
         $fullurl ='';
@@ -125,22 +107,14 @@ foreach ($route as $key => $value)
             if(isset($url[$i])){
                 $fullurl .= $url[$i]."/";
             }
-            
         }
         $fullurl = rtrim($fullurl,'/'.PHP_EOL);
-        //echo $fullurl;
-        //if($fullurl == $key || $fullurl == $key."/")
-
-
     }
     
 }
 
-//echo $fullurl."<br>";
-//echo $key."<br>";
 
 
-//if($fullurl == $key || $fullurl == $key."/")
 if(isset($fullurl)){
 
     if(array_key_exists($fullurl, $route))
@@ -178,14 +152,8 @@ if(isset($fullurl)){
                 }
             }else{
                 show_error("Controller not exist: <strong>".$break[0]."</strong>");
-            //break;
             }
 
-            /*
-            include $application_folder."/"."controllers/".$break[0].".php"; //Controller
-            $s = ucfirst($break[0]); //Controller
-            $ur = new $s();
-            */
 
             if(isset($break[2])){
                 $method = $break[1];
@@ -196,15 +164,11 @@ if(isset($fullurl)){
 
                     if(!method_exists($ur, $method)){
                         show_error("Method not exist: <strong>".$method."</strong>");
-                    //break;
                     }
                     
                     /**
                      * New addition for peramiter
                      */
-
-                    //echo $url[$count]."\n";
-                    //$ur->$method($url[$count], $url[$count+1]);
 
                     if((isset($url[$count])) && (!isset($url[$count+1])))
                     {
@@ -240,7 +204,6 @@ if(isset($fullurl)){
                 $method = "home";
             }
             $ur->$method();
-        //break;
         }
         //end core
     }
