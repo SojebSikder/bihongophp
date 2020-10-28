@@ -5,7 +5,13 @@
  * @return void
  */
 function show_error($text){
-    echo "<strong>Error:</strong> $text";
+    global $config;
+    
+    if($config['mode'] == "production"){
+        return false;
+    }else{    
+        echo "<strong>Error:</strong> $text";
+    }
 }
 
 function show_404(){
