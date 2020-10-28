@@ -92,7 +92,8 @@ if(isset($url[0])){
     }
 }
 // End that
-foreach ($route as $key => $value) {
+foreach ($route as $key => $value) 
+{
     $breakKey = explode("/", filter_var($key, FILTER_SANITIZE_URL));
     $break = explode("/", filter_var($value, FILTER_SANITIZE_URL));
 
@@ -128,109 +129,121 @@ foreach ($route as $key => $value) {
         }
         $fullurl = rtrim($fullurl,'/'.PHP_EOL);
         //echo $fullurl;
-        if($fullurl == $key || $fullurl == $key."/"){
-
-            //echo $url[$count-3]."/".$url[$count-2]."/".$url[$count-1];
-
-            /**
-             * Form Routes File
-             */
-            //$class = $break[0];
-            //$method = $break[1];
-            //$perameter = $break[2];
-
-            /**
-             * $url[0] = controller
-             * $url[1] = method
-             * $url[2] = perameter
-             */
-            if(isset($break[0]))
-            {
-                if(file_exists($application_folder."/"."controllers/".$break[0].".php")){
-                    $s = ucfirst($break[0]); //Controller
-                    if(!class_exists($s)){
-                        include $application_folder."/"."controllers/".$break[0].".php"; //Controller
-
-                        if(!class_exists($s)){
-                            show_error("Class not exist: <strong>".$s."</strong>");
-                        break;
-                        }else{
-                            $ur = new $s();
-                        }
-                        
-                    }
-                }else{
-                    show_error("Controller not exist: <strong>".$break[0]."</strong>");
-                break;
-                }
-
-                /*
-                include $application_folder."/"."controllers/".$break[0].".php"; //Controller
-                $s = ucfirst($break[0]); //Controller
-                $ur = new $s();
-                */
-
-                if(isset($break[2])){
-                    $method = $break[1];
-                    $ur->$method($break[2]); 
-                }else{
-                    if(isset($break[1])){
-                        $method = $break[1];
-
-                        if(!method_exists($ur, $method)){
-                            show_error("Method not exist: <strong>".$method."</strong>");
-                        break;
-                        }
-                        
-                        /**
-                         * New addition for peramiter
-                         */
-
-                        //echo $url[$count]."\n";
-                        //$ur->$method($url[$count], $url[$count+1]);
-
-                        if((isset($url[$count])) && (!isset($url[$count+1])))
-                        {
-                            $ur->$method($url[$count]);
-
-                        }else if(isset($url[$count+1]) && (!isset($url[$count+2]))){
-                            $ur->$method($url[$count], $url[$count+1]);
-
-                        }else if(isset($url[$count+2]) && (!isset($url[$count+3])) ){
-                            $ur->$method($url[$count], $url[$count+1], $url[$count+2]);
-
-                        }else if(isset($url[$count+3]) && (!isset($url[$count+4]))){
-                            $ur->$method($url[$count], $url[$count+1], $url[$count+2], $url[$count+3]);
-                        }
-                        else{
-                            $ur->$method();
-                        } 
-                        //end that  
-                        
-                    }else{
-                        $ur->home();
-                    }
-                }
-        
-            }else
-            {
-                include $application_folder."\/controllers/".$break[0].".php"; //Controller
-                $class = ucfirst($break[0]); //Controller
-                $ur = new $class();
-                if(isset($break[1])){
-                    $method = $break[1];
-                }else{
-                    $method = "home";
-                }
-                $ur->$method();
-            break;
-            }
-            //end core
-        }
+        //if($fullurl == $key || $fullurl == $key."/")
 
 
     }
     
+}
+
+//echo $fullurl."<br>";
+//echo $key."<br>";
+
+
+//if($fullurl == $key || $fullurl == $key."/")
+if(isset($fullurl)){
+
+    if(array_key_exists($fullurl, $route))
+    {
+
+
+        $break = explode("/", $route[$fullurl]);
+
+        /**
+         * Form Routes File
+         */
+        //$class = $break[0];
+        //$method = $break[1];
+        //$perameter = $break[2];
+
+        /**
+         * $url[0] = controller
+         * $url[1] = method
+         * $url[2] = perameter
+         */
+        if(isset($break[0]))
+        {
+            if(file_exists($application_folder."/"."controllers/".$break[0].".php")){
+                $s = ucfirst($break[0]); //Controller
+                if(!class_exists($s)){
+                    include $application_folder."/"."controllers/".$break[0].".php"; //Controller
+
+                    if(!class_exists($s)){
+                        show_error("Class not exist: <strong>".$s."</strong>");
+                    //break;
+                    }else{
+                        $ur = new $s();
+                    }
+                    
+                }
+            }else{
+                show_error("Controller not exist: <strong>".$break[0]."</strong>");
+            //break;
+            }
+
+            /*
+            include $application_folder."/"."controllers/".$break[0].".php"; //Controller
+            $s = ucfirst($break[0]); //Controller
+            $ur = new $s();
+            */
+
+            if(isset($break[2])){
+                $method = $break[1];
+                $ur->$method($break[2]); 
+            }else{
+                if(isset($break[1])){
+                    $method = $break[1];
+
+                    if(!method_exists($ur, $method)){
+                        show_error("Method not exist: <strong>".$method."</strong>");
+                    //break;
+                    }
+                    
+                    /**
+                     * New addition for peramiter
+                     */
+
+                    //echo $url[$count]."\n";
+                    //$ur->$method($url[$count], $url[$count+1]);
+
+                    if((isset($url[$count])) && (!isset($url[$count+1])))
+                    {
+                        $ur->$method($url[$count]);
+
+                    }else if(isset($url[$count+1]) && (!isset($url[$count+2]))){
+                        $ur->$method($url[$count], $url[$count+1]);
+
+                    }else if(isset($url[$count+2]) && (!isset($url[$count+3])) ){
+                        $ur->$method($url[$count], $url[$count+1], $url[$count+2]);
+
+                    }else if(isset($url[$count+3]) && (!isset($url[$count+4]))){
+                        $ur->$method($url[$count], $url[$count+1], $url[$count+2], $url[$count+3]);
+                    }
+                    else{
+                        $ur->$method();
+                    } 
+                    //end that  
+                    
+                }else{
+                    $ur->home();
+                }
+            }
+
+        }else
+        {
+            include $application_folder."\/controllers/".$break[0].".php"; //Controller
+            $class = ucfirst($break[0]); //Controller
+            $ur = new $class();
+            if(isset($break[1])){
+                $method = $break[1];
+            }else{
+                $method = "home";
+            }
+            $ur->$method();
+        //break;
+        }
+        //end core
+    }
 }
 
 ?>
