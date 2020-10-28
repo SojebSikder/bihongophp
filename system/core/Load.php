@@ -24,39 +24,9 @@ class Load{
                 if(isset($file[2])){
                     include $application_folder."/"."views/".$filename;
                 }else{
-                    //require_once "Perser.php";
-
                     require_once "Perser2.php";
-
                     // Initialize object
-                    //$tpl = new Perser($application_folder."/"."views/".$filename.".php");
-
-                    $tpl2 = new Perser2($application_folder."/"."views/".$filename.".php");
                     Perser2::view($application_folder."/"."views/".$filename.".php", $data);
-
-                    /**
-                     * Predefined Value
-                     */
-                    /*
-                    $tpl->set('ROOT', ROOT);
-                    $tpl->set('CHARSET', CHARSET);
-                    $tpl->set('ICON', ICON);
-                    $tpl->set('TITLE', TITLE);
-                    $tpl->set('SLOGAN', SLOGAN);
-                    $tpl->set('ASSET', ASSET);
-                    $tpl->set('B_VERSION', B_VERSION); 
-                    $tpl->set('csrf_token_name', $config['csrf_token_name']);
-                    */
-
-                    /**
-                     * Custom Value
-                     */
-                    /*if($data){
-                        foreach ($data as $key => $value) {
-                            $tpl->set($key, $value);
-                        } 
-                    }
-                    $tpl->render(); */
                 }
                 
             }
