@@ -2,12 +2,12 @@
 /**
  * Path Helper
  */
-if ( ! function_exists('setRealpath'))
+class Path
 {
 	/**
 	 * Set Realpath
 	 */
-	function setRealpath($path, $check_existance = FALSE)
+	public static function setRealpath($path, $check_existance = FALSE)
 	{
 		// Security check to make sure the path is NOT a URL. No remote file inclusion!
 		if (preg_match('#^(http:\/\/|https:\/\/|www\.|ftp|php:\/\/)#i', $path) OR filter_var($path, FILTER_VALIDATE_IP) === $path)
@@ -29,4 +29,6 @@ if ( ! function_exists('setRealpath'))
 		return is_dir($path) ? rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR : $path;
 	}
 }
+
+
 ?>

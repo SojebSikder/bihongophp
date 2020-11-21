@@ -3,9 +3,9 @@
 * Main Controller
 */
 class Controller{
-    protected $load = array();
-    protected $input = array();
-    protected $benchmark = array();
+    public $load = array();
+    public $input = array();
+    public $benchmark = array();
 
     public function __construct(){
         $this->load = new Load();
@@ -13,6 +13,3 @@ class Controller{
         $this->benchmark = new Benchmark();
     }
 }
-
-
-?>

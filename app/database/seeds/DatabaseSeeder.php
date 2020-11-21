@@ -1,6 +1,7 @@
 <?php
-
-
+/**
+ * Do not delete this file
+ */
 class DatabaseSeeder extends Seeder
 {
     /**

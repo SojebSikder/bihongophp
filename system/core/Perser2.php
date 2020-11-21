@@ -42,7 +42,7 @@ class Perser2 {
 		$code = self::compileEscapedEchos($code);
 		$code = self::compileEchos($code);
 		$code = self::compilePHP($code);
-		$code = self::compilePHP2($code);
+		//$code = self::compilePHP2($code);
 		return $code;
 	}
 
@@ -65,8 +65,14 @@ class Perser2 {
 	}
 
 	static function compileEchos($code) {
-		return preg_replace('~\{{\s*(.+?)\s*\}}~is', '<?php echo $1 ?>', $code);
+		global $config;
+		return preg_replace('~'.$config["left_deli"].'\s*(.+?)\s*'.$config["right_deli"].'~is', '<?php echo $1 ?>', $code);
 	}
+
+	/*
+	static function compileEchos($code) {
+		return preg_replace('~\{{\s*(.+?)\s*\}}~is', '<?php echo $1 ?>', $code);
+	} */
 
 	static function compileEscapedEchos($code) {
 		return preg_replace('~\{{{\s*(.+?)\s*\}}}~is', '<?php echo htmlentities($1, ENT_QUOTES, \'UTF-8\') ?>', $code);
@@ -95,4 +101,4 @@ class Perser2 {
 	}
 
 }
-?>
+

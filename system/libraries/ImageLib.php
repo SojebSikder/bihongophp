@@ -5,7 +5,7 @@
 class ImageLib
 {
 
-    public function compressImage($source_url, $destination_url, $quality){
+    public static function compressImage($source_url, $destination_url, $quality){
         $info = getimagesize($source_url);
         if($info['mime'] == 'image/jpg'){
             $image = imagecreatefromjpeg($source_url);

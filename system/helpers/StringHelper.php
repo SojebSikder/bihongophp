@@ -2,10 +2,10 @@
 /**
  * String Helper
  */
+class StringHelper
+{
 
- if(!function_exists('randomText')){
-
-    function randomText($length = 10)
+    public static function randomText($length = 10)
     {
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength= strlen($characters);
@@ -15,5 +15,6 @@
         }
         return $randomString;
     }
- }
-?>
+ 
+}
+

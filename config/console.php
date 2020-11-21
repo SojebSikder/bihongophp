@@ -1,6 +1,5 @@
 <?php
 require $system_path."/"."Inspire.php";
-use system\Inspiring;
 /**
  * Create console command
  * 
@@ -10,7 +9,7 @@ use system\Inspiring;
 
 Command::set('inspire', function(){
     Command::comment(Inspiring::quote());
-})->describe('Display an inspiration qoute');
+})->describe('Display an inspiration quote');
 
 
 Command::set('ask', function(){

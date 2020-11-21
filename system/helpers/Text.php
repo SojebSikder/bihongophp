@@ -2,26 +2,26 @@
 /**
  * Text Helper
  */
-if(!function_exists('textShorten')){
-    function textShorten($text, $limit = 400){
+
+ class Text
+ {
+	 
+    public static function textShorten($text, $limit = 400){
         //$msgi = wordwrap(substr($msg, 0, $position),20,"<br>\n"); 
         $text = $text. " ";
         $text = substr($text, 0, $limit);
         $text = substr($text, 0, strrpos($text, ' '));
         $text = $text.".....";
         return $text;
-    }
-}
+	}
+	
 
-
-if ( ! function_exists('highlightCode'))
-{
 	/**
 	 * Code Highlighter
 	 *
 	 * Colorizes code strings
 	 */
-	function highlightCode($str)
+	public static function highlightCode($str)
 	{
 		/* The highlight string function encodes and highlights
 		 * brackets so we need them to start raw.
@@ -62,6 +62,13 @@ if ( ! function_exists('highlightCode'))
 			$str
 		);
 	}
-}
+
+
+ }
+ 
+
+
+
+
 
 ?>

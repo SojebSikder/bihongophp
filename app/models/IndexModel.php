@@ -10,5 +10,3 @@ class IndexModel extends Model{
     }
 }
 
-
-?>

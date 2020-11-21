@@ -8,4 +8,3 @@ interface AdapterInterface{
   public function delete($query);
  
 }
-?>

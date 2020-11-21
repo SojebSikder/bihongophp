@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="{{ROOT}}">
+    {{BASE}}
     <meta charset="{{CHARSET}}">
     <link rel="icon" href="{{ICON}}" type="image/png" sizes="16x16">
     <meta name="description" content="">
@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Welcome to {{TITLE}}</title>
+    <!-- css -->
     <link rel="stylesheet" href="{{ASSET}}css/style.css">
 </head>
 

@@ -5,14 +5,14 @@
 /**
  * Load Config
  */
-include "config/config.php";
+require "config/config.php";
 
 /**
  * Exceptions
  */
 /*
-*error reporting
-*/
+ *error reporting
+ */
 define('ENVIRONMENT', $config['mode']);
 
 switch (ENVIRONMENT)

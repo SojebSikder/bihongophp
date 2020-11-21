@@ -14,9 +14,8 @@ class IndexController extends Controller{
 	public function home(){
 		//This is for measuring page speed
 		$this->benchmark->mark('start');
-		
+		//render home.php page
 		$this->load->view("home");
-
 		$this->benchmark->mark('end');
 		echo "Page render in ".$this->benchmark->elapsed_time('start', 'end');
 	}
@@ -25,11 +24,10 @@ class IndexController extends Controller{
 	public function te($id = false){
 		
 		$this->benchmark->mark('start');
-
+		//render home.te.php page with data
 		$this->load->view("home.te", [
 				'name' => 'BihongoPHP'
 			 ]);
-
 		$this->benchmark->mark('end');
 		echo "Page render in ".$this->benchmark->elapsed_time('start', 'end');
 	}

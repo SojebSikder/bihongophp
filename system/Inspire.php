@@ -1,6 +1,5 @@
 <?php
-namespace system;
-include "helpers/array_helper.php";
+include "helpers/ArrayHelper.php";
 
 class Inspiring
 {
@@ -10,7 +9,7 @@ class Inspiring
      */
     public static function quote()
     {
-        return randomElement([
+        return ArrayHelper::randomElement([
             'When there is no desire, all things are at peace. - Laozi',
             'Simplicity is the ultimate sophistication. - Leonardo da Vinci',
             'Simplicity is the essence of happiness. - Cedric Bledsoe',

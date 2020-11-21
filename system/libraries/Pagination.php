@@ -4,27 +4,27 @@
  */
 class Pagination
 {
-    public $base_url;
-    public $total_rows;
-    public $per_page;
+    public static $base_url;
+    public static $total_rows;
+    public static $per_page;
 
-    public function init($config){
-        $this->base_url = $config['base_url'];
-        $this->total_rows = $config['total_rows'];
-        $this->per_page = $config['per_page'];
+    public static function init($config){
+        self::$base_url = $config['base_url'];
+        self::$total_rows = $config['total_rows'];
+        self::$per_page = $config['per_page'];
     }
 
-    public function createLink()
+    public static function createLink()
     {
         // adding limits to select query
         //$total = $this->total_rows;
         //$limit =  $this->per_page;
         
-        $number_page = (int) ceil($this->total_rows / $this->per_page)+1;
+        $number_page = (int) ceil(self::$total_rows / self::$per_page)+1;
 
         $el = '';
         for ($i=1; $i < $number_page; $i++) { 
-            $el = $el.'<a href="'.$this->base_url.number_format($i*$this->per_page).'">'.$i.'</a>';
+            $el = $el.'<a href="'.self::$base_url.number_format($i*self::$per_page).'">'.$i.'</a>';
         }
         return $el;
     }

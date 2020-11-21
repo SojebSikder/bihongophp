@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<?php echo ROOT ?>">
+    <?php echo BASE ?>
     <meta charset="<?php echo CHARSET ?>">
     <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
     <meta name="description" content="">
@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Welcome to <?php echo TITLE ?></title>
+    <!-- css -->
     <link rel="stylesheet" href="<?php echo ASSET ?>css/style.css">
 </head>
 

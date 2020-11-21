@@ -2,12 +2,11 @@
 /**
  * Command Class
  */
-require $system_path."/"."helpers/"."file_helper.php";
-const B_VERSION = '1.0.5';
+require $system_path."/"."helpers/"."File.php";
+const B_VERSION = '1.0.6';
 
 function current_migrate($row){
     global $system_path;
-    //include $system_path."/core/dbloader.php";
 
     $db = new Database();
     $result = $db->select("SELECT * FROM migration ORDER BY id DESC")->fetch_assoc();
@@ -16,7 +15,6 @@ function current_migrate($row){
 
 function getBatch($row, $count){
     global $system_path;
-    //include $system_path."/core/dbloader.php";
 
     $lastBatch = current_migrate('batch');
 
@@ -107,6 +105,10 @@ class Command
             Command::comment("BihongoPHP Version ".B_VERSION);
         })->describe("Displays BihongoPHP version");
 
+        self::set('-v', function(){
+            Command::comment("BihongoPHP Version ".B_VERSION);
+        })->describe("Displays BihongoPHP version");
+
        
         /**
          * make:auth
@@ -145,7 +147,7 @@ class Command
         self::set('migrate', function(){
             global $argc, $argv, $application_folder, $system_path, $config;
 
-            include $system_path."/core/dbloader.php";
+            require $system_path."/core/dbloader.php";
             require $config['migration_path'].current_migrate('migration').".php";
             if(isset($argv[2])){
                 //find current migrations
@@ -171,7 +173,7 @@ class Command
         self::set('migrate:rollback', function(){
             global $argc, $argv, $application_folder, $system_path, $config;
 
-            include $system_path."/core/dbloader.php";
+            require $system_path."/core/dbloader.php";
 
             if(isset($argv[2])){
                 require $config['migration_path'].getBatch('migration', $argv[2]).".php";
@@ -201,7 +203,7 @@ class Command
             global $application_folder;
             
             $name = Command::args(2);
-            writeFile($application_folder."/"."controllers/".$name.".php", self::createController($name));
+            File::writeFile($application_folder."/"."controllers/".$name.".php", self::createController($name));
             self::success($name." controller created succesfully");
         })->describe("Create controller")->usage("make:controller [ControllerName]");
         
@@ -212,7 +214,7 @@ class Command
             global $application_folder;
             
             $name = Command::args(2);
-            writeFile($application_folder."/"."models/".$name.".php", self::createModel($name));
+            File::writeFile($application_folder."/"."models/".$name.".php", self::createModel($name));
             self::success($name." model created succesfully");
         })->describe("Create model")->usage("make:model [ModelName]");
 
@@ -227,7 +229,7 @@ class Command
 
             if(isset($name)){      
                 $time = time();//date('F_j_Y_g_i_a', time());
-                writeFile($config['migration_path'].$time."-".$name.".php", self::createMigration($name, $time."-".$name, $name, $time));
+                File::writeFile($config['migration_path'].$time."-".$name.".php", self::createMigration($name, $time."-".$name, $name, $time));
                 self::success("Created Migration: ".$time."-".$name);
             }else{
                 self::danger("2nd Argument not found");
@@ -245,7 +247,7 @@ class Command
             $name = Command::args(2);
             
             if(isset($name)){      
-                writeFile($config['seed_path'].$name.".php", self::createSeed($name));
+                File::writeFile($config['seed_path'].$name.".php", self::createSeed($name));
                 self::success("Seeder created successfully");
             }else{
                 self::danger("2nd Argument not found");
@@ -382,7 +384,7 @@ class '.$modelName.' extends Model{
         /**
          * Create Database
          */
-        include $system_path."/core/dbloader.php";
+        require $system_path."/core/dbloader.php";
 
         $db = new Database();
 
@@ -466,7 +468,7 @@ class '.$seedName.' extends Seeder
     public static function createAuth(){
         global $application_folder, $system_path, $config;
 
-        include $system_path."/core/dbloader.php";
+        require $system_path."/core/dbloader.php";
         Schema::create(function(Builder $table){
 
             $table->create_table('users', true, [
@@ -716,8 +718,8 @@ $route["logout"] = "RegisterController/logout";
         /**
          * Create view file
          */
-        writeFile($application_folder."/"."views/login.php", $login);
-        writeFile($application_folder."/"."views/register.php", $register);
+        File::writeFile($application_folder."/"."views/login.php", $login);
+        File::writeFile($application_folder."/"."views/register.php", $register);
 
         /**
          * Create route
@@ -738,6 +740,3 @@ $route["logout"] = "RegisterController/logout";
 
 
 
-
-
-?>

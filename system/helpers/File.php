@@ -2,31 +2,25 @@
 /**
  * File Helper
  */
-
-if ( ! function_exists('readFile'))
+class File
 {
 	/**
 	 * Read File
 	 *
 	 * Opens the file specified in the path and returns it as a string.
 	 */
-	function readFile($file)
+	public static function readFile($file)
 	{
 		return @file_get_contents($file);
 	}
-}
 
-
-
-if ( ! function_exists('writeFile'))
-{
 	/**
 	 * Write File
 	 *
 	 * Writes data to the file specified in the path.
 	 * Creates a new file if non-existent.
 	 */
-	function writeFile($path, $data, $mode = 'wb')
+	public static function writeFile($path, $data, $mode = 'wb')
 	{
 		if ( ! $fp = @fopen($path, $mode))
 		{
@@ -48,12 +42,8 @@ if ( ! function_exists('writeFile'))
 
 		return is_int($result);
 	}
-}
 
 
-
-if ( ! function_exists('deleteFiles'))
-{
 	/**
 	 * Delete Files
 	 *
@@ -62,7 +52,7 @@ if ( ! function_exists('deleteFiles'))
 	 * If the second parameter is set to TRUE, any directories contained
 	 * within the supplied base directory will be nuked as well.
 	 */
-	function deleteFiles($path, $del_dir = FALSE, $htdocs = FALSE, $_level = 0)
+	public static function deleteFiles($path, $del_dir = FALSE, $htdocs = FALSE, $_level = 0)
 	{
 		// Trim the trailing slash
 		$path = rtrim($path, '/\\');
@@ -95,8 +85,11 @@ if ( ! function_exists('deleteFiles'))
 			? @rmdir($path)
 			: TRUE;
 	}
+
+
+
 }
 
 
 
-?>
+

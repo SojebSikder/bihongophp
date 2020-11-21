@@ -6,21 +6,21 @@
 /**
  * Host Address
  */
-$email['host'] = 'smtp.gmail.com';           // (Changeable)
+$email['host'] = 'smtp.gmail.com';
 /**
  * Port
  */
-$email['port'] = 587;                       // (Changeable)
+$email['port'] = 587;
 /**
  * Global Form Address
  */
 $email['from'] = [
-    'address' => 'sentform@email.com',      // (Changeable)
-    'name' => 'sentfromname'                // (Changeable)
+    'address' => 'sentform@email.com',
+    'name' => 'sentfromname'
 ];
 /**
  * SMPTP Server Username
  */
-$email['username'] = 'loginemail@mail.com'; // (Changeable)
-$email['password'] = 'loginpassword';       // (Changeable)
+$email['username'] = 'loginemail@mail.com';
+$email['password'] = 'loginpassword';
 

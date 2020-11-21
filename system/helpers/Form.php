@@ -2,10 +2,9 @@
 /**
  * Form Helper
  */
-
-if (!function_exists('formOpen'))
+class Form
 {
-    function formOpen($action = '', $attributes = array(), $hidden = array())
+    public static function open($action = '', $attributes = array(), $hidden = array())
     {
         global $config;
         if($config['csrf_protection'] == FALSE){
@@ -39,12 +38,9 @@ if (!function_exists('formOpen'))
             return $form;
         }
     }
-}
 
 
-if (!function_exists('formOpen_multipart'))
-{
-    function formOpen_multipart($action = '', $attributes = array(), $hidden = array())
+    public static function open_multipart($action = '', $attributes = array(), $hidden = array())
     {
         global $config;
         if($config['csrf_protection'] == FALSE){
@@ -79,15 +75,12 @@ if (!function_exists('formOpen_multipart'))
         }
     }
 
-}
 
-if (!function_exists('formClose'))
-{
-    function formClose()
+    public static function close()
     {
         return "</form>";
     }
+
+
+
 }
-
-
-?>

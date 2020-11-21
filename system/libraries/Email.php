@@ -10,44 +10,49 @@ require "PHPMailer/src/Exception.php";
 require "PHPMailer/src/PHPMailer.php";
 require "PHPMailer/src/SMTP.php";
 
-function sendEmail($address, $subject, $body){
+class Email
+{
+    public static function sendEmail($address, $subject, $body){
 
-    global $email;
+        global $email;
 
-    $mail = new PHPMailer(true);
-    try {
-        //Server settings
-        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-        $mail->isSMTP();
-        $mail->Host = $email['host'];
-        $mail->SMTPAuth = true;
-        $mail->Username = $email['username'];
-        $mail->Password = $email['password'];
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = $email['port'];
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = $email['host'];
+            $mail->SMTPAuth = true;
+            $mail->Username = $email['username'];
+            $mail->Password = $email['password'];
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = $email['port'];
 
-        //Recipients
-        $mail->setFrom($email['from']['address'], $email['from']['name']);
-        $mail->addAddress($address);
-
-
-        //Attachment
-        //$mail->addAttachment("");
-
-        //Content
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body = $body;
-
-        $mail->send();
-        //echo "Message has been sent";
+            //Recipients
+            $mail->setFrom($email['from']['address'], $email['from']['name']);
+            $mail->addAddress($address);
 
 
-    } catch (Exception $e) {
-        //throw $e;
+            //Attachment
+            //$mail->addAttachment("");
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = $body;
+
+            $mail->send();
+            //echo "Message has been sent";
+
+
+        } catch (Exception $e) {
+            //throw $e;
+        }
+
     }
-
 }
+
+
 
 
 ?>

@@ -2,27 +2,79 @@
 /**
  * Load Framework
  */
-ini_set('session.save_path', $config['session_path']);
-$routes = array();
-$mail = array();
+
+/**
+ * Set session path
+ */
+if($config['session_path'] != null){
+    ini_set('session.save_path', $config['session_path']);
+}
+/**
+ * Set Default Timezone
+ */
+if($config['timezone'] != null){
+    date_default_timezone_set($config['timezone']);
+}
+/**
+ * Set Default Charset
+ */
+if($config['charset'] != null){
+    ini_set('default_charset', $config['charset']);
+}
+
 /**
  * Setup Files
  */
-//include "config/config.php";
-include "config/database.php";
-include "config/routes.php";
-include "config/email.php";
+//require "config/config.php";
+require "config/database.php";
+require "config/routes.php";
+require "config/email.php";
 /**
  * Exception Files
  */
-include $system_path."/core/Exception.php";
-
+require $system_path."/core/Exception.php";
+/**
+ * Autoload Core
+ */
+//Composer Autoload
 require 'vendor/autoload.php';
+//Library
+spl_autoload_register(function($class){
+    global $system_path;
+
+    if(file_exists($system_path."/libraries\/".$class.".php")){
+        require $system_path."/libraries\/".$class.".php";
+    }
+});
+//Helper
+spl_autoload_register(function($class){
+    global $system_path;
+    if(file_exists($system_path."/helpers\/".$class.".php")){
+        require $system_path."/helpers\/".$class.".php";
+    }
+});
+/**
+ * Autoload User
+ */
+//Library
+spl_autoload_register(function($class){
+    global $application_folder;
+    if(file_exists($application_folder."/libraries\/".$class.".php")){
+        require $application_folder."/libraries\/".$class.".php";
+    }
+});
+//Helper
+spl_autoload_register(function($class){
+    global $application_folder;
+    if(file_exists($application_folder."/helpers\/".$class.".php")){
+        require $application_folder."/helpers\/".$class.".php";
+    }
+});
 
 /**
  * BihongoPHP Version
  */
-const B_VERSION = '1.0.5';
+const B_VERSION = '1.0.6';
 
 //Core
 $url = isset($_GET['url']) ? $_GET['url'] : NULL;
@@ -33,13 +85,14 @@ if($url != NULL){
     unset($url);
 }
 
+$isError = false;
 /**
  * Custom Model View Controller
  */
 if(isset($url[0])){
 
     if(file_exists("app/controllers/".$url[0].".php")){
-        include "app/controllers/".$url[0].".php";
+        require "app/controllers/".$url[0].".php";
         $class = new $url[0]();
         if(isset($url[1])){
             $method = $url[1];
@@ -62,16 +115,16 @@ if(isset($url[0])){
             }
             else{
                 $class->$method();
+                $isError = false;
             }
             //end that  
-
-
         }else{
             $class->home();
+            $isError = false;
         }
-        
     }else{
         //echo "Not";
+        $isError = true;
     }
 }
 // End that
@@ -79,21 +132,40 @@ foreach ($route as $key => $value)
 {
     $breakKey = explode("/", filter_var($key, FILTER_SANITIZE_URL));
     $break = explode("/", filter_var($value, FILTER_SANITIZE_URL));
-
+    /**
+     * Default Route
+     */
     if(!isset($url[0])){
-        if($route['default_controller'] != null){
-
-            include $application_folder."\/controllers/".$break[0].".php"; //Controller
-            $class = ucfirst($break[0]); //Controller
-            $ur = new $class();
-            if(isset($break[1])){
-                $method = $break[1];
-            }else{
-                $method = "home";
+        if($route['default_controller'] != null)
+        {
+            /**
+             * Call function from routes
+             */
+            if(is_callable($route['default_controller']))
+            {
+                $controller = new Controller();
+                try {
+                    $route['default_controller']($controller);
+                } catch (\Throwable $th) {
+                    throw $th;
+                }
+            break;
             }
-            
-            $ur->$method();
-        break;
+            /**
+             * If not callable then continue
+             */
+            else{
+                require $application_folder."\/controllers/".$break[0].".php"; //Controller
+                $class = ucfirst($break[0]); //Controller
+                $ur = new $class();
+                if(isset($break[1])){
+                    $method = $break[1];
+                }else{
+                    $method = "home";
+                }
+                $ur->$method();
+                break;
+            }
         }
     }
     else
@@ -114,99 +186,122 @@ foreach ($route as $key => $value)
 }
 
 
-
-if(isset($fullurl)){
-
+if(isset($fullurl))
+{
+    /**
+     * Continue if route key exist
+     */
     if(array_key_exists($fullurl, $route))
     {
-
-
-        $break = explode("/", $route[$fullurl]);
-
         /**
-         * Form Routes File
+         * Call function from routes
          */
-        //$class = $break[0];
-        //$method = $break[1];
-        //$perameter = $break[2];
-
-        /**
-         * $url[0] = controller
-         * $url[1] = method
-         * $url[2] = perameter
-         */
-        if(isset($break[0]))
+        if(is_callable($route[$fullurl]))
         {
-            if(file_exists($application_folder."/"."controllers/".$break[0].".php")){
-                $s = ucfirst($break[0]); //Controller
-                if(!class_exists($s)){
-                    include $application_folder."/"."controllers/".$break[0].".php"; //Controller
+            $controller = new Controller();
 
-                    if(!class_exists($s)){
-                        show_error("Class not exist: <strong>".$s."</strong>");
-                    //break;
-                    }else{
-                        $ur = new $s();
-                    }
-                    
-                }
-            }else{
-                show_error("Controller not exist: <strong>".$break[0]."</strong>");
+            try {
+                $route[$fullurl]($controller);
+            } catch (\Throwable $th) {
+                throw $th;
             }
-
-
-            if(isset($break[2])){
-                $method = $break[1];
-                $ur->$method($break[2]); 
-            }else{
-                if(isset($break[1])){
-                    $method = $break[1];
-
-                    if(!method_exists($ur, $method)){
-                        show_error("Method not exist: <strong>".$method."</strong>");
-                    }
-                    
-                    /**
-                     * New addition for peramiter
-                     */
-
-                    if((isset($url[$count])) && (!isset($url[$count+1])))
-                    {
-                        $ur->$method($url[$count]);
-
-                    }else if(isset($url[$count+1]) && (!isset($url[$count+2]))){
-                        $ur->$method($url[$count], $url[$count+1]);
-
-                    }else if(isset($url[$count+2]) && (!isset($url[$count+3])) ){
-                        $ur->$method($url[$count], $url[$count+1], $url[$count+2]);
-
-                    }else if(isset($url[$count+3]) && (!isset($url[$count+4]))){
-                        $ur->$method($url[$count], $url[$count+1], $url[$count+2], $url[$count+3]);
-                    }
-                    else{
-                        $ur->$method();
-                    } 
-                    //end that  
-                    
-                }else{
-                    $ur->home();
-                }
-            }
-
-        }else
-        {
-            include $application_folder."\/controllers/".$break[0].".php"; //Controller
-            $class = ucfirst($break[0]); //Controller
-            $ur = new $class();
-            if(isset($break[1])){
-                $method = $break[1];
-            }else{
-                $method = "home";
-            }
-            $ur->$method();
         }
-        //end core
+        /**
+         * If it's not callback then continue
+         */
+        else
+        {
+            $break = explode("/", $route[$fullurl]);
+            /**
+             * Form Routes File
+             */
+            //$class = $break[0];
+            //$method = $break[1];
+            //$perameter = $break[2];
+
+            /**
+             * $url[0] = controller
+             * $url[1] = method
+             * $url[2] = perameter
+             */
+            if(isset($break[0]))
+            {
+                if(file_exists($application_folder."/"."controllers/".$break[0].".php")){
+                    $s = ucfirst($break[0]); //Controller
+                    if(!class_exists($s)){
+                        require $application_folder."/"."controllers/".$break[0].".php"; //Controller
+
+                        if(!class_exists($s)){
+                            show_error("Class not exist: <strong>".$s."</strong>");
+                        //break;
+                        }else{
+                            $ur = new $s();
+                        }
+                    }
+                }else{
+                    show_error("Controller not exist: <strong>".$break[0]."</strong>");
+                }
+
+                if(isset($break[2]))
+                {
+                    $method = $break[1];
+                    $ur->$method($break[2]); 
+                }else{
+                    if(isset($break[1])){
+                        $method = $break[1];
+
+                        if(!method_exists($ur, $method)){
+                            show_error("Method not exist: <strong>".$method."</strong>");
+                        }
+                        /**
+                         * New addition for peramiter
+                         */
+                        if((isset($url[$count])) && (!isset($url[$count+1])))
+                        {
+                            $ur->$method($url[$count]);
+
+                        }else if(isset($url[$count+1]) && (!isset($url[$count+2]))){
+                            $ur->$method($url[$count], $url[$count+1]);
+
+                        }else if(isset($url[$count+2]) && (!isset($url[$count+3])) ){
+                            $ur->$method($url[$count], $url[$count+1], $url[$count+2]);
+
+                        }else if(isset($url[$count+3]) && (!isset($url[$count+4]))){
+                            $ur->$method($url[$count], $url[$count+1], $url[$count+2], $url[$count+3]);
+                        }
+                        else{
+                            $ur->$method();
+                        } 
+                        //end that  
+                    }else
+                    {
+                        $ur->home();
+                    }
+                }
+
+            }else
+            {
+                require $application_folder."\/controllers/".$break[0].".php"; //Controller
+                $class = ucfirst($break[0]); //Controller
+                $ur = new $class();
+                if(isset($break[1]))
+                {
+                    $method = $break[1];
+                }else
+                {
+                    $method = "home";
+                }
+                $ur->$method();
+            }
+            //end core
+
+        }
+
+    }else{
+        if($isError == true)
+        {
+            show_404();
+        }
+        
     }
 }
-
-?>

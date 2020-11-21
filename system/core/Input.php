@@ -2,7 +2,6 @@
 /**
  * Input Class
  */
-
  class Input
  {
     public function post($url){
@@ -89,4 +88,3 @@
  }
  
 
-?>

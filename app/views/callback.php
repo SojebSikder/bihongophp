@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php echo BASE ?>
+    <base href="<?php echo ROOT ?>">
     <meta charset="<?php echo CHARSET ?>">
     <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
     <meta name="description" content="">
@@ -10,27 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Welcome to <?php echo TITLE ?></title>
-    <!-- css -->
     <link rel="stylesheet" href="<?php echo ASSET ?>css/style.css">
 </head>
 
 <body>
 
 	<center>
-    <h1>Hello, Welcome to <?php echo TITLE ?> Framework</h1>
-    <h3><?php echo SLOGAN ?></h3>
+    <h3>You come here from routes</h3>
 
     </center>
 
-    <ul>
-        <li><a href="te">See TE Example</a></li>
-        <li><a href="callback">See Callback Example</a></li>
-    </ul>
-    
+    <a href="home">Home</a>
 
-    <p>You can find this page on <a style="color: violet;">app/views/home.php<a></p>
+    <p>You can find this page on <a style="color: violet;">app/views/callback.php<a></p>
     <p class="footer"><?php echo  'Bihongo Version <strong>' . B_VERSION . '</strong>'?></p>
-
 
 </body>
 </html>

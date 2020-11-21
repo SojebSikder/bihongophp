@@ -14,9 +14,12 @@
 $config['url'] = [
 	/**
 	 * base url (Changeable) like: http://localhost/bihongophp/
+	 * OR
+	 * just -> / (slash)
 	 * Access this value on project using ROOT constant
 	 */
-	"baseUrl" => "http://localhost/bihongophp/",
+	"baseUrl" => "/bihongophp/",	
+	
 	/**
 	 * asset url for use assets(js/css etc.)
 	 * Access this value on project using ASSET constant
@@ -24,7 +27,7 @@ $config['url'] = [
 	 */
 	"asset" => "resources/"
 ];
- 
+
 
 /**
  * Web Information
@@ -70,6 +73,16 @@ $view_folder = "";
 $config['charset'] = 'UTF-8';
 
 /**
+ * Default locale
+ */
+$config['locale'] = 'en';
+
+/**
+ * Default timezone
+ */
+$config['timezone'] = 'Asia/Dhaka';
+
+/**
  * CSRF Protection
  * If csrf_protection False then csrf protection will be off.
  * Also you can change csrf token name as your requirements.
@@ -85,8 +98,17 @@ $config['cache_path'] = 'storage/cache/';
  * Session path
  */
 $config['session_path'] = 'storage/sessions';
+
 /**
- * Web Info
+ * TE Templating Engine
+ * Template syntax for
+ * {{ expressions }}
+ */
+$config['left_deli'] = "{{";
+$config['right_deli'] = "}}";
+
+/**
+ * Importnt Constant || DO not Edit here
  */
 defined("TITLE") //Getting Web Title
 	or define("TITLE", $config['web']['info']['web_title']);
@@ -95,7 +117,9 @@ defined("SLOGAN") //Getting Web Slogan
 defined("ROOT") //Getting base url
 	or define("ROOT", $config['url']['baseUrl']);
 defined("ASSET") //Get assets url ex. js/css etc.
-	or define("ASSET", $config['url']['asset']);
+	or define("ASSET", $config['url']['baseUrl']."/".$config['url']['asset']);
+defined("BASE") //Getting base element
+	or define("BASE", '<base href="'.ROOT.'">');
 defined("ICON") //Get Icon
 	or define("ICON", $config['web']['info']['web_icon']);
 defined("CHARSET") //Get Charset

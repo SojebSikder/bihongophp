@@ -1,16 +1,21 @@
 <?php 
-
-if(! function_exists('redirect')){
+/**
+ * Url Helper
+ */
+class Url
+{
     /**
      * Redirect
      */
-    function redirect($url ='')
+    public static function redirect($url ='')
     {
         $doc = "<script>function red(){ window.location='$url' }; setTimeout('red()', 0);</script>";
         echo $doc;
     }
+
+
 }
 
 
 
-?>
+
