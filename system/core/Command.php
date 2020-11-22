@@ -2,7 +2,6 @@
 /**
  * Command Class
  */
-require $system_path."/"."helpers/"."File.php";
 require "vendor/autoload.php";
 Autoload::init();
 const B_VERSION = '1.0.7';
@@ -137,12 +136,6 @@ class Command
         
         self::set('db:seed', function(){
             global $application_folder, $system_path, $config;
-
-            require $system_path."/core/Database.php";
-            require $system_path."/core/Database/Builder.php";
-            require $system_path."/core/Database/Schema.php";
-
-            require $system_path."/core/Database/Seeder.php";
             require $config['seed_path']."DatabaseSeeder.php";
 
             $dbseeder = new DatabaseSeeder();
@@ -521,7 +514,7 @@ class '.$seedName.' extends Seeder
 <div class="m-card-body">
 
 
-<?php echo formOpen("login",[
+<?php echo Form::open("login",[
     "method"=>"post",
         "class"=> "form-signin"
     ]); ?>
@@ -624,18 +617,12 @@ session_start(); //this will start session
 class RegisterController extends Controller{
     public function __construct(){
         parent::__construct();
-
-        /**
-         * Load Library
-         */
-        $this->load->helper("form_helper");
-        $this->load->helper("Format_helper");
     }
 
 
     public function register(){
 
-        $userModel =$this->load->model("RegisterModel");
+        $userModel = $this->load->model("RegisterModel");
 
         if($this->input->post("submit")){
             $username = Format::Stext($this->input->post("username"));

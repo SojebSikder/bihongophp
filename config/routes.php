@@ -34,3 +34,4 @@ $route['callback'] = function($essen){
     $essen->benchmark->mark('end');
 	echo "Page render in ".$essen->benchmark->elapsed_time('start', 'end');
 };
+   
