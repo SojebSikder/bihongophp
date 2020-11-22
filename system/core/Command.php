@@ -3,7 +3,9 @@
  * Command Class
  */
 require $system_path."/"."helpers/"."File.php";
-const B_VERSION = '1.0.6';
+require "vendor/autoload.php";
+Autoload::init();
+const B_VERSION = '1.0.7';
 
 function current_migrate($row){
     global $system_path;
@@ -120,6 +122,14 @@ class Command
             Command::success("Authentication created");
             
         })->describe("Create Authentication");
+
+        /**
+         * Clear page cache
+         */
+        self::set('cache:clear', function(){
+            Perser2::clearCache();
+            Command::success("Cache cleared successfully");
+        })->describe("Clear page cache");
 
         /**
          * Db:Seed

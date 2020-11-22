@@ -30,7 +30,7 @@ class Perser2 {
 		return $cached_file;
 	}
 
-	static function clearCache() {
+	public static function clearCache() {
 		foreach(glob(self::$cache_path . '*') as $file) {
 			unlink($file);
 		}

@@ -38,43 +38,13 @@ require $system_path."/core/Exception.php";
  */
 //Composer Autoload
 require 'vendor/autoload.php';
-//Library
-spl_autoload_register(function($class){
-    global $system_path;
-
-    if(file_exists($system_path."/libraries\/".$class.".php")){
-        require $system_path."/libraries\/".$class.".php";
-    }
-});
-//Helper
-spl_autoload_register(function($class){
-    global $system_path;
-    if(file_exists($system_path."/helpers\/".$class.".php")){
-        require $system_path."/helpers\/".$class.".php";
-    }
-});
-/**
- * Autoload User
- */
-//Library
-spl_autoload_register(function($class){
-    global $application_folder;
-    if(file_exists($application_folder."/libraries\/".$class.".php")){
-        require $application_folder."/libraries\/".$class.".php";
-    }
-});
-//Helper
-spl_autoload_register(function($class){
-    global $application_folder;
-    if(file_exists($application_folder."/helpers\/".$class.".php")){
-        require $application_folder."/helpers\/".$class.".php";
-    }
-});
+//Custom Autoload
+Autoload::init();
 
 /**
  * BihongoPHP Version
  */
-const B_VERSION = '1.0.6';
+const B_VERSION = '1.0.7';
 
 //Core
 $url = isset($_GET['url']) ? $_GET['url'] : NULL;

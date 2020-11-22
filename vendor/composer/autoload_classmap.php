@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AdapterInterface' => $baseDir . '/system/database/drivers/AdapterInterface.php',
     'ArrayHelper' => $baseDir . '/system/helpers/ArrayHelper.php',
+    'Autoload' => $baseDir . '/system/core/Autoload.php',
     'Benchmark' => $baseDir . '/system/core/Benchmark.php',
     'Builder' => $baseDir . '/system/core/Database/Builder.php',
     'Command' => $baseDir . '/system/core/Command.php',

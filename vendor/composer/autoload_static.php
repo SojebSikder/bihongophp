@@ -9,6 +9,7 @@ class ComposerStaticInitc24fcede94d7a02d9591bff1feefd1fa
     public static $classMap = array (
         'AdapterInterface' => __DIR__ . '/../..' . '/system/database/drivers/AdapterInterface.php',
         'ArrayHelper' => __DIR__ . '/../..' . '/system/helpers/ArrayHelper.php',
+        'Autoload' => __DIR__ . '/../..' . '/system/core/Autoload.php',
         'Benchmark' => __DIR__ . '/../..' . '/system/core/Benchmark.php',
         'Builder' => __DIR__ . '/../..' . '/system/core/Database/Builder.php',
         'Command' => __DIR__ . '/../..' . '/system/core/Command.php',
