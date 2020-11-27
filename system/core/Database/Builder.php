@@ -74,6 +74,18 @@ class Builder
         }
     }
 
+    public function alter_table($table, $attributes = array()){
+        $attr = '';
+        foreach ($attributes as $attribute => $value) {
+            $sql = "ALTER TABLE $table CHANGE $attribute $value;"; 
+            $this->db->insert($sql);
+            $this->table = $table;
+        }
+        
+
+        return $this;
+    }
+
     public function dropIfExists($table){
         $sql = "DROP TABLE IF EXISTS $table";
         $this->db->delete($sql);

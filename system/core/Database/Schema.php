@@ -11,6 +11,13 @@ class Schema
         return new static;
     }
 
+    public static function alter($callback){
+        $builder = new Builder();
+        $callback($builder);
+
+        return new static;
+    }
+
     public static function add_key($key, $primary = true)
 	{
         if($primary == true){

@@ -7,22 +7,23 @@ Autoload::init();
 const B_VERSION = '1.0.7';
 
 function current_migrate($row){
-    global $system_path;
+    global $system_path, $config;
 
     $db = new Database();
-    $result = $db->select("SELECT * FROM migration ORDER BY id DESC")->fetch_assoc();
+    $table = $config['migrations'];
+    $result = $db->select("SELECT * FROM $table ORDER BY id DESC")->fetch_assoc();
     return $result[$row];
 }
 
 function getBatch($row, $count){
-    global $system_path;
+    global $system_path, $config;
 
     $lastBatch = current_migrate('batch');
 
-    $min = $lastBatch - $count;
+    $min = $lastBatch;//- $count;
     $db = new Database();
-    
-    $result = $db->select("SELECT * FROM migration WHERE batch = $min ORDER BY id DESC")->fetch_assoc();
+    $table = $config['migrations'];
+    $result = $db->select("SELECT * FROM $table WHERE batch = $min ORDER BY id DESC")->fetch_assoc();
     return $result[$row];
 }
 
@@ -125,7 +126,7 @@ class Command
         /**
          * Clear page cache
          */
-        self::set('cache:clear', function(){
+        self::set('clear:cache', function(){
             Perser2::clearCache();
             Command::success("Cache cleared successfully");
         })->describe("Clear page cache");
@@ -179,15 +180,15 @@ class Command
             require $system_path."/core/dbloader.php";
 
             if(isset($argv[2])){
-                require $config['migration_path'].getBatch('migration', $argv[2]).".php";
+                require $config['migration_path'].getBatch($config['migrations'], $argv[2]).".php";
                 //find current migrations
-                $class = getBatch('migration', $argv[2]);
+                $class = getBatch($config['migrations'], $argv[2]);
                 $test = new $class();
                 $test->down();
                 //end that
                 self::success("Migration  reversed");
             }else{
-                require $config['migration_path'].getBatch('migration', 1).".php";
+                require $config['migration_path'].getBatch($config['migrations'], 1).".php";
                 //find current migrations
                 $class = getBatch('class', 1);
                 $test = new $class();
@@ -264,9 +265,14 @@ class Command
         self::set('list', function(){
             $cmd = self::$customCmdArray;
             foreach ($cmd as $key => $value) {
-                echo $key."\n";
+                if(array_key_exists($key, self::$description)){
+                     echo $key."------------->".self::$description[$key]."--------->".self::$usage[$key]."\n";
+                }else{
+                     echo $key."\n";
+                }
+               
             }
-        })->describe("Displays command list")->usage("list");;
+        })->describe("Displays command list")->usage("list");
 
         /**
          * Display Help
@@ -573,7 +579,7 @@ class '.$seedName.' extends Seeder
     <div class="m-card">
     <div class="m-card-body">
 
-    <?php echo formOpen("register",[
+    <?php echo Form::open("register",[
         "method"=>"post",
         "class"=> "form-signin"
     ]); ?>
