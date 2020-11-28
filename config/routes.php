@@ -1,6 +1,9 @@
 <?php
 /**
+ * ___________
+ * 
  * Setup Route
+ * ___________
  * 
  * There are have some reserved routes:
  * $route['default_controller'] = 'welcome'; 
@@ -13,7 +16,10 @@
 
  
 /**
+ * __________________________________________________
+ * 
  * DO NOT DELETE THIS ROUTE NAME (default_controller)
+ * ___________________________________________________
  * Only can change value such as
  * ->$route['default_controller'] = 'Index';
  * change to

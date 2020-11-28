@@ -239,7 +239,7 @@ class Command
                 self::danger("2nd Argument not found");
             }
 
-        })->describe("Create migration")->usage("make:migration [MigrationName]");;
+        })->describe("Create migration")->usage("make:migration [MigrationName]");
 
 
         /**
@@ -264,11 +264,23 @@ class Command
          */
         self::set('list', function(){
             $cmd = self::$customCmdArray;
+            
+            $i = 0;
             foreach ($cmd as $key => $value) {
-                if(array_key_exists($key, self::$description)){
-                     echo $key."------------->".self::$description[$key]."--------->".self::$usage[$key]."\n";
-                }else{
-                     echo $key."\n";
+                $i++;
+                if(array_key_exists($key, self::$description) && array_key_exists($key, self::$usage)){
+                     echo $i.")".$key." -----------> ".self::$description[$key]." -------> ".self::$usage[$key]."\n";
+
+                }else if(array_key_exists($key, self::$description))
+                {
+                    echo $i.")".$key." -----------> ".self::$description[$key]."\n";
+                }
+                else if(array_key_exists($key, self::$usage))
+                {
+                    echo $i.")".$key." -------> ".self::$usage[$key]."\n";
+                }
+                else{
+                     echo $i.")".$key."\n";
                 }
                
             }
