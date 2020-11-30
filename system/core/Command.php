@@ -124,6 +124,32 @@ class Command
         })->describe("Create Authentication");
 
         /**
+         * Server Down
+         */
+        self::set('down', function(){
+
+            //initialize config for time-zone
+            Config::init();
+
+            $server_info = '<?php
+$server_meta = [
+    "time" => "'.date("F j, Y, g:i a", time()).'",
+    "message"=> null,
+    "retry"=> null
+];';
+
+            file_put_contents("storage/down.php", $server_info);
+            Command::comment("Application is in now maintenance mode");
+        })->describe("Put the application in maintenance mode")->usage("down");
+        /**
+         * Server Up
+         */
+        self::set('up', function(){
+            unlink("storage/down.php");
+            Command::success("Application is now live");
+        })->describe("Exit maintenance mode")->usage("up");
+
+        /**
          * Clear page cache
          */
         self::set('clear:cache', function(){
