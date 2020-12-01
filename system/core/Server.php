@@ -5,10 +5,9 @@
 class Server
 {
     public static function init(){
-        global $server_meta;
         
-        if(file_exists("storage/down.php")){
-            require "storage/down.php";
+        if(file_exists("storage/down")){
+            $server_meta = json_decode(file_get_contents('storage/down'), true);
         
             header("HTTP/1.1 503 Service Temporarily Unavailable");
             header("Status: 503 Service Temporarily Unavailable");
