@@ -134,7 +134,8 @@ class Command
             $server_info = '{
     "time": "'.date("F j, Y, g:i a", time()).'",
     "message": null,
-    "retry": null
+    "retry": null,
+    "allowed": []
 }';
             file_put_contents("storage/down", $server_info);
             if(file_exists("storage/down")){
