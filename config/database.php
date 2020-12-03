@@ -25,7 +25,7 @@ $config['db'] = [
 	],
 
 	"sqlite" => [
-		"url" => $application_folder."/database/test.db",
+		"url" => "database/test.db",
 		'dbdriver' => 'sqlite'
 	],
 
@@ -48,12 +48,12 @@ $config['migrations'] = 'migration';
 /**
  * Migration Directory Root
  */
-$config['migration_path'] = $application_folder.'/database/migrations/';
+$config['migration_path'] = 'database/migrations/';
 
 /**
  * Seeder Directory ROOT
  */
-$config['seed_path'] = $application_folder.'/database/seeds/';
+$config['seed_path'] = 'database/seeds/';
 
 
 /**
