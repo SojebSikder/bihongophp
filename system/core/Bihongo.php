@@ -31,7 +31,7 @@ Config::init();
 /**
  * BihongoPHP Version
  */
-const B_VERSION = '1.0.7';
+const B_VERSION = '1.0.8';
 
 /**
  * Server Setup

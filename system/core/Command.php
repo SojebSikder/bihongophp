@@ -4,7 +4,7 @@
  */
 require "vendor/autoload.php";
 Autoload::init();
-const B_VERSION = '1.0.7';
+const B_VERSION = '1.0.8';
 
 function current_migrate($row){
     global $system_path, $config;

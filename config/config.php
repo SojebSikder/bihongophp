@@ -2,7 +2,7 @@
 /**DO NOT DELETE ANYTHING HERE */
 /**
  * Config
- * PHP VERSION: 7.4.1
+ * Since PHP VERSION: 7.4.1
  */
 
 /**
@@ -117,7 +117,7 @@ defined("SLOGAN") //Getting Web Slogan
 defined("ROOT") //Getting base url
 	or define("ROOT", $config['url']['baseUrl']);
 defined("ASSET") //Get assets url ex. js/css etc.
-	or define("ASSET", $config['url']['baseUrl']."/".$config['url']['asset']);
+	or define("ASSET", $config['url']['baseUrl'].$config['url']['asset']);
 defined("BASE") //Getting base element
 	or define("BASE", '<base href="'.ROOT.'">');
 defined("ICON") //Get Icon

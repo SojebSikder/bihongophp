@@ -10,6 +10,17 @@ class IndexController extends Controller{
 		parent::__construct();
 	}
 
+	/**
+	 * This is just a example of creating avater by a latter
+	 */
+	public function createAvater()
+	{
+		ImageLib::setFontPath('resources/font/arial.ttf');
+		ImageLib::setAvaterPath('resources/images/'.time());
+
+		echo ImageLib::makeAvater('S');
+	}
+
 
 	public function home(){
 		//This is for measuring page speed
