@@ -22,7 +22,7 @@ switch (ENVIRONMENT)
 		ini_set('display_errors', 1);
 
 		ini_set("error_reporting", "true");
-		error_reporting(E_ALL | E_STRCT);
+		error_reporting(E_ALL | E_STRICT);
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 	break;
 
