@@ -1,46 +1,7 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Config = require('./config');
 
-module.exports = {
-  entry: './resources/js/index.js',
-  mode: process.env.NODE_ENV || "development",
-  resolve: {
-    modules: [path.resolve(__dirname, "resources/js"), "node_modules"]
-  },
-  output: {
-    path: path.resolve(__dirname, 'public/js'),
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: "./public/js",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"]
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: ["file-loader"]
-      },
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve('./index.html'),
-    }),
-  ]
-};
-
-
+module.exports =
+    Config.Config.execute({
+        resources: "./resources/js/index.js",
+        public: "public/js"
+    });

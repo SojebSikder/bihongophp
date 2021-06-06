@@ -2,18 +2,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './resources/js/index.js',
   mode: process.env.NODE_ENV || "development",
   resolve: {
-    modules: [path.resolve(__dirname, "src"), "node_modules"]
+    modules: [path.resolve(__dirname, "resources/js"), "node_modules"]
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'public/js'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: "./build",
+    contentBase: "./public/js",
   },
   module: {
     rules: [

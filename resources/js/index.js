@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 const HelloWorld = () => {
     return (
         <div>
-            <h1>Hello World Form resource public world </h1>
+            <h1>React with BihongoPHP With Sojeb</h1>
         </div>
 
     );
