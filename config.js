@@ -56,11 +56,11 @@ module.exports.Config = {
                     },
                 ]
             },
-            plugins: [
-                new HtmlWebpackPlugin({
-                    template: path.resolve('./index.html'),
-                }),
-            ]
+            // plugins: [
+            //     new HtmlWebpackPlugin({
+            //         template: path.resolve('./index.html'),
+            //     }),
+            // ]
         };
     }
 }

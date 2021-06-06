@@ -12,7 +12,3 @@ const HelloWorld = () => {
 
 ReactDOM.render(<HelloWorld />, document.getElementById("root"));
 
-// (function helloWorld() {
-//     console.log('Hello World');
-// }());
-
