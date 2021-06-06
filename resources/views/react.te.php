@@ -14,11 +14,11 @@
 <body>
     <noscript>Please enable Javascript on your browser to visit this site </noscript>
 
-    <div id="app">
+    <div id="root">
         Hello World
     </div>
 
-    <script src="{{ Url::asset('js/index.js') }}"></script>
+    <script src="{{ Url::asset('js/bundle.js') }}"></script>
 
 </body>
 

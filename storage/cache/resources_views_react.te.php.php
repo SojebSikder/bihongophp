@@ -15,11 +15,11 @@
 <body>
     <noscript>Please enable Javascript on your browser to visit this site </noscript>
 
-    <div id="app">
+    <div id="root">
         Hello World
     </div>
 
-    <script src="<?php echo Url::asset('js/index.js') ?>"></script>
+    <script src="<?php echo Url::asset('js/bundle.js') ?>"></script>
 
 </body>
 
