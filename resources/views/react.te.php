@@ -14,9 +14,7 @@
 <body>
     <noscript>Please enable Javascript on your browser to visit this site </noscript>
 
-    <div id="root">
-        Hello World
-    </div>
+    <div id="root"></div>
 
     <script src="{{ Url::asset('js/bundle.js') }}"></script>
 
