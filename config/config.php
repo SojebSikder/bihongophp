@@ -1,4 +1,5 @@
 <?php
+
 /**DO NOT DELETE ANYTHING HERE */
 /**
  * Config
@@ -18,14 +19,18 @@ $config['url'] = [
 	 * just -> / (slash)
 	 * Access this value on project using ROOT constant
 	 */
-	"baseUrl" => "/bihongophp/",	
-	
+	"baseUrl" => "/bihongophp/",
+
 	/**
-	 * asset url for use assets(js/css etc.)
+	 * asset directory for use assets(js/css etc.)
 	 * Access this value on project using ASSET constant
 	 * If you want to change your asset/resource directory then you can
 	 */
-	"asset" => "public/"
+	"asset" => "public/",
+	/**
+	 * resource directory
+	 */
+	"resource" => "resources/"
 ];
 
 
@@ -34,8 +39,8 @@ $config['url'] = [
  */
 $config['web'] = [
 	"info" => [
-		"web_icon" => "youricon.png", 		   
-		"web_title" => "Bihongo", 			   
+		"web_icon" => "youricon.png",
+		"web_title" => "Bihongo",
 		"web_slogan" => "Let's create awesome"
 	]
 ];
@@ -86,7 +91,7 @@ $config['timezone'] = 'Asia/Dhaka';
  * CSRF Protection
  * If csrf_protection False then csrf protection will be off.
  * Also you can change csrf token name as your requirements.
-*/
+ */
 $config['csrf_protection'] = false;
 $config['csrf_token_name'] = 'csrf_token_name';
 
@@ -110,23 +115,33 @@ $config['right_deli'] = "}}";
 /**
  * Importnt Constant || DO not Edit here
  */
-defined("TITLE") //Getting Web Title
+//Getting Web Title
+defined("TITLE")
 	or define("TITLE", $config['web']['info']['web_title']);
-defined("SLOGAN") //Getting Web Slogan
+//Getting Web Slogan
+defined("SLOGAN")
 	or define("SLOGAN", $config['web']['info']['web_slogan']);
-defined("ROOT") //Getting base url
+//Getting base url
+defined("ROOT")
 	or define("ROOT", $config['url']['baseUrl']);
-defined("ASSET") //Get assets url ex. js/css etc.
-	or define("ASSET", $config['url']['baseUrl'].$config['url']['asset']);
-defined("BASE") //Getting base element
-	or define("BASE", '<base href="'.ROOT.'">');
-defined("ICON") //Get Icon
+//Get assets directory
+defined("ASSET")
+	or define("ASSET", $config['url']['baseUrl'] . $config['url']['asset']);
+//Get resources directory
+defined("RESOURCE")
+	or define("RESOURCE", $config['url']['baseUrl'] . $config['url']['resource']);
+//Getting base element
+defined("BASE")
+	or define("BASE", '<base href="' . ROOT . '">');
+//Get Icon
+defined("ICON")
 	or define("ICON", $config['web']['info']['web_icon']);
-defined("CHARSET") //Get Charset
+//Get Charset
+defined("CHARSET")
 	or define("CHARSET", $config['charset']);
-defined("cache_path") //Get Charset
+//Get Charset
+defined("cache_path")
 	or define("cache_path", $config['cache_path']);
 /**
  * User can define constant here
  */
-
