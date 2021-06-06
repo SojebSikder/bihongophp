@@ -1,5 +1,9 @@
 <?php 
 /**
+ * Defined view resource file
+ */
+//$view_folder_path = "resources/views";
+/**
  * Loader Class
  */
 class Load{
@@ -8,7 +12,7 @@ class Load{
      */
     public function view($filename, $data = false)
     {
-        global $application_folder, $system_path, $config;
+        global $view_folder_path, $application_folder, $system_path, $config;
 
         if($data == true){
             extract($data);
@@ -22,11 +26,13 @@ class Load{
         if(isset($file[1])){
             if($file[1] == "te"){
                 if(isset($file[2])){
-                    include $application_folder."/"."views/".$filename;
+                    //include $application_folder."/"."views/".$filename;
+                    include $view_folder_path."/".$filename;
                 }else{
                     require_once "Perser2.php";
                     // Initialize object
-                    Perser2::view($application_folder."/"."views/".$filename.".php", $data);
+                    //Perser2::view($application_folder."/"."views/".$filename.".php", $data);
+                    Perser2::view($view_folder_path."/".$filename.".php", $data);
                 }
                 
             }
@@ -34,35 +40,37 @@ class Load{
 
 
             else if($file[1] == "php"){
-                if(!file_exists($application_folder."/"."views/".$filename)){
+                if(!file_exists($view_folder_path."/".$filename)){
                     echo "View File not found: ".$application_folder."/"."views/".$filename;
                 }else{
-                    include $application_folder."/"."views/".$filename;
+                    //include $application_folder."/"."views/".$filename;
+                    include $view_folder_path."/".$filename;
                 }
                 
             }else if($file[1] != "php"){
-                if(!file_exists($application_folder."/"."views/".$filename)){
-                    echo "View File not found: ".$application_folder."/"."views/".$filename;
+                if(!file_exists($view_folder_path."/".$filename)){
+                    echo "View File not found: ".$view_folder_path."/".$filename;
                 }else{
-                    include $application_folder."/"."views/".$filename;
+                    //include $application_folder."/"."views/".$filename;
+                    include $view_folder_path."/".$filename;
                 }
                 
             }
             else{
-                if(!file_exists($application_folder."/"."views/".$filename.".php")){
-                    echo "View File not found: ".$application_folder."/"."views/".$filename.".php";
+                if(!file_exists($view_folder_path."/".$filename.".php")){
+                    echo "View File not found: ".$view_folder_path."/".$filename.".php";
                 }else{
-                    include $application_folder."/"."views/".$filename.".php";
+                    include $view_folder_path."/".$filename.".php";
                 }
                 
             }
 
 
         }else{
-            if(!file_exists($application_folder."/"."views/".$filename.".php")){
-                echo "View File not found: ".$application_folder."/"."views/".$filename.".php";
+            if(!file_exists($view_folder_path."/".$filename.".php")){
+                echo "View File not found: ".$view_folder_path."/".$filename.".php";
             }else{
-                include $application_folder."/"."views/".$filename.".php";
+                include $view_folder_path."/".$filename.".php";
             }
         }
         

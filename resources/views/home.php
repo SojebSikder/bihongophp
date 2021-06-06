@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Welcome to <?php echo TITLE ?></title>
     <!-- css -->
-    <link rel="stylesheet" href="<?php echo ASSET ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo ASSET ?>assets/css/style.css">
 </head>
 
 <body>

@@ -25,7 +25,7 @@ $config['url'] = [
 	 * Access this value on project using ASSET constant
 	 * If you want to change your asset/resource directory then you can
 	 */
-	"asset" => "resources/"
+	"asset" => "public/"
 ];
 
 
@@ -65,7 +65,7 @@ $config['mode'] = 'development';
  */
 $system_path = "system";
 $application_folder = "app";
-$view_folder = "";
+$view_folder_path = "resources/views";
 
 /**
  * Default Character charset

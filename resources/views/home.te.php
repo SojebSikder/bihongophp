@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Welcome to {{TITLE}}</title>
     <!-- css -->
-    <link rel="stylesheet" href="{{ASSET}}css/style.css">
+    <link rel="stylesheet" href="{{ASSET}}assets/css/style.css">
 </head>
 
 <body>
