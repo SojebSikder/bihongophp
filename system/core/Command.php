@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Command Class
  */
@@ -6,7 +7,8 @@ require "vendor/autoload.php";
 Autoload::init();
 const B_VERSION = '1.0.8';
 
-function current_migrate($row){
+function current_migrate($row)
+{
     global $system_path, $config;
 
     $db = new Database();
@@ -15,12 +17,13 @@ function current_migrate($row){
     return $result[$row];
 }
 
-function getBatch($row, $count){
+function getBatch($row, $count)
+{
     global $system_path, $config;
 
     $lastBatch = current_migrate('batch');
 
-    $min = $lastBatch;//- $count;
+    $min = $lastBatch; //- $count;
     $db = new Database();
     $table = $config['migrations'];
     $result = $db->select("SELECT * FROM $table WHERE batch = $min ORDER BY id DESC")->fetch_assoc();
@@ -48,14 +51,14 @@ class Command
     /**
      * Accass Command Prompt Arguments
      */
-    public static function args($args){
+    public static function args($args)
+    {
         global $argc, $argv, $application_folder;
-        if(isset($argv[$args])){
+        if (isset($argv[$args])) {
             return $argv[$args];
-        }else{
-            self::danger($args." no. argument not found");
+        } else {
+            self::danger($args . " no. argument not found");
         }
-
     }
 
     /**
@@ -68,7 +71,7 @@ class Command
 
         self::$customCmdArray[self::$customCmd] = self::$customCmd;
 
-        if(self::$customCmdArray[self::$customCmd] == $argv[1]){
+        if (self::$customCmdArray[self::$customCmd] == $argv[1]) {
             $callback();
         }
 
@@ -76,7 +79,7 @@ class Command
         if (self::$_instance === null) {
             self::$_instance = new self;
         }
-        return self::$_instance;//new static;
+        return self::$_instance; //new static;
     }
 
     /**
@@ -103,61 +106,65 @@ class Command
          * Predefined Command
          */
 
-        self::set('version', function(){
-            Command::comment("BihongoPHP Version ".B_VERSION);
+        self::set('version', function () {
+            Command::comment("BihongoPHP Version " . B_VERSION);
         })->describe("Displays BihongoPHP version");
 
-        self::set('-v', function(){
-            Command::comment("BihongoPHP Version ".B_VERSION);
+        self::set('-v', function () {
+            Command::comment("BihongoPHP Version " . B_VERSION);
         })->describe("Displays BihongoPHP version");
 
-       
+
+        /**
+         * Create react scaffolding
+         */
+        self::set('ui react', function () {
+            
+        })->describe("Create react scaffolding");
+
         /**
          * make:auth
          */
-        self::set('make:auth', function(){
+        self::set('make:auth', function () {
             global $application_folder, $system_path, $config;
 
             self::createAuth();
             Command::success("Authentication created");
-            
         })->describe("Create Authentication");
 
         /**
          * Server Down
          */
-        self::set('down', function(){
+        self::set('down', function () {
 
             //initialize config for time-zone
             Config::init();
 
             $server_info = '{
-    "time": "'.date("F j, Y, g:i a", time()).'",
+    "time": "' . date("F j, Y, g:i a", time()) . '",
     "message": null,
     "retry": null,
     "allowed": []
 }';
             file_put_contents("storage/down", $server_info);
-            if(file_exists("storage/down")){
+            if (file_exists("storage/down")) {
                 Command::comment("Application is in now maintenance mode");
             }
-           
         })->describe("Put the application in maintenance mode")->usage("down");
         /**
          * Server Up
          */
-        self::set('up', function(){
+        self::set('up', function () {
             unlink("storage/down");
-            if(!file_exists("storage/down")){
+            if (!file_exists("storage/down")) {
                 Command::success("Application is now live");
             }
-            
         })->describe("Exit maintenance mode")->usage("up");
 
         /**
          * Clear page cache
          */
-        self::set('clear:cache', function(){
+        self::set('clear:cache', function () {
             Perser2::clearCache();
             Command::success("Cache cleared successfully");
         })->describe("Clear page cache");
@@ -165,10 +172,10 @@ class Command
         /**
          * Db:Seed
          */
-        
-        self::set('db:seed', function(){
+
+        self::set('db:seed', function () {
             global $application_folder, $system_path, $config;
-            require $config['seed_path']."DatabaseSeeder.php";
+            require $config['seed_path'] . "DatabaseSeeder.php";
 
             $dbseeder = new DatabaseSeeder();
             $dbseeder->run();
@@ -179,12 +186,12 @@ class Command
         /**
          * Db migrate
          */
-        self::set('migrate', function(){
+        self::set('migrate', function () {
             global $argc, $argv, $application_folder, $system_path, $config;
 
-            require $system_path."/core/dbloader.php";
-            require $config['migration_path'].current_migrate('migration').".php";
-            if(isset($argv[2])){
+            require $system_path . "/core/dbloader.php";
+            require $config['migration_path'] . current_migrate('migration') . ".php";
+            if (isset($argv[2])) {
                 //find current migrations
                 $class = current_migrate('class');
                 $test = new $class();
@@ -192,7 +199,7 @@ class Command
                 $test->$method();
                 //end that
                 self::success("$method Migration");
-            }else{     
+            } else {
                 //find current migrations
                 $class = current_migrate('class');
                 $test = new $class();
@@ -205,21 +212,21 @@ class Command
         /**
          * Migrate:rollback (Constructing)
          */
-        self::set('migrate:rollback', function(){
+        self::set('migrate:rollback', function () {
             global $argc, $argv, $application_folder, $system_path, $config;
 
-            require $system_path."/core/dbloader.php";
+            require $system_path . "/core/dbloader.php";
 
-            if(isset($argv[2])){
-                require $config['migration_path'].getBatch($config['migrations'], $argv[2]).".php";
+            if (isset($argv[2])) {
+                require $config['migration_path'] . getBatch($config['migrations'], $argv[2]) . ".php";
                 //find current migrations
                 $class = getBatch($config['migrations'], $argv[2]);
                 $test = new $class();
                 $test->down();
                 //end that
                 self::success("Migration  reversed");
-            }else{
-                require $config['migration_path'].getBatch($config['migrations'], 1).".php";
+            } else {
+                require $config['migration_path'] . getBatch($config['migrations'], 1) . ".php";
                 //find current migrations
                 $class = getBatch('class', 1);
                 $test = new $class();
@@ -234,57 +241,56 @@ class Command
         /**
          * Create Controller
          */
-        self::set('make:controller', function(){
+        self::set('make:controller', function () {
             global $application_folder;
-            
+
             $name = Command::args(2);
-            File::writeFile($application_folder."/"."controllers/".$name.".php", self::createController($name));
-            self::success($name." controller created succesfully");
+            File::writeFile($application_folder . "/" . "controllers/" . $name . ".php", self::createController($name));
+            self::success($name . " controller created succesfully");
         })->describe("Create controller")->usage("make:controller [ControllerName]");
-        
+
         /**
          * Create Model
          */
-        self::set('make:model', function(){
+        self::set('make:model', function () {
             global $application_folder;
-            
+
             $name = Command::args(2);
-            File::writeFile($application_folder."/"."models/".$name.".php", self::createModel($name));
-            self::success($name." model created succesfully");
+            File::writeFile($application_folder . "/" . "models/" . $name . ".php", self::createModel($name));
+            self::success($name . " model created succesfully");
         })->describe("Create model")->usage("make:model [ModelName]");
 
 
         /**
          * Create Migration
          */
-         self::set('make:migration', function(){
+        self::set('make:migration', function () {
             global $application_folder, $config;
-            
+
             $name = Command::args(2);
 
-            if(isset($name)){      
-                $time = time();//date('F_j_Y_g_i_a', time());
-                File::writeFile($config['migration_path'].$time."-".$name.".php", self::createMigration($name, $time."-".$name, $name, $time));
-                self::success("Created Migration: ".$time."-".$name);
-            }else{
+            if (isset($name)) {
+                $time = time(); //date('F_j_Y_g_i_a', time());
+                File::writeFile($config['migration_path'] . $time . "-" . $name . ".php", self::createMigration($name, $time . "-" . $name, $name, $time));
+                self::success("Created Migration: " . $time . "-" . $name);
+            } else {
                 self::danger("2nd Argument not found");
             }
-
         })->describe("Create migration")->usage("make:migration [MigrationName]");
 
 
         /**
          * Seed
          */
-        self::set('make:seed', function(){
+        self::set('make:seed', function () {
             global $application_folder, $config;
-            
+
             $name = Command::args(2);
-            
-            if(isset($name)){      
-                File::writeFile($config['seed_path'].$name.".php", self::createSeed($name));
+
+            if (isset($name)) {
+                File::writeFile($config['seed_path'] . $name . ".php", self::createSeed($name));
                 self::success("Seeder created successfully");
-            }else{
+            } else {
                 self::danger("2nd Argument not found");
             }
         })->describe("Create seed")->usage("make:seed [SeedName]");;
@@ -293,57 +299,47 @@ class Command
         /**
          * list
          */
-        self::set('list', function(){
+        self::set('list', function () {
             $cmd = self::$customCmdArray;
-            
+
             $i = 0;
             foreach ($cmd as $key => $value) {
                 $i++;
-                if(array_key_exists($key, self::$description) && array_key_exists($key, self::$usage)){
-                     echo $i.")".$key." -----------> ".self::$description[$key]." -------> ".self::$usage[$key]."\n";
-
-                }else if(array_key_exists($key, self::$description))
-                {
-                    echo $i.")".$key." -----------> ".self::$description[$key]."\n";
+                if (array_key_exists($key, self::$description) && array_key_exists($key, self::$usage)) {
+                    echo $i . ")" . $key . " -----------> " . self::$description[$key] . " -------> " . self::$usage[$key] . "\n";
+                } else if (array_key_exists($key, self::$description)) {
+                    echo $i . ")" . $key . " -----------> " . self::$description[$key] . "\n";
+                } else if (array_key_exists($key, self::$usage)) {
+                    echo $i . ")" . $key . " -------> " . self::$usage[$key] . "\n";
+                } else {
+                    echo $i . ")" . $key . "\n";
                 }
-                else if(array_key_exists($key, self::$usage))
-                {
-                    echo $i.")".$key." -------> ".self::$usage[$key]."\n";
-                }
-                else{
-                     echo $i.")".$key."\n";
-                }
-               
             }
         })->describe("Displays command list")->usage("list");
 
         /**
          * Display Help
          */
-        if(isset($argv[1])){
-   
-            if($argv[1] == "help"){
-                if(isset($argv[2])){
+        if (isset($argv[1])) {
+
+            if ($argv[1] == "help") {
+                if (isset($argv[2])) {
                     self::comment('Description:');
-                    echo "  ".self::$description[$argv[2]]."\n";
+                    echo "  " . self::$description[$argv[2]] . "\n";
                     self::comment('Usage:');
-                    if(array_key_exists($argv[2], self::$usage)){
-                        echo "  ".self::$usage[$argv[2]]."\n";
-                    }else{
-                        echo "  ".$argv[2]."\n";
+                    if (array_key_exists($argv[2], self::$usage)) {
+                        echo "  " . self::$usage[$argv[2]] . "\n";
+                    } else {
+                        echo "  " . $argv[2] . "\n";
                     }
-                    
-                }else{
+                } else {
                     self::comment('Description:');
                     echo "  Diplays help for a command\n";
                     self::comment('Usage:');
                     echo "  help [tropic]\n";
                 }
             }
-
         }
-
-
     }
 
 
@@ -352,31 +348,31 @@ class Command
      */
     public static function comment($text)
     {
-        echo self::$yellow.$text."\n";
+        echo self::$yellow . $text . "\n";
         echo self::$white; //white
     }
 
     public static function success($text)
     {
-        echo self::$green.$text."\n";
+        echo self::$green . $text . "\n";
         echo self::$white; //white
     }
 
     public static function danger($text)
     {
-        echo self::$red.$text."\n";
+        echo self::$red . $text . "\n";
         echo self::$white; //white
     }
 
     public static function line($text)
     {
-        echo self::$white.$text."\n";
+        echo self::$white . $text . "\n";
         echo self::$white; //white
     }
 
     public static function info($text)
     {
-        echo self::$blue.$text."\n";
+        echo self::$blue . $text . "\n";
         echo self::$white; //white
     }
     /**
@@ -391,10 +387,11 @@ class Command
     /**
      * Functions
      */
-    public static function createController($controllerName){
-        $data ='<?php 
+    public static function createController($controllerName)
+    {
+        $data = '<?php 
 
-class '.$controllerName.' extends Controller{
+class ' . $controllerName . ' extends Controller{
     public function __construct(){
         parent::__construct();
     }
@@ -407,13 +404,13 @@ class '.$controllerName.' extends Controller{
 ';
 
         return $data;
-    
     }
 
-    public static function createModel($modelName){
-        $data ='<?php
+    public static function createModel($modelName)
+    {
+        $data = '<?php
 
-class '.$modelName.' extends Model{
+class ' . $modelName . ' extends Model{
     public function __construct(){
         parent::__construct();
     }
@@ -430,18 +427,19 @@ class '.$modelName.' extends Model{
     }
 
 
-    public static function createMigration($migrationName, $version, $class, $onlyVersion){
+    public static function createMigration($migrationName, $version, $class, $onlyVersion)
+    {
         global $system_path, $config;
         $tableName = $config['migrations'];
         /**
          * Create Database
          */
-        require $system_path."/core/dbloader.php";
+        require $system_path . "/core/dbloader.php";
 
         $db = new Database();
 
 
-        Schema::create(function(Builder $table){
+        Schema::create(function (Builder $table) {
             global $config;
             $tableName = $config['migrations'];
 
@@ -452,19 +450,18 @@ class '.$modelName.' extends Model{
                 'version' => 'VARCHAR(255) NOT NULL',
                 'batch' => 'INT(11) NOT NULL AUTO_INCREMENT ,  PRIMARY KEY (batch)'
             ]);
-
         });
 
-        
+
         $db->insert("INSERT INTO $tableName (migration, class, version) 
         VALUES('$version', '$class', '$onlyVersion')");
 
-         //end That
+        //end That
 
 
-        $data ='<?php
+        $data = '<?php
 
-class '.$migrationName.'
+class ' . $migrationName . '
 {
     /**
      * Run the migrations.
@@ -489,17 +486,17 @@ class '.$migrationName.'
 ';
 
         return $data;
-
     }
 
     /**
      * Create Seed
      */
-    public static function createSeed($seedName){
+    public static function createSeed($seedName)
+    {
 
-        $data ='<?php
+        $data = '<?php
 
-class '.$seedName.' extends Seeder
+class ' . $seedName . ' extends Seeder
 {
     /**
      * Run the database seeds.
@@ -514,14 +511,14 @@ class '.$seedName.' extends Seeder
 ';
 
         return $data;
-
     }
 
-    public static function createAuth(){
+    public static function createAuth()
+    {
         global $application_folder, $system_path, $config;
 
-        require $system_path."/core/dbloader.php";
-        Schema::create(function(Builder $table){
+        require $system_path . "/core/dbloader.php";
+        Schema::create(function (Builder $table) {
 
             $table->create_table('users', true, [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT ,  PRIMARY KEY (id)',
@@ -529,12 +526,11 @@ class '.$seedName.' extends Seeder
                 'email' => 'VARCHAR(255) NOT NULL',
                 'password' => 'VARCHAR(255) NOT NULL'
             ]);
-
         });
 
 
 
-        $login ='<!DOCTYPE html>
+        $login = '<!DOCTYPE html>
 <html>
 <head>
     <base href="<?php echo ROOT ?>">
@@ -764,8 +760,8 @@ $route["logout"] = "RegisterController/logout";
         /**
          * Create view file
          */
-        File::writeFile($application_folder."/"."views/login.php", $login);
-        File::writeFile($application_folder."/"."views/register.php", $register);
+        File::writeFile($application_folder . "/" . "views/login.php", $login);
+        File::writeFile($application_folder . "/" . "views/register.php", $register);
 
         /**
          * Create route
@@ -774,15 +770,7 @@ $route["logout"] = "RegisterController/logout";
         /**
          * create controller/Model
          */
-        file_put_contents($application_folder."/"."controllers/RegisterController.php", $controller, FILE_APPEND);
-        file_put_contents($application_folder."/"."models/RegisterModel.php", $model, FILE_APPEND);
-
+        file_put_contents($application_folder . "/" . "controllers/RegisterController.php", $controller, FILE_APPEND);
+        file_put_contents($application_folder . "/" . "models/RegisterModel.php", $model, FILE_APPEND);
     }
-
-    
-
-
 }
-
-
-
