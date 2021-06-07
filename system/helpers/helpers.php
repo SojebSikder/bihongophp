@@ -11,7 +11,7 @@ if (!function_exists('asset')) {
     }
 }
 
-if (!function_exists('asset')) {
+if (!function_exists('resource')) {
 
     /**
      * get resource directory
@@ -21,7 +21,6 @@ if (!function_exists('asset')) {
         return Url::resource($url);
     }
 }
-
 
 
 if (!function_exists('env')) {
