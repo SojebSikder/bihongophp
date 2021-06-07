@@ -20,12 +20,4 @@ class Model extends Builder
    {
       return $this->DBSwitcher($switch);
    }
-
-   /**
-    * Eloquont Model
-    */
-   public static function all()
-   {
-      return "All data";
-   }
 }
