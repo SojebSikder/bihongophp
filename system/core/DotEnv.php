@@ -25,7 +25,7 @@ class DotEnv
     /**
      * Get env
      */
-    public static function env($key, $value = false)
+    public static function get($key, $value = null)
     {
         if (getenv($key) == null) {
             return $value;

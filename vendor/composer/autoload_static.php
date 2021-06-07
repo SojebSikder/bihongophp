@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitc24fcede94d7a02d9591bff1feefd1fa
 {
+    public static $files = array (
+        'c21242db1b7924f83232dd7db32f73e6' => __DIR__ . '/../..' . '/system/helpers/helpers.php',
+    );
+
     public static $classMap = array (
         'AdapterInterface' => __DIR__ . '/../..' . '/system/database/drivers/AdapterInterface.php',
         'ArrayHelper' => __DIR__ . '/../..' . '/system/helpers/ArrayHelper.php',
