@@ -1,6 +1,7 @@
 <?php
 //namespace DB;
 //include "AdapterInterface.php";
+require "config/database.php";
 if (!extension_loaded('sqlite3')) {
   if ($config['db'][$active_db]['dbdriver'] == "sqlite") {
     throw new Exception("sqlite3 not loaded", 1);
