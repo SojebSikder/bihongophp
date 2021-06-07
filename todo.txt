@@ -1,4 +1,0 @@
-npm install --save-dev webpack webpack-cli webpack-dev-server path html-webpack-plugin eslint eslint-loader @babel/core @babel/node @babel/preset-env @babel/preset-react babel-loader style-loader css-loader sass-loader node-sass image-webpack-loader file-loader @babel/plugin-proposal-class-properties react react-dom
-
-npm run webpack
-npm start

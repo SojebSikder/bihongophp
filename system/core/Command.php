@@ -60,6 +60,18 @@ class Command
             self::danger($args . " no. argument not found");
         }
     }
+    /**
+     * Execute an external program
+     */
+    public function exec($command, $output = true)
+    {
+        if ($output == true) {
+            return shell_exec($command);
+        } else if ($output == false) {
+            return exec($command);
+        }
+        return $this;
+    }
 
     /**
      * Set Custom Commands
@@ -118,8 +130,22 @@ class Command
         /**
          * Create react scaffolding
          */
-        self::set('ui react', function () {
-            
+        self::set('ui:react', function () {
+            global $application_folder, $system_path, $config;
+
+            // Copy files
+            copy($system_path . "/template/react/resources/js/index.js", "resources/js/index.js");
+            copy($system_path . "/template/react/package.json", "package.json");
+            copy($system_path . "/template/react/.babelrc", ".babelrc");
+            copy($system_path . "/template/react/config.js", "config.js");
+            copy($system_path . "/template/react/webpack.config.js", "webpack.config.js");
+            Command::success("File copied successfully");
+            // Run npm install command with package
+            $verbose = shell_exec("npm install --save-dev webpack webpack-cli webpack-dev-server path html-webpack-plugin eslint eslint-loader @babel/core @babel/node @babel/preset-env @babel/preset-react babel-loader style-loader css-loader sass-loader node-sass image-webpack-loader file-loader @babel/plugin-proposal-class-properties react react-dom");
+            Command::info($verbose);
+
+            Command::info(shell_exec('npm run webpack'));
+            Command::info(shell_exec('npm start'));
         })->describe("Create react scaffolding");
 
         /**
