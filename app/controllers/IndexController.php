@@ -16,6 +16,10 @@ class IndexController extends Controller
 
 	public function home($id = false)
 	{
+
+		echo getenv('APP_ENV');
+		echo DotEnv::env('APP_NAME', 'sojeb sikder');
+
 		$this->load->view("home.te", [
 			'name' => 'BihongoPHP'
 		]);

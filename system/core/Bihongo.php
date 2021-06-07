@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Load Framework
  */
@@ -14,7 +15,7 @@ require "config/email.php";
 /**
  * Exception Files
  */
-require $system_path."/core/Exception.php";
+require $system_path . "/core/Exception.php";
 
 /**
  * Autoload Core
@@ -24,6 +25,9 @@ require 'vendor/autoload.php';
 
 //Custom Autoload
 Autoload::init();
+
+// Initialize DotEnv
+DotEnv::init();
 
 //Initialize Config
 Config::init();
@@ -37,5 +41,3 @@ const B_VERSION = '2.0.0';
  * Server Setup
  */
 Server::init();
-
-
