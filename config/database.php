@@ -18,7 +18,7 @@ $active_db = env('DB_CONNECTION', 'mysql');
 $config['db'] = [
 
 	"mysql" => [
-		"host" => "localhost",
+		"host" => env("DB_HOST", "127.0.0.1"),
 		"username" => env("DB_USERNAME", "root"),
 		"password" => env("DB_PASSWORD", ""),
 		"dbname" => env("DB_DATABASE", "bihongophp"),
@@ -31,7 +31,7 @@ $config['db'] = [
 	],
 
 	"pgsql" => [
-		"host" => "localhost",
+		"host" => env("DB_HOST", "127.0.0.1"),
 		"port" => env("DB_PORT", 5432),
 		"username" => env("DB_USERNAME", "root"),
 		"password" => env("DB_PASSWORD", ""),
