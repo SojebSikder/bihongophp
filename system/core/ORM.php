@@ -11,13 +11,15 @@ abstract class ORM extends Model
     *
     * @var string
     */
-   //public $table;
+
+   public $table;
+
 
    public function __construct()
    {
       parent::__construct();
 
-      //self::$table = static::class;
+      $this->table = StringHelper::pluralize(2, strtolower(static::class));
    }
 
    /**
@@ -25,11 +27,10 @@ abstract class ORM extends Model
     */
    public static function all($columns = ['*'])
    {
-
+      $self = new static;
       $column = ArrayHelper::arrayToString($columns);
-      $table = StringHelper::pluralize(2, strtolower(static::class));
+      $data = DB::select("select $column from $self->table");
 
-      $data = DB::select("select $column from $table");
       return json_encode($data);
    }
 }
