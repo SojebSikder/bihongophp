@@ -8,7 +8,7 @@
  */
 //require "config/config.php";
 require "config/database.php";
-require "config/routes.php";
+require "routes/routes.php";
 require "config/email.php";
 
 /**
