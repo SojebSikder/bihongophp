@@ -27,11 +27,11 @@ class DB extends Model
      */
     public static function select($query)
     {
-        return DB::getInstance()->select($query);
+        return self::_select($query);
     }
-    public static function _select($query)
+    private static function _select($query)
     {
-        return self::$db->select($query);
+        return DB::getInstance()->db->select($query);
     }
     /**
      * End Select

@@ -4,7 +4,7 @@
  */
 
  class Model extends Builder{
-     protected $db = array();
+     public $db = array();
      
      public function __construct(){
         $this->db = $this->DBSwitcher();

@@ -14,7 +14,7 @@
     },
     "autoload": {
         "classmap": [
-            "system",
+            "system/",
             "system/core",
             "system/core/Database",
             "system/database",
