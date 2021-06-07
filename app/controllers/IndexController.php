@@ -14,7 +14,7 @@ class IndexController extends Controller
 	}
 
 
-	public function home($id = false)
+	public function home()
 	{
 		$data = DB::select("select * from addresses")->fetch_assoc();
 		var_dump($data);
