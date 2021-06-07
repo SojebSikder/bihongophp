@@ -16,8 +16,8 @@ class IndexController extends Controller
 
 	public function home($id = false)
 	{
-		DB::select("");
-		//DB::getInstance()->db->select("");
+		$data = DB::select("select * from addresses");
+		var_dump($data);
 		$this->load->view("home.te");
 	}
 }

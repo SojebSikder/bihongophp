@@ -19,24 +19,24 @@ $config['db'] = [
 
 	"mysql" => [
 		"host" => "localhost",
-		"username" => "root",
-		"password" => "",
-		"dbname" => "test",
-		'dbdriver' => 'mysqli'
+		"username" => env("DB_USERNAME", "root"),
+		"password" => env("DB_PASSWORD", ""),
+		"dbname" => env("DB_DATABASE", "bihongophp"),
+		'dbdriver' => 'mysqli',
 	],
 
 	"sqlite" => [
-		"url" => "database/test.db",
-		'dbdriver' => 'sqlite'
+		"url" => env('DB_URL', "database/test.db"),
+		'dbdriver' => 'sqlite',
 	],
 
 	"pgsql" => [
 		"host" => "localhost",
-		"port" => 5432,
-		"username" => "root",
-		"password" => "",
-		"dbname" => "",
-		'dbdriver' => 'pgsql'
+		"port" => env("DB_PORT", 5432),
+		"username" => env("DB_USERNAME", "root"),
+		"password" => env("DB_PASSWORD", ""),
+		"dbname" => env("DB_DATABASE", "bihongophp"),
+		'dbdriver' => 'pgsql',
 	]
 
 ];
