@@ -24,8 +24,6 @@
         <h3><?php echo SLOGAN ?></h3>
     </center>
 
-    <?php echo "Hello, I'm "; ?><?php echo $name ?>
-
     <p>You can find this page on <a style="color: violet;">resources/views/home.te.php<a></p>
     <p class="footer">Bihongo Version <strong><?php echo B_VERSION ?></strong></p>
 
