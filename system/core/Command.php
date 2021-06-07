@@ -5,7 +5,7 @@
  */
 require "vendor/autoload.php";
 Autoload::init();
-const B_VERSION = '1.0.8';
+const B_VERSION = '2.0.0';
 
 function current_migrate($row)
 {
