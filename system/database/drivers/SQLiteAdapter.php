@@ -69,7 +69,7 @@ if (!extension_loaded('sqlite3')) {
     {
       $result = $this->link->query($query) or die($this->link->error . __LINE__);
       if ($result) {
-        return $result;
+        return $result->fetchArray(SQLITE3_ASSOC);
       } else {
         return false;
       }
@@ -80,7 +80,7 @@ if (!extension_loaded('sqlite3')) {
     {
       $result = $this->link->query($query) or die($this->link->error . __LINE__);
       if ($result) {
-        return $result;
+        return $result->fetch();
       } else {
         return false;
       }

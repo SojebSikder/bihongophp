@@ -40,7 +40,7 @@ class PostgreSQLAdapter implements AdapterInterface
   {
     $result = pg_query($this->link, $query) or die($this->link->error . __LINE__);
     if ($result->num_rows > 0) {
-      return $result;
+      return pg_fetch_row($result);
     } else {
       return false;
     }
@@ -51,7 +51,7 @@ class PostgreSQLAdapter implements AdapterInterface
   {
     $result = pg_query($this->link, $query) or die($this->link->error . __LINE__);
     if ($result->num_rows > 0) {
-      return $result;
+      return pg_fetch_result($result, 0);
     } else {
       return false;
     }
