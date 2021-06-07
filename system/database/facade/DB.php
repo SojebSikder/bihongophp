@@ -39,6 +39,30 @@ class DB extends Model
     }
 
     /**
+     * insert query
+     */
+    public static function insert($query)
+    {
+        return DB::getInstance()->db->insert($query);
+    }
+
+    /**
+     * update query
+     */
+    public static function update($query)
+    {
+        return DB::getInstance()->db->update($query);
+    }
+
+    /**
+     * delete query
+     */
+    public static function delete($query)
+    {
+        return DB::getInstance()->db->delete($query);
+    }
+
+    /**
      * Statement query
      */
     public static function statement($query)
