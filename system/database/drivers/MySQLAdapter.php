@@ -32,7 +32,7 @@ class MySQLAdapter implements AdapterInterface
   {
     $result = $this->link->query($query) or die($this->link->error . __LINE__);
     if ($result->num_rows > 0) {
-      return $result->fetch_assoc();
+      return $result->fetch_all(MYSQLI_ASSOC);
     } else {
       return false;
     }

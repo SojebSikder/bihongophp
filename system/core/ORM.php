@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Eloquont Model
+ * Eloquont Model (Experimantal)
  */
 
 abstract class ORM extends Model
