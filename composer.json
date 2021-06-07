@@ -1,0 +1,29 @@
+{
+    "name": "sojebsikder/bihongophp",
+    "description": "BihongoPHP  framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sojeb Sikder",
+            "email": "sojebsikder@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "classmap": [
+            "system",
+            "system/core",
+            "system/core/Database",
+            "system/database",
+            "system/database/drivers"
+        ],
+        "files": [
+            "system/helpers/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
