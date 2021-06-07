@@ -16,9 +16,6 @@ class IndexController extends Controller
 
 	public function home()
 	{
-		//$data = DB::select("select * from addresses");
-		$data = DB::selectOne("select * from addresses");
-		echo json_encode($data);
 		$this->load->view("home.te");
 	}
 }
