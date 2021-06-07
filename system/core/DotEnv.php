@@ -25,10 +25,10 @@ class DotEnv
     /**
      * Get env
      */
-    public static function get($key, $value = null)
+    public static function get($key, $default = null)
     {
         if (getenv($key) == null) {
-            return $value;
+            return $default;
         } else {
             return getenv($key);
         }

@@ -19,7 +19,7 @@ $config['url'] = [
 	 * just -> / (slash)
 	 * Access this value on project using ROOT constant
 	 */
-	"baseUrl" => "/bihongophp/",
+	"baseUrl" => env("SERVER_URL", "/bihongophp"), //"/bihongophp/",
 
 	/**
 	 * asset directory for use assets(js/css etc.)
@@ -40,7 +40,7 @@ $config['url'] = [
 $config['web'] = [
 	"info" => [
 		"web_icon" => "youricon.png",
-		"web_title" => "Bihongo",
+		"web_title" => env("APP_NAME", "Bihongo"),
 		"web_slogan" => "Let's create awesome"
 	]
 ];
@@ -64,7 +64,7 @@ $config['user'] = [
  * 
  * 
  */
-$config['mode'] = 'development';
+$config['mode'] = env('APP_ENV', 'development');
 /**
  * Application folder
  */
@@ -126,10 +126,10 @@ defined("ROOT")
 	or define("ROOT", $config['url']['baseUrl']);
 //Get assets directory
 defined("ASSET")
-	or define("ASSET", $config['url']['baseUrl'] . $config['url']['asset']);
+	or define("ASSET", $config['url']['baseUrl'] . "/" . $config['url']['asset']);
 //Get resources directory
 defined("RESOURCE")
-	or define("RESOURCE", $config['url']['baseUrl'] . $config['url']['resource']);
+	or define("RESOURCE", $config['url']['baseUrl'] . "/" . $config['url']['resource']);
 //Getting base element
 defined("BASE")
 	or define("BASE", '<base href="' . ROOT . '">');
