@@ -12,4 +12,16 @@ class ArrayHelper
 	{
 		return is_array($array) ? $array[array_rand($array)] : $array;
 	}
+
+	/**
+	 * Convert array to string
+	 */
+	public static function arrayToString($array, $separator = ',')
+	{
+		$result = '';
+		foreach ($array as $key) {
+			$result .= $key . ",";
+		}
+		return $result = rtrim($result, $separator);
+	}
 }

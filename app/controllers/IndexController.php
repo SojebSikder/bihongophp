@@ -16,7 +16,7 @@ class IndexController extends Controller
 
 	public function home()
 	{
-		$data = Address::all();
+		$data = Address::all(['name', 'id']);
 		echo $data;
 		$this->load->view("home.te");
 	}

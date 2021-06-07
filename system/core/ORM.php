@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Main Model
+ * Eloquont Model
  */
 
 abstract class ORM extends Model
@@ -12,12 +12,15 @@ abstract class ORM extends Model
       parent::__construct();
    }
 
-
    /**
-    * Eloquont Model
+    * Fetch all data
     */
-   public static function all()
+   public static function all($columns = ['*'])
    {
-      return "All data";
+
+      $column = ArrayHelper::arrayToString($columns);
+
+      $data = DB::select("select $column from addresses");
+      return json_encode($data);
    }
 }
