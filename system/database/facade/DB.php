@@ -15,7 +15,7 @@ class DB extends Model
     {
         parent::__construct();
     }
-    public static function getInstance()
+    private static function getInstance()
     {
         if (is_null(self::$instance)) {
             self::$instance = new self();
