@@ -6,4 +6,5 @@ class Address extends ORM
     {
         parent::__construct();
     }
+
 }
