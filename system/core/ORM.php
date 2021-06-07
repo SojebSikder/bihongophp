@@ -3,7 +3,6 @@
 /**
  * Eloquont Model (Experimantal)
  */
-
 abstract class ORM extends Model
 {
    /**
@@ -12,7 +11,6 @@ abstract class ORM extends Model
     * @var string
     */
    public $_table;
-
 
    public function __construct()
    {
@@ -31,6 +29,6 @@ abstract class ORM extends Model
       $column = ArrayHelper::arrayToString($columns);
       $data = DB::select("select $column from $self->_table");
 
-      return json_encode($data);
+      return $data;
    }
 }
