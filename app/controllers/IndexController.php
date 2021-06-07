@@ -4,7 +4,7 @@
  * Home page for this controller
  * home method call autometically if method not set on route
  * 
- * It recommended to use parameter upto 2. Also will be help on SEO
+ * It recommended to use parameter upto 2.
  */
 class IndexController extends Controller
 {
