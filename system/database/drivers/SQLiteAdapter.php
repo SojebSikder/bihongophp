@@ -75,6 +75,17 @@ if (!extension_loaded('sqlite3')) {
       }
     }
 
+    // Select or Read Signle data
+    public function selectOne($query)
+    {
+      $result = $this->link->query($query) or die($this->link->error . __LINE__);
+      if ($result) {
+        return $result;
+      } else {
+        return false;
+      }
+    }
+
     // Insert data
     public function insert($query)
     {
@@ -101,6 +112,18 @@ if (!extension_loaded('sqlite3')) {
 
     // Delete data
     public function delete($query)
+    {
+      $delete_row = $this->link->exec($query) or die($this->link->error . __LINE__);
+      if ($delete_row) {
+        return $delete_row;
+      } else {
+        return false;
+      }
+      $this->link->close();
+    }
+
+    // statement data
+    public function statement($query)
     {
       $delete_row = $this->link->exec($query) or die($this->link->error . __LINE__);
       if ($delete_row) {

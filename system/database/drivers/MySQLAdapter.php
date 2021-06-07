@@ -32,7 +32,18 @@ class MySQLAdapter implements AdapterInterface
   {
     $result = $this->link->query($query) or die($this->link->error . __LINE__);
     if ($result->num_rows > 0) {
-      return $result;
+      return $result->fetch_assoc();
+    } else {
+      return false;
+    }
+  }
+
+  // Select or Read data
+  public function selectOne($query)
+  {
+    $result = $this->link->query($query) or die($this->link->error . __LINE__);
+    if ($result->num_rows > 0) {
+      return $result->fetch_row();
     } else {
       return false;
     }
@@ -66,6 +77,17 @@ class MySQLAdapter implements AdapterInterface
     $delete_row = $this->link->query($query) or die($this->link->error . __LINE__);
     if ($delete_row) {
       return $delete_row;
+    } else {
+      return false;
+    }
+  }
+
+  // Delete data
+  public function statement($query)
+  {
+    $result = $this->link->query($query) or die($this->link->error . __LINE__);
+    if ($result) {
+      return $result;
     } else {
       return false;
     }

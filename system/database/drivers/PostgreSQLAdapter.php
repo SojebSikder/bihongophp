@@ -46,6 +46,17 @@ class PostgreSQLAdapter implements AdapterInterface
     }
   }
 
+  // Select or Read sing;e data
+  public function selectOne($query)
+  {
+    $result = pg_query($this->link, $query) or die($this->link->error . __LINE__);
+    if ($result->num_rows > 0) {
+      return $result;
+    } else {
+      return false;
+    }
+  }
+
   // Insert data
   public function insert($query)
   {
@@ -70,6 +81,17 @@ class PostgreSQLAdapter implements AdapterInterface
 
   // Delete data
   public function delete($query)
+  {
+    $delete_row = pg_query($this->link, $query) or die($this->link->error . __LINE__);
+    if ($delete_row) {
+      return $delete_row;
+    } else {
+      return false;
+    }
+  }
+
+  // statement data
+  public function statement($query)
   {
     $delete_row = pg_query($this->link, $query) or die($this->link->error . __LINE__);
     if ($delete_row) {

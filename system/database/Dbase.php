@@ -17,6 +17,13 @@ class Dbase
     return $this->adapter->select($query);
   }
 
+  // Select or Read single data
+  public function selectOne($query)
+  {
+    return $this->adapter->selectOne($query);
+  }
+
+
   // Insert data
   public function insert($query)
   {
