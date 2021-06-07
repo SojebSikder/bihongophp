@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Array Helper
  */
- class ArrayHelper
- {
+class ArrayHelper
+{
 	/**
 	 * Random Element - Takes an array as input and returns a random element
 	 */
@@ -11,5 +12,4 @@
 	{
 		return is_array($array) ? $array[array_rand($array)] : $array;
 	}
-
- }
+}

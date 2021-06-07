@@ -1,4 +1,5 @@
 <?php
+
 /**
  * File Helper
  */
@@ -22,17 +23,14 @@ class File
 	 */
 	public static function writeFile($path, $data, $mode = 'wb')
 	{
-		if ( ! $fp = @fopen($path, $mode))
-		{
+		if (!$fp = @fopen($path, $mode)) {
 			return FALSE;
 		}
 
 		flock($fp, LOCK_EX);
 
-		for ($result = $written = 0, $length = strlen($data); $written < $length; $written += $result)
-		{
-			if (($result = fwrite($fp, substr($data, $written))) === FALSE)
-			{
+		for ($result = $written = 0, $length = strlen($data); $written < $length; $written += $result) {
+			if (($result = fwrite($fp, substr($data, $written))) === FALSE) {
 				break;
 			}
 		}
@@ -57,23 +55,17 @@ class File
 		// Trim the trailing slash
 		$path = rtrim($path, '/\\');
 
-		if ( ! $current_dir = @opendir($path))
-		{
+		if (!$current_dir = @opendir($path)) {
 			return FALSE;
 		}
 
-		while (FALSE !== ($filename = @readdir($current_dir)))
-		{
-			if ($filename !== '.' && $filename !== '..')
-			{
-				$filepath = $path.DIRECTORY_SEPARATOR.$filename;
+		while (FALSE !== ($filename = @readdir($current_dir))) {
+			if ($filename !== '.' && $filename !== '..') {
+				$filepath = $path . DIRECTORY_SEPARATOR . $filename;
 
-				if (is_dir($filepath) && $filename[0] !== '.' && ! is_link($filepath))
-				{
+				if (is_dir($filepath) && $filename[0] !== '.' && !is_link($filepath)) {
 					delete_files($filepath, $del_dir, $htdocs, $_level + 1);
-				}
-				elseif ($htdocs !== TRUE OR ! preg_match('/^(\.htaccess|index\.(html|htm|php)|web\.config)$/i', $filename))
-				{
+				} elseif ($htdocs !== TRUE or !preg_match('/^(\.htaccess|index\.(html|htm|php)|web\.config)$/i', $filename)) {
 					@unlink($filepath);
 				}
 			}
@@ -85,11 +77,4 @@ class File
 			? @rmdir($path)
 			: TRUE;
 	}
-
-
-
 }
-
-
-
-

@@ -1,20 +1,22 @@
 <?php
+
 /**
  * Text Helper
  */
 
- class Text
- {
-	 
-    public static function textShorten($text, $limit = 400){
-        //$msgi = wordwrap(substr($msg, 0, $position),20,"<br>\n"); 
-        $text = $text. " ";
-        $text = substr($text, 0, $limit);
-        $text = substr($text, 0, strrpos($text, ' '));
-        $text = $text.".....";
-        return $text;
+class Text
+{
+
+	public static function textShorten($text, $limit = 400)
+	{
+		//$msgi = wordwrap(substr($msg, 0, $position),20,"<br>\n"); 
+		$text = $text . " ";
+		$text = substr($text, 0, $limit);
+		$text = substr($text, 0, strrpos($text, ' '));
+		$text = $text . ".....";
+		return $text;
 	}
-	
+
 
 	/**
 	 * Code Highlighter
@@ -38,7 +40,7 @@
 
 		// The highlight_string function requires that the text be surrounded
 		// by PHP tags, which we will remove later
-		$str = highlight_string('<?php '.$str.' ?>', TRUE);
+		$str = highlight_string('<?php ' . $str . ' ?>', TRUE);
 
 		// Remove our artificially added PHP, and the syntax highlighting that came with it
 		$str = preg_replace(
@@ -62,13 +64,4 @@
 			$str
 		);
 	}
-
-
- }
- 
-
-
-
-
-
-?>
+}
