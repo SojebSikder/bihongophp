@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Database setup
  */
@@ -6,7 +7,7 @@
 /**
  * Set Database connection which to use
  */
-$active_db = 'mysql';
+$active_db = 'mysql';//env('DB_CONNECTION', 'mysql');
 
 /**
  * Database Connections
@@ -38,11 +39,11 @@ $config['db'] = [
 		'dbdriver' => 'pgsql'
 	]
 
- ];
+];
 
 /**
  * Migration Table. This use to track migrations
-*/
+ */
 $config['migrations'] = 'migration';
 
 /**
@@ -66,8 +67,8 @@ defined("DB_USER")
 defined("DB_PASS")
 	or define("DB_PASS", $config['db']['mysql']['password']);
 defined("DB_NAME")
-    or define("DB_NAME", $config['db']['mysql']['dbname']);
-    
+	or define("DB_NAME", $config['db']['mysql']['dbname']);
+
 /**
  * User can define constant here
  */
