@@ -25,7 +25,7 @@ $email['from'] = [
     'name' =>  env('MAIL_FROM_NAME', 'Example'),
 ];
 /**
- * SMPTP Server Username
+ * SMTP Server Username
  */
 $email['username'] = env('MAIL_USERNAME');
 $email['password'] =  env('MAIL_PASSWORD');
