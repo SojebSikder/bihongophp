@@ -9,6 +9,12 @@
  * Create model using this Command
  * make:model ModelName
  */
+
+//Composer Autoload
+require 'vendor/autoload.php';
+//Initialize DotEnv
+DotEnv::init();
+
 require "config/config.php";
 require "config/database.php";
 require $system_path . "/" . "core/" . "Command.php";

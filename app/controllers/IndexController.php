@@ -16,6 +16,8 @@ class IndexController extends Controller
 
 	public function home()
 	{
+		$data = IndexModel::all();
+		echo $data;
 		$this->load->view("home.te");
 	}
 }
