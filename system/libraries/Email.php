@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Email Class
  */
+
 use PHPMailer\PHPMAiler\PHPMailer;
 use PHPMailer\PHPMAiler\SMTP;
 use PHPMailer\PHPMAiler\Exception;
@@ -12,7 +14,8 @@ require "PHPMailer/src/SMTP.php";
 
 class Email
 {
-    public static function sendEmail($address, $subject, $body){
+    public static function sendEmail($address, $subject, $body)
+    {
 
         global $email;
 
@@ -25,7 +28,7 @@ class Email
             $mail->SMTPAuth = true;
             $mail->Username = $email['username'];
             $mail->Password = $email['password'];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->SMTPSecure = $email['encryption']; //PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $email['port'];
 
             //Recipients
@@ -48,11 +51,5 @@ class Email
         } catch (Exception $e) {
             //throw $e;
         }
-
     }
 }
-
-
-
-
-?>

@@ -7,7 +7,7 @@
 /**
  * Set Database connection which to use
  */
-$active_db = 'mysql';//env('DB_CONNECTION', 'mysql');
+$active_db = env('DB_CONNECTION', 'mysql');
 
 /**
  * Database Connections

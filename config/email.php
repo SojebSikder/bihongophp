@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Email Setup
  * BihongoPHP uses PHPMailer Library to sending email.
@@ -6,21 +7,25 @@
 /**
  * Host Address
  */
-$email['host'] = 'smtp.gmail.com';
+$email['host'] = env('MAIL_HOST', 'smtp.gmail.com');
 /**
  * Port
  */
-$email['port'] = 587;
+$email['port'] = env('MAIL_PORT', 587);
+
+/**
+ * Encryption
+ */
+$email['encryption'] = env('MAIL_ENCRYPTION', 'tls');
 /**
  * Global Form Address
  */
 $email['from'] = [
-    'address' => 'sentform@email.com',
-    'name' => 'sentfromname'
+    'address' => env('MAIL_FROM_ADDRESS', 'hello@exmaple.com'),
+    'name' =>  env('MAIL_FROM_NAME', 'Example'),
 ];
 /**
  * SMPTP Server Username
  */
-$email['username'] = 'loginemail@mail.com';
-$email['password'] = 'loginpassword';
-
+$email['username'] = env('MAIL_USERNAME');
+$email['password'] =  env('MAIL_PASSWORD');
