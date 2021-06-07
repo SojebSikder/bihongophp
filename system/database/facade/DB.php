@@ -29,9 +29,6 @@ class DB extends Model
     {
         return DB::getInstance()->db->select($query);
     }
-    /**
-     * End Select
-     */
 
     /**
      * SelectOne query
@@ -40,7 +37,12 @@ class DB extends Model
     {
         return DB::getInstance()->db->selectOne($query);
     }
+
     /**
-     * End Select
+     * Statement query
      */
+    public static function statement($query)
+    {
+        return DB::getInstance()->db->statement($query);
+    }
 }

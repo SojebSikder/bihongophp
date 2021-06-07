@@ -41,4 +41,10 @@ class Dbase
   {
     return $this->adapter->delete($query);
   }
+
+  // Statement data
+  public function statement($query)
+  {
+    return $this->adapter->statement($query);
+  }
 }
