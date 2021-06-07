@@ -16,10 +16,9 @@ class IndexController extends Controller
 
 	public function home()
 	{
-		//$data = User::all();
-		//echo $data;
-		$data = DB::select("select * from users");
-		echo json_encode($data);
+		$data = User::all();
+		echo $data;
+
 		$this->load->view("home.te");
 	}
 }
