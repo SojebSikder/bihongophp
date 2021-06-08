@@ -51,7 +51,7 @@ abstract class ORM extends Model
    /**
     * Or where clause
     */
-   public static function OrWhere($key, $value)
+   public static function orWhere($key, $value)
    {
       $self = self::$_instance; // new static;
       if ($self->whereC == null) {

@@ -18,7 +18,7 @@ class IndexController extends Controller
 	{
 		Address::getInstance();
 		$data = Address::where('name', 'sikdersojeb')
-			->OrWhere('id', 3)->get();
+			->orWhere('id', 3)->get();
 
 		$data = json(['data' => $data]);
 		echo $data;
