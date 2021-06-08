@@ -96,4 +96,48 @@ abstract class ORM extends Model
 
       return $data;
    }
+
+   // /**
+   //  * save query data
+   //  */
+   // public function save()
+   // {
+   //    self::getInstance();
+   //    $self = self::$_instance; // new static;
+
+
+   //    if ($self->whereC == null) {
+   //       // $cls = new ReflectionClass($self::class);
+
+   //       // $properties = $cls->getProperties();
+   //       // //$property = ArrayHelper::arrayToString($properties);
+
+   //       // //echo $property;
+
+   //       // var_dump($properties);
+
+   //       // // $blog = '';
+   //       // // foreach ($properties as $key) {
+   //       // //    $blog = $key;
+   //       // // }
+   //       // // echo $blog;
+
+
+   //       // return $properties;
+   //       //echo $properties;
+   //    } else {
+
+
+   //       // $cls = new ReflectionClass(static::class);
+   //       // $properties = $cls->getProperties();
+
+   //       //var_dump($properties);
+   //       //$property = ArrayHelper::arrayToString($properties);
+
+   //       //$data = DB::select("update $self->_table set $property $self->whereC");
+
+   //       return "sojeb sikder"; //$properties;
+   //       //return $data;
+   //    }
+   // }
 }

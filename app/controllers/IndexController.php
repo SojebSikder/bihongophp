@@ -17,13 +17,11 @@ class IndexController extends Controller
 	public function home()
 	{
 		$data = Address::where('name', 'sikdersojeb')
-			->orWhere('id', 3)->get();
+			->orWhere('id', 4)->get();
 
-			$data = Address::all();
+		echo json(['data' => $data]);
 
-		$data = json(['data' => $data]);
-		echo $data;
-		
+
 		return view("home.te");
 	}
 }
