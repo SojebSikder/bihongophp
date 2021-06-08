@@ -18,6 +18,5 @@ class IndexController extends Controller
 	{
 		echo json(['data' => Address::all()]);
 		return view("home.te");
-		//$this->load->view("home.te");
 	}
 }
