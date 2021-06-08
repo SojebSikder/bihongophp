@@ -24,4 +24,13 @@ class ArrayHelper
 		}
 		return $result = rtrim($result, $separator);
 	}
+
+	/**
+	 * Convert array to json
+	 */
+	public static function json($array)
+	{
+
+		return json_encode($array);
+	}
 }

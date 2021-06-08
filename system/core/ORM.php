@@ -21,12 +21,29 @@ abstract class ORM extends Model
    }
 
    /**
+    * Fetch query data
+    */
+   public static function get($columns = ['*'])
+   {
+      $self = new static;
+      $column = ArrayHelper::arrayToString($columns);
+      $data = DB::select("select $column from $self->_table");
+
+      return $data;
+   }
+
+   /**
     * Fetch all data
     */
    public static function all($columns = ['*'])
    {
       $self = new static;
-      $column = ArrayHelper::arrayToString($columns);
+      if (is_array($columns)) {
+         $column = ArrayHelper::arrayToString($columns);
+      } else {
+         $column = $columns;
+      }
+
       $data = DB::select("select $column from $self->_table");
 
       return $data;

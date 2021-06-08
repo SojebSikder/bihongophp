@@ -1,4 +1,14 @@
 <?php
+if (!function_exists('json')) {
+
+    /**
+     * array to json directory
+     */
+    function json($array)
+    {
+        return ArrayHelper::json($array);
+    }
+}
 
 if (!function_exists('asset')) {
 
