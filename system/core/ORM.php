@@ -5,7 +5,7 @@
  */
 abstract class ORM extends Model
 {
-   public static $_instance = null;
+   private static $_instance = null;
    /**
     * The table associated with the model.
     *
@@ -27,7 +27,7 @@ abstract class ORM extends Model
       $this->_table = StringHelper::pluralize(2, strtolower(static::class));
    }
 
-   public static function getInstance()
+   private static function getInstance()
    {
       if (self::$_instance === null) {
          self::$_instance = new static;

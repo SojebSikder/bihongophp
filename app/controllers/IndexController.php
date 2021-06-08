@@ -23,6 +23,7 @@ class IndexController extends Controller
 
 		$data = json(['data' => $data]);
 		echo $data;
+		
 		return view("home.te");
 	}
 }
