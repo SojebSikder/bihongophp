@@ -13,7 +13,7 @@ abstract class ORM extends Model
     */
    public $_table;
 
-   private $whereC = '';
+   private $whereC = null;
 
    public function __construct()
    {
@@ -40,7 +40,11 @@ abstract class ORM extends Model
    public static function where($key, $value)
    {
       $self = self::$_instance; // new static;
-      $self->whereC = "where $key = '$value'";
+      if ($self->whereC == null) {
+         $self->whereC = "where $key = '$value'";
+      } else {
+         $self->whereC .= " and $key = '$value'";
+      }
       return $self;
    }
 
@@ -54,6 +58,7 @@ abstract class ORM extends Model
       $column = ArrayHelper::arrayToString($columns);
       $data = DB::select("select $column from $self->_table $self->whereC");
 
+      echo $self->whereC;
       return $data;
    }
 
