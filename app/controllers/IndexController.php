@@ -16,7 +16,8 @@ class IndexController extends Controller
 
 	public function home()
 	{
-		echo json(['data' => Address::all()]);
+		$data = json(['data' => Address::all()]);
+		echo $data;
 		return view("home.te");
 	}
 }

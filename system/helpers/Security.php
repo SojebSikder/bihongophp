@@ -5,6 +5,9 @@
  */
 class Security
 {
+    /**
+     * Clean data with. required mysql database connection
+     */
 
     public static function Stext($string, $allow = null)
     {
@@ -17,6 +20,23 @@ class Security
         }
         return $text;
     }
+
+    /**
+     * Clean data
+     */
+    public static function xss($string, $allow = null)
+    {
+        if ($allow == null) {
+
+            $text = htmlspecialchars(strip_tags($string));
+        } else {
+
+            $text = strip_tags($string, $allow);
+        }
+        return $text;
+    }
+
+
 
 
     /**

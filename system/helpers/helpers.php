@@ -52,6 +52,43 @@ if (!function_exists('library')) {
     }
 }
 
+/**
+ * Security
+ */
+if (!function_exists('xss')) {
+    /**
+     * Clean data
+     */
+    function xss($string, $allow = null)
+    {
+        return Security::xss($string, $allow);
+    }
+}
+
+
+if (!function_exists('bcrypt')) {
+    /**
+     * Hash the given value against the bcrypt algorithm.
+     *
+     * @param  string  $value
+     * @param  array  $options
+     * @return string
+     */
+    function bcrypt($value, $options = ['PASSWORD_DEFAULT'])
+    {
+        return Format::bcrypt($value, $options);
+    }
+}
+
+if (!function_exists('verify')) {
+    /**
+     * Verify bcrypt hash
+     */
+    function verify($value, $hash)
+    {
+        return Format::verify($value, $hash);
+    }
+}
 
 if (!function_exists('json')) {
 

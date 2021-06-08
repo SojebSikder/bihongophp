@@ -114,11 +114,23 @@ class Format
     }
 
     /**
-     * Password function
+     * Hash the given value against the bcrypt algorithm.
      */
-    public static function Spass($string, $option = PASSWORD_DEFAULT)
+    public static function bcrypt($value, $options = ['PASSWORD_DEFAULT'])
     {
-        $text =  password_hash($string, $option);
-        return $text;
+        $result =  password_hash($value, null, $options);
+        return $result;
+    }
+
+    /**
+     * Verify bcrypt hash
+     */
+    public static function verify($value, $hash)
+    {
+        if (password_verify($value, $hash)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
