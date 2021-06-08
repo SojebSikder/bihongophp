@@ -16,11 +16,9 @@ class IndexController extends Controller
 
 	public function home()
 	{
-		$data = Address::where('name', 'sikdersojeb')
-			->orWhere('id', 4)->get();
+		$data = Address::all();
 
 		echo json(['data' => $data]);
-
 
 		return view("home.te");
 	}

@@ -100,44 +100,43 @@ abstract class ORM extends Model
    // /**
    //  * save query data
    //  */
-   // public function save()
-   // {
-   //    self::getInstance();
-   //    $self = self::$_instance; // new static;
+   public function save()
+   {
+      self::getInstance();
+      $self = self::$_instance; // new static;
 
 
-   //    if ($self->whereC == null) {
-   //       // $cls = new ReflectionClass($self::class);
+      if ($self->whereC == null) {
+         // $cls = new ReflectionClass($self::class);
 
-   //       // $properties = $cls->getProperties();
-   //       // //$property = ArrayHelper::arrayToString($properties);
+         // $properties = $cls->getProperties();
+         // //$property = ArrayHelper::arrayToString($properties);
 
-   //       // //echo $property;
+         // //echo $property;
 
-   //       // var_dump($properties);
+         // var_dump($properties);
 
-   //       // // $blog = '';
-   //       // // foreach ($properties as $key) {
-   //       // //    $blog = $key;
-   //       // // }
-   //       // // echo $blog;
-
-
-   //       // return $properties;
-   //       //echo $properties;
-   //    } else {
+         // // $blog = '';
+         // // foreach ($properties as $key) {
+         // //    $blog = $key;
+         // // }
+         // // echo $blog;
 
 
-   //       // $cls = new ReflectionClass(static::class);
-   //       // $properties = $cls->getProperties();
+         // return $properties;
+         //echo $properties;
+      } else {
 
-   //       //var_dump($properties);
-   //       //$property = ArrayHelper::arrayToString($properties);
 
-   //       //$data = DB::select("update $self->_table set $property $self->whereC");
+         // $cls = new ReflectionClass(static::class);
+         // $properties = $cls->getProperties();
 
-   //       return "sojeb sikder"; //$properties;
-   //       //return $data;
-   //    }
-   // }
+         //var_dump($properties);
+         //$property = ArrayHelper::arrayToString($properties);
+
+         //$data = DB::select("update $self->_table set $property $self->whereC");
+
+         //return $data;
+      }
+   }
 }
