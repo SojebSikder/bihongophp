@@ -39,6 +39,7 @@ abstract class ORM extends Model
     */
    public static function where($key, $value)
    {
+      self::getInstance();
       $self = self::$_instance; // new static;
       if ($self->whereC == null) {
          $self->whereC = "where $key = '$value'";
@@ -53,6 +54,7 @@ abstract class ORM extends Model
     */
    public static function orWhere($key, $value)
    {
+      self::getInstance();
       $self = self::$_instance; // new static;
       if ($self->whereC == null) {
          $self->whereC = "where $key = '$value'";
@@ -68,11 +70,12 @@ abstract class ORM extends Model
     */
    public function get($columns = ['*'])
    {
+      self::getInstance();
       $self = self::$_instance; // new static;
       $column = ArrayHelper::arrayToString($columns);
       $data = DB::select("select $column from $self->_table $self->whereC");
 
-      echo $self->whereC;
+      //echo $self->whereC;
       return $data;
    }
 
@@ -81,7 +84,8 @@ abstract class ORM extends Model
     */
    public static function all($columns = ['*'])
    {
-      $self = new static;
+      self::getInstance();
+      $self = self::$_instance; //new static;
       if (is_array($columns)) {
          $column = ArrayHelper::arrayToString($columns);
       } else {
