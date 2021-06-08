@@ -5,6 +5,7 @@
  */
 abstract class ORM extends Model
 {
+   public static $_instance = null;
    /**
     * The table associated with the model.
     *
@@ -12,22 +13,46 @@ abstract class ORM extends Model
     */
    public $_table;
 
+   private $whereC = '';
+
    public function __construct()
    {
       parent::__construct();
+
+      // if (self::$_instance === null) {
+      //    self::$_instance = new static;
+      // }
 
       // Assign table name
       $this->_table = StringHelper::pluralize(2, strtolower(static::class));
    }
 
+   public static function getInstance()
+   {
+      if (self::$_instance === null) {
+         self::$_instance = new static;
+      }
+   }
+
+   /**
+    * where clause
+    */
+   public static function where($key, $value)
+   {
+      $self = self::$_instance; // new static;
+      $self->whereC = "where $key = '$value'";
+      return $self;
+   }
+
+
    /**
     * Fetch query data
     */
-   public static function get($columns = ['*'])
+   public function get($columns = ['*'])
    {
-      $self = new static;
+      $self = self::$_instance; // new static;
       $column = ArrayHelper::arrayToString($columns);
-      $data = DB::select("select $column from $self->_table");
+      $data = DB::select("select $column from $self->_table $self->whereC");
 
       return $data;
    }
