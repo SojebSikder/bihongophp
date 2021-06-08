@@ -4,9 +4,9 @@ if (!function_exists('json')) {
     /**
      * array to json directory
      */
-    function json($array)
+    function json($data)
     {
-        return ArrayHelper::json($array);
+        return ArrayHelper::json($data);
     }
 }
 

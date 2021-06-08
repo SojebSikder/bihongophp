@@ -28,9 +28,9 @@ class ArrayHelper
 	/**
 	 * Convert array to json
 	 */
-	public static function json($array)
+	public static function json($data)
 	{
 
-		return json_encode($array);
+		return json_encode($data);
 	}
 }
