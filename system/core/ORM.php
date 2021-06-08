@@ -48,6 +48,20 @@ abstract class ORM extends Model
       return $self;
    }
 
+   /**
+    * Or where clause
+    */
+   public static function OrWhere($key, $value)
+   {
+      $self = self::$_instance; // new static;
+      if ($self->whereC == null) {
+         $self->whereC = "where $key = '$value'";
+      } else {
+         $self->whereC .= " or $key = '$value'";
+      }
+      return $self;
+   }
+
 
    /**
     * Fetch query data
