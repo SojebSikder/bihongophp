@@ -31,8 +31,8 @@ class Router
          */
         if (isset($url[0])) {
 
-            if (file_exists("app/controllers/" . $url[0] . ".php")) {
-                require "app/controllers/" . $url[0] . ".php";
+            if (file_exists($controller_url . $url[0] . ".php")) {
+                require $controller_url . $url[0] . ".php";
                 $class = new $url[0]();
                 if (isset($url[1])) {
                     $method = $url[1];
@@ -150,10 +150,10 @@ class Router
                      * $url[2] = perameter
                      */
                     if (isset($break[0])) {
-                        if (file_exists($application_folder . "/" . "controllers/" . $break[0] . ".php")) {
+                        if (file_exists($controller_url . $break[0] . ".php")) {
                             $s = ucfirst($break[0]); //Controller
                             if (!class_exists($s)) {
-                                require $application_folder . "/" . "controllers/" . $break[0] . ".php"; //Controller
+                                require $controller_url . $break[0] . ".php"; //Controller
 
                                 if (!class_exists($s)) {
                                     show_error("Class not exist: <strong>" . $s . "</strong>");
