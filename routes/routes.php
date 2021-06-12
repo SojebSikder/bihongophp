@@ -28,5 +28,3 @@
 $route['default_controller'] = 'IndexController'; //DO NOT DELETE THIS ROUTE NAME (default_controller)
 
 $route['home'] = 'IndexController/home';
-
-$route['test'] = 'IndexController/test';
