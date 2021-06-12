@@ -63,14 +63,14 @@ class Command
     /**
      * Execute an external program
      */
-    public function exec($command, $output = true)
+    public static function exec($command, $output = true)
     {
         if ($output == true) {
             return shell_exec($command);
         } else if ($output == false) {
             return exec($command);
         }
-        return $this;
+        return self::$_instance; //$this;
     }
 
     /**
@@ -125,6 +125,10 @@ class Command
         self::set('-v', function () {
             Command::comment("BihongoPHP Version " . B_VERSION);
         })->describe("Displays BihongoPHP version");
+
+        self::set('serve', function () {
+            Command::exec('php -S localhost:8000');
+        })->describe("Serve the application on the PHP development server");
 
 
         /**
