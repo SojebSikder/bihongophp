@@ -9,6 +9,9 @@ class Router
     {
         global $config, $route, $email, $application_folder, $system;
 
+        $controller_url = $application_folder . "\/controllers/";
+        $default_method = "home";
+
         $url2 = isset($_GET['url']) ? filter_var($_GET['url'], FILTER_SANITIZE_URL) : NULL;
 
         //Core
@@ -51,7 +54,7 @@ class Router
                     }
                     //end that  
                 } else {
-                    $class->home();
+                    $class->$default_method();
                     $isError = false;
                 }
             } else {
@@ -84,13 +87,13 @@ class Router
                      * If not callable then continue
                      */
                     else {
-                        require $application_folder . "\/controllers/" . $break[0] . ".php"; //Controller
+                        require $controller_url . $break[0] . ".php"; //Controller
                         $class = ucfirst($break[0]); //Controller
                         $ur = new $class();
                         if (isset($break[1])) {
                             $method = $break[1];
                         } else {
-                            $method = "home";
+                            $method = $default_method;
                         }
                         $ur->$method();
                         break;
@@ -189,17 +192,17 @@ class Router
                                 }
                                 //end that  
                             } else {
-                                $ur->home();
+                                $ur->$default_method();
                             }
                         }
                     } else {
-                        require $application_folder . "\/controllers/" . $break[0] . ".php"; //Controller
+                        require $controller_url . $break[0] . ".php"; //Controller
                         $class = ucfirst($break[0]); //Controller
                         $ur = new $class();
                         if (isset($break[1])) {
                             $method = $break[1];
                         } else {
-                            $method = "home";
+                            $method = $default_method;
                         }
                         $ur->$method();
                     }
