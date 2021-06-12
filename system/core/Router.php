@@ -9,6 +9,8 @@ class Router
     {
         global $config, $route, $email, $application_folder, $system;
 
+        $url2 = isset($_GET['url']) ? filter_var($_GET['url'], FILTER_SANITIZE_URL) : NULL;
+
         //Core
         $url = isset($_GET['url']) ? $_GET['url'] : NULL;
         if ($url != NULL) {
@@ -96,7 +98,7 @@ class Router
                 }
             } else
                 //if($url[0] == $key)
-                if (filter_var($_GET['url'], FILTER_SANITIZE_URL) != null) {
+                if ($url2 != null) {
                     $count = count($breakKey);
                     //echo $count." ";
                     $fullurl = '';
