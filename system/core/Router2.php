@@ -90,9 +90,18 @@ class Route
         if (is_array($callback)) {
             $controller = $callback[0];
             $controllerMethod = $callback[1];
-            $class = new $controller();
 
-            echo call_user_func(array($class, $controllerMethod));
+            // Check is class exist
+            if (class_exists($controller)) {
+                $class = new $controller();
+                // Check method is exist
+                if (method_exists($class, $controllerMethod)) {
+                    // call method
+                    echo call_user_func(array($class, $controllerMethod));
+                }
+            } else {
+                echo $controller . " Controller not exist";
+            }
         }
     }
 }
