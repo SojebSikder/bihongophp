@@ -29,7 +29,7 @@ class Load
                     //include $application_folder."/"."views/".$filename;
                     include $view_folder_path . "/" . $filename;
                 } else {
-                    require_once "Perser2.php";
+                    //require_once "Perser2.php";
                     // Initialize object
                     //Perser2::view($application_folder."/"."views/".$filename.".php", $data);
                     Perser2::view($view_folder_path . "/" . $filename . ".php", $data);

@@ -2,7 +2,6 @@
 
 namespace System\Core;
 
-use App\Controllers\IndexController;
 
 class Route
 {
@@ -59,8 +58,8 @@ class Route
         self::getInstance();
         $self = self::$_instance;
 
-        $controller_url = $application_folder . "\/controllers/";
-        $default_method = "home";
+        // $controller_url = $application_folder . "\/controllers/";
+        // $default_method = "home";
 
         $path = $self->request->getUrl();
         $method = $self->request->getMethod();
@@ -75,27 +74,13 @@ class Route
             echo call_user_func($callback);
         }
 
-
-
+        // Specify Controller and method
         if (is_array($callback)) {
             $controller = $callback[0];
             $controllerMethod = $callback[1];
-
-            //require $controller_url . $controller . ".php";
-
-
-            //$class = new $controller();
-
-            $class = new IndexController(); //new \App\Controllers\IndexController();
-
-            echo "<pre>";
-            var_dump($class->index());
-            echo "</pre>";
-
-            echo "test";
+            $class = new $controller();
 
             echo call_user_func(array($class, $controllerMethod));
-
         }
     }
 }
