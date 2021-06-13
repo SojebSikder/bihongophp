@@ -1,5 +1,7 @@
 <?php
+
 namespace System\Core;
+
 /**
  * Server config class
  */
@@ -23,7 +25,11 @@ class Server
                     if (in_array($ip, $ip_list)) {
                         //echo "allowed";
                         //Router::init();
-                        Route::resolve();
+                        try {
+                            Route::resolve();
+                        } catch (\Throwable $th) {
+                            show_error($th);
+                        }
                     } else {
                         header("HTTP/1.1 503 Service Temporarily Unavailable");
                         header("Status: 503 Service Temporarily Unavailable");
@@ -54,7 +60,11 @@ class Server
         } else {
             //Initialize Router
             //Router::init();
-            Route::resolve();
+            try {
+                Route::resolve();
+            } catch (\Throwable $th) {
+                show_error($th);
+            }
         }
     }
 }
