@@ -7,10 +7,24 @@
 
 use System\Core\DotEnv;
 use System\Core\Load;
+use System\Core\Response;
 use System\Helpers\ArrayHelper;
 use System\Helpers\Format;
 use System\Helpers\Security;
 use System\Helpers\Url;
+
+
+if (!function_exists('response')) {
+
+    /**
+     * Load View
+     */
+    function response()
+    {
+        $response = new Response();
+        return $response;
+    }
+}
 
 if (!function_exists('view')) {
 
