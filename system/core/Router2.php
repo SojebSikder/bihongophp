@@ -34,8 +34,14 @@ class Route
 
         $path = $self->request->getUrl();
         $method = $self->request->getMethod();
+        $callback = $self->routes[$method][$path] ?? false;
 
-        $callback = $self->routes[$method][$path];
-        echo $callback();
+        if ($callback === false) {
+            echo "Not Found";
+        }
+        // If $callback is callable then call it
+        if (is_callable($callback)) {
+            echo $callback();
+        }
     }
 }
