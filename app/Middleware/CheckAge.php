@@ -8,6 +8,13 @@ use System\Core\Request;
 
 class CheckAge extends BaseMiddleware
 {
+    public $actions = [];
+
+    public function __construct(array $actions = [])
+    {
+        $this->actions = $actions;
+    }
+
     public function handle(Request $request, Closure $next)
     {
         if ($request->get('age') <= 200) {
@@ -15,11 +22,4 @@ class CheckAge extends BaseMiddleware
         }
         return $next($request);
     }
-    // public function handle(Request $request, Closure $next)
-    // {
-    //     if ($request->age <= 200) {
-    //         return "Write";
-    //     }
-    //     return $next($request);
-    // }
 }

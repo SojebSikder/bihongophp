@@ -15,6 +15,7 @@ abstract class Controller
     public $input = array();
     public $benchmark = array();
 
+    public string $action = '';
     /**
      * The middleware registered on the controller.
      *
