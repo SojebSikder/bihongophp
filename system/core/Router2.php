@@ -99,8 +99,7 @@ class Route
 
                     foreach ($class->getMiddleware() as $middleware) {
                         $mw = new $middleware();
-                        echo $mw->handle($self->request, function ($request) {
-                            //echo "continue";
+                        echo $mw->handle($self->request, function (Request $request) {
                         });
                     }
 
