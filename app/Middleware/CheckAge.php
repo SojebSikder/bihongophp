@@ -17,7 +17,7 @@ class CheckAge extends BaseMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        if ($request->get('age') <= 200) {
+        if ($request->get('age') < 10) {
             return "Write";
         }
         return $next($request);

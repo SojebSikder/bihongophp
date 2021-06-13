@@ -20,20 +20,14 @@ class IndexController extends Controller
 
 		//$this->middleware('auth:api')->only(['store', 'update', 'destroy']);
 		//$this->middleware('auth:api');
-		// $this->middleware('auth:api')->only(['index']);
 		$this->registerMiddleware(new CheckAge);
-
-		echo "<pre>";
-		var_dump($this->getMiddleware());
-		echo "</pre>";
 	}
 
 	/**
 	 * Home page
 	 */
-	public function index(Request $request)
+	public function index()
 	{
-		echo $request->get('age');
 		return view("home.te");
 	}
 	public function test()

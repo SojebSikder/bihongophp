@@ -96,6 +96,14 @@ class Route
                 $class = new $controller();
                 // Check method is exist
                 if (method_exists($class, $controllerMethod)) {
+
+                    foreach ($class->getMiddleware() as $middleware) {
+                        $mw = new $middleware();
+                        echo $mw->handle($self->request, function () {
+                            echo "Errror";
+                        });
+                    }
+
                     // call method
                     echo call_user_func(array($class, $controllerMethod), $self->request, $self->response);
                 } else {
