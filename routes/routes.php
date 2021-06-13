@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ___________
  * 
@@ -14,7 +15,7 @@
  * 
  */
 
- 
+
 /**
  * __________________________________________________
  * 
@@ -29,3 +30,18 @@ $route['default_controller'] = 'IndexController'; //DO NOT DELETE THIS ROUTE NAM
 
 $route['home'] = 'IndexController/home';
 $route['test'] = 'IndexController/test';
+
+
+
+
+$request = new Request();
+
+Route::setRequest($request);
+
+Route::get("/", function () {
+    return "Hello World";
+});
+
+Route::get("/contact", function () {
+    return "I'm from contact";
+});
