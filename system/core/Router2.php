@@ -98,9 +98,11 @@ class Route
                 if (method_exists($class, $controllerMethod)) {
                     // call method
                     echo call_user_func(array($class, $controllerMethod));
+                } else {
+                    show_error("Method not exist: <strong>" . $controllerMethod . "</strong>");
                 }
             } else {
-                echo $controller . " Controller not exist";
+                show_error("Controller not exist: <strong>" . $controller . "</strong>");
             }
         }
     }
