@@ -38,10 +38,11 @@ class Route
 
         if ($callback === false) {
             echo "Not Found";
+            exit;
         }
         // If $callback is callable then call it
         if (is_callable($callback)) {
-            echo $callback();
+            echo call_user_func($callback);
         }
     }
 }
