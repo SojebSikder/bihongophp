@@ -17,6 +17,7 @@
 
 use System\Core\Route;
 use App\Controllers\IndexController;
+use System\Core\Request;
 
 /**
  * __________________________________________________
@@ -36,8 +37,8 @@ $route['test'] = 'IndexController/test';
 
 
 
-Route::get("/", function ($var) {
-    var_dump($var);
+Route::get("/", function (Request $request) {
+    var_dump($request);
     return view('home.te');
 });
 

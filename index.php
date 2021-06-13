@@ -11,10 +11,9 @@ $base = "";
  * Autoload Core
  */
 //Composer Autoload
-require $base . __DIR__.'/vendor/autoload.php';
+require $base . __DIR__ . '/vendor/autoload.php';
 //Initialize DotEnv
-//DotEnv::init();
-(new DotEnv($base . '.env'))->load();
+DotEnv::init();
 
 /**
  * Load Config

@@ -10,6 +10,9 @@
  * make:model ModelName
  */
 
+use System\Core\Command;
+use System\Core\DotEnv;
+
 //Composer Autoload
 require 'vendor/autoload.php';
 //Initialize DotEnv
