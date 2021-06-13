@@ -1,5 +1,6 @@
 <?php
 
+$base = "";
 /**
  * DO NOT Touch Here
  */
@@ -8,14 +9,15 @@
  * Autoload Core
  */
 //Composer Autoload
-require 'vendor/autoload.php';
+require $base . 'vendor/autoload.php';
 //Initialize DotEnv
-DotEnv::init();
+//DotEnv::init();
+(new DotEnv($base . '.env'))->load();
 
 /**
  * Load Config
  */
-require "config/config.php";
+require $base . "config/config.php";
 
 /**
  * Exceptions
@@ -54,4 +56,4 @@ switch (ENVIRONMENT) {
 /**
  * Load Bootstrap file
  */
-require $system_path . "/core/Bihongo.php";
+require $base . $system_path . "/core/Bihongo.php";

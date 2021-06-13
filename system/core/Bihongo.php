@@ -9,13 +9,13 @@
  * Setup Files
  */
 //require "config/config.php";
-require "config/database.php";
-require "routes/routes.php";
-require "config/email.php";
+require $base ."config/database.php";
+require $base ."routes/routes.php";
+require $base ."config/email.php";
 /**
  * Exception Files
  */
-require $system_path . "/core/Exception.php";
+require $base .$system_path . "/core/Exception.php";
 /**
  * Autoload Core
  */
