@@ -14,7 +14,7 @@ class IndexController extends Controller
 	}
 
 
-	public function home()
+	public function index()
 	{
 		//echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 		return view("home.te");

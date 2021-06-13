@@ -50,8 +50,13 @@ class Route
      */
     public static function resolve()
     {
+        global $application_folder;
+
         self::getInstance();
         $self = self::$_instance;
+
+        $controller_url = $application_folder . "\/controllers/";
+        $default_method = "home";
 
         $path = $self->request->getUrl();
         $method = $self->request->getMethod();
@@ -64,6 +69,16 @@ class Route
         // If $callback is callable then call it
         if (is_callable($callback)) {
             echo call_user_func($callback);
+        }
+
+        if (is_array($callback)) {
+            $controller = $callback[0];
+            $controllerMethod = $callback[1];
+
+
+            require $controller_url . $controller . ".php";
+            $class = new $controller();
+            $class->$controllerMethod();
         }
     }
 }

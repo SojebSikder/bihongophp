@@ -38,9 +38,7 @@ Route::get("/", function () {
     return view('home.te');
 });
 
-Route::get("/home", function () {
-    return view('home.te');
-});
+Route::get("/home", [IndexController::class, 'index']);
 
 Route::get("/test", function () {
     return "I'm from test";
