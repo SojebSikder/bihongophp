@@ -13,6 +13,9 @@ class Route
             self::$_instance = new static;
         }
     }
+    /**
+     * Set request
+     */
     public static function setRequest(Request $request)
     {
         self::getInstance();
@@ -20,6 +23,9 @@ class Route
 
         $self->request = $request;
     }
+    /**
+     * Get request
+     */
     public static function get($path, $callback)
     {
         self::getInstance();
@@ -27,6 +33,21 @@ class Route
 
         $self->routes['get'][$path] = $callback;
     }
+
+    /**
+     * Post request
+     */
+    public static function post($path, $callback)
+    {
+        self::getInstance();
+        $self = self::$_instance;
+
+        $self->routes['post'][$path] = $callback;
+    }
+
+    /**
+     * Resolve routes
+     */
     public static function resolve()
     {
         self::getInstance();
@@ -37,7 +58,7 @@ class Route
         $callback = $self->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            echo "Not Found";
+            show_404();
             exit;
         }
         // If $callback is callable then call it
