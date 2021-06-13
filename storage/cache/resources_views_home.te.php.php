@@ -1,4 +1,4 @@
-<?php class_exists('Perser2') or exit; ?>
+<?php class_exists('System\Core\Perser2') or exit; ?>
 <!DOCTYPE html>
 <html>
 

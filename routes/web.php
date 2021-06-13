@@ -37,7 +37,7 @@ $route['test'] = 'IndexController/test';
 
 
 Route::get("/", function () {
-    return view('home');
+    return view('home.te');
 });
 
 Route::get("/home", [IndexController::class, 'index']);

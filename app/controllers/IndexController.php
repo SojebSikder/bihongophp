@@ -20,7 +20,7 @@ class IndexController extends Controller
 	 */
 	public function index()
 	{
-		return view("home");
+		return view("home.te");
 	}
 	public function test()
 	{
