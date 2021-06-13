@@ -35,13 +35,13 @@ $route['test'] = 'IndexController/test';
 
 
 Route::get("/", function () {
-    return "Hello World";
+    return view('home.te');
 });
 
 Route::get("/home", function () {
     return view('home.te');
 });
 
-Route::get("/contact", function () {
-    return "I'm from contact";
+Route::get("/test", function () {
+    return "I'm from test";
 });

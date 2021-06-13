@@ -10,7 +10,7 @@
  */
 //require "config/config.php";
 require $base ."config/database.php";
-require $base ."routes/routes.php";
+require $base ."routes/web.php";
 require $base ."config/email.php";
 /**
  * Exception Files
