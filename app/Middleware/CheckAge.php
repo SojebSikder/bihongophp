@@ -2,6 +2,7 @@
 
 namespace App\Middleware;
 
+use App\Exceptions\ForbiddenException;
 use Closure;
 use System\Core\Auth\Middleware\BaseMiddleware;
 use System\Core\Request;
@@ -18,7 +19,7 @@ class CheckAge extends BaseMiddleware
     public function handle(Request $request, Closure $next)
     {
         if ($request->get('age') < 10) {
-            return "Write";
+            throw new ForbiddenException();
         }
         return $next($request);
     }
