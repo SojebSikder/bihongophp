@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Middleware\Auth;
+use App\Middleware\CheckAge;
+use System\Core\Request;
 
 /**
  * Home page for this controller
@@ -19,7 +21,7 @@ class IndexController extends Controller
 		//$this->middleware('auth:api')->only(['store', 'update', 'destroy']);
 		//$this->middleware('auth:api');
 		// $this->middleware('auth:api')->only(['index']);
-		$this->middleware(new Auth());
+		$this->registerMiddleware(new CheckAge);
 
 		echo "<pre>";
 		var_dump($this->getMiddleware());
@@ -29,8 +31,9 @@ class IndexController extends Controller
 	/**
 	 * Home page
 	 */
-	public function index()
+	public function index(Request $request)
 	{
+		echo $request->get('age');
 		return view("home.te");
 	}
 	public function test()

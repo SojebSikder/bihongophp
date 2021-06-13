@@ -97,7 +97,7 @@ class Route
                 // Check method is exist
                 if (method_exists($class, $controllerMethod)) {
                     // call method
-                    echo call_user_func(array($class, $controllerMethod));
+                    echo call_user_func(array($class, $controllerMethod), $self->request, $self->response);
                 } else {
                     show_error("Method not exist: <strong>" . $controllerMethod . "</strong>");
                 }

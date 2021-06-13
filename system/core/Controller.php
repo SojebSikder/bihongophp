@@ -2,6 +2,7 @@
 
 namespace System\Core;
 
+use System\Core\Auth\Middleware\BaseMiddleware;
 use System\Core\Routing\ControllerMiddlewareOptions;
 
 /*
@@ -26,6 +27,13 @@ abstract class Controller
         $this->load = new Load();
         $this->input = new Input();
         $this->benchmark = new Benchmark();
+    }
+
+
+    // for testing
+    public function registerMiddleware(BaseMiddleware $middleware)
+    {
+        $this->middleware[] = $middleware;
     }
 
     /**
