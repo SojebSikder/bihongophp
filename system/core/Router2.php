@@ -78,7 +78,8 @@ class Route
 
             require $controller_url . $controller . ".php";
             $class = new $controller();
-            $class->$controllerMethod();
+
+            echo call_user_func(array($class, $controllerMethod));
         }
     }
 }
