@@ -36,7 +36,8 @@ $route['test'] = 'IndexController/test';
 
 
 
-Route::get("/", function () {
+Route::get("/", function ($var) {
+    var_dump($var);
     return view('home.te');
 });
 

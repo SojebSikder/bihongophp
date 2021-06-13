@@ -7,7 +7,9 @@ class Route
 {
     private static $_instance = null;
 
-    public Request $request;
+    private Request $request;
+    private Response $response;
+
     protected array $routes = [];
 
     private static function getInstance()
@@ -25,6 +27,16 @@ class Route
         $self = self::$_instance;
 
         $self->request = $request;
+    }
+    /**
+     * Set response
+     */
+    public static function setResponse(Response $response)
+    {
+        self::getInstance();
+        $self = self::$_instance;
+
+        $self->response = $response;
     }
     /**
      * Get request
@@ -71,7 +83,7 @@ class Route
         }
         // If $callback is callable then call it
         if (is_callable($callback)) {
-            echo call_user_func($callback);
+            echo call_user_func($callback, $self->request, $self->response);
         }
 
         // Specify Controller and method
