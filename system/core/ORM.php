@@ -1,5 +1,10 @@
 <?php
 namespace System\Core;
+
+use System\Database\Facade\DB;
+use System\Helpers\ArrayHelper;
+use System\Helpers\StringHelper;
+
 /**
  * Eloquont Model (Experimantal)
  */

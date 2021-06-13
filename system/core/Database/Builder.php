@@ -1,5 +1,12 @@
 <?php
+
 namespace System\Core\Database;
+
+use System\Database\Dbase;
+use System\Database\Drivers\MySQLAdapter;
+use System\Database\Drivers\PostgreSQLAdapter;
+use System\Database\Drivers\SQLiteAdapter;
+
 /**
  * Builder
  */

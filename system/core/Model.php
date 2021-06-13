@@ -1,5 +1,8 @@
 <?php
 namespace System\Core;
+
+use System\Core\Database\Builder;
+
 /**
  * Main Model
  */

@@ -1,5 +1,7 @@
 <?php
+
 namespace System\Core\Database;
+
 /**
  * Schema
  */
