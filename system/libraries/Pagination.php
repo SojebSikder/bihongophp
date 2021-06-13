@@ -1,4 +1,5 @@
 <?php
+namespace System\Libraries;
 /**
  * Pagination Library
  */

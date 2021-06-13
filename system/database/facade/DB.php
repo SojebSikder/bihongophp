@@ -1,5 +1,9 @@
 <?php
 
+namespace System\Database\Facade;
+
+use System\Core\Model;
+
 /**
  * DB facade
  */

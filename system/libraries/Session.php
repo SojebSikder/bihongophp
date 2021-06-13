@@ -1,4 +1,5 @@
 <?php
+namespace System\Libraries;
 /**
 *Session Class
 **/
@@ -45,4 +46,3 @@ class Session{
         //header("Location:login.php");
     }
 }
-?>

@@ -1,5 +1,5 @@
 <?php
-//namespace DB;
+namespace System\Database\Drivers;
 //include "AdapterInterface.php";
 
 class PostgreSQLAdapter implements AdapterInterface

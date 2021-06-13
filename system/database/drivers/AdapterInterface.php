@@ -1,5 +1,7 @@
 <?php
-//namespace DB;
+
+namespace System\Database\Drivers;
+
 interface AdapterInterface
 {
 

@@ -1,18 +1,11 @@
 <?php
-/**
- * User: TheCodeholic
- * Date: 7/7/2020
- * Time: 10:23 AM
- */
 
-//namespace thecodeholic\phpmvc;
+namespace System\Core;
 
 
 /**
  * Class Request
  *
- * @author  Zura Sekhniashvili <zurasekhniashvili@gmail.com>
- * @package thecodeholic\mvc
  */
 class Request
 {

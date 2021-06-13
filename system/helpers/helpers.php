@@ -4,6 +4,12 @@
 /**
  * Data
  */
+
+use System\Core\DotEnv;
+use System\Core\Load;
+use System\Helpers\ArrayHelper;
+use System\Helpers\Format;
+
 if (!function_exists('view')) {
 
     /**

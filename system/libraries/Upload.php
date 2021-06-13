@@ -1,4 +1,5 @@
 <?php
+namespace System\Libraries;
 /**
  * Upload Library
  */
@@ -56,4 +57,3 @@ class Upload{
 
 
 
-?>

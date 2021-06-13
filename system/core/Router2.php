@@ -1,5 +1,9 @@
 <?php
 
+namespace System\Core;
+
+use App\Controllers;
+
 class Route
 {
     private static $_instance = null;
@@ -71,15 +75,36 @@ class Route
             echo call_user_func($callback);
         }
 
+
+
         if (is_array($callback)) {
             $controller = $callback[0];
             $controllerMethod = $callback[1];
 
 
-            require $controller_url . $controller . ".php";
-            $class = new $controller();
+            //require $controller_url . $controller . ".php";
 
-            echo call_user_func(array($class, $controllerMethod));
+            try {
+                //code...
+
+
+
+                //$class = new $controller();
+
+                echo "test";
+
+                $class = IndexController::class;
+
+                echo $class;
+
+                $c = new $class(); //new \App\Controllers\IndexController();
+                echo $c->index();
+
+                //echo call_user_func(array($class, $controllerMethod));
+
+            } catch (\Throwable $th) {
+                throw $th;
+            }
         }
     }
 }

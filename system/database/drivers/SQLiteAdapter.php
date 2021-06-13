@@ -1,5 +1,9 @@
 <?php
-//namespace DB;
+namespace System\Database\Drivers;
+
+use Exception;
+use SQLite3;
+
 //include "AdapterInterface.php";
 require "config/database.php";
 if (!extension_loaded('sqlite3')) {

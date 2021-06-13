@@ -1,4 +1,5 @@
 <?php 
+namespace System\Core;
 /*
 *Database Class
 */

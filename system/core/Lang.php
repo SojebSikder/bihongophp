@@ -1,4 +1,5 @@
 <?php
+namespace System\Core;
 /**
  * Lang Class - Used for Localization
  */

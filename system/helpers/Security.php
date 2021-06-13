@@ -1,5 +1,7 @@
 <?php
 
+namespace System\Helpers;
+
 /**
  * Security Helper
  */

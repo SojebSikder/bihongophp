@@ -1,4 +1,7 @@
 <?php
+
+namespace System\Helpers;
+
 /**
  * Cookie Helper
  */
@@ -12,7 +15,7 @@ class Cookie
 	 */
 	public static function setCookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL)
 	{
-        setcookie($name, $value, $expire, $path, $domain, $secure);		
+		setcookie($name, $value, $expire, $path, $domain, $secure);
 	}
 
 
@@ -21,9 +24,9 @@ class Cookie
 	 */
 	public static function getCookie($index, $xss_clean = NULL)
 	{
-		if(isset($_COOKIE[$index])){
-            return $_COOKIE[$index];
-        }
+		if (isset($_COOKIE[$index])) {
+			return $_COOKIE[$index];
+		}
 	}
 
 	/**
@@ -31,9 +34,6 @@ class Cookie
 	 */
 	public static function deleteCookie($name, $domain = '', $path = '/', $prefix = '')
 	{
-		set_cookie($name, '', '', $domain, $path, $prefix);
+		setcookie($name, '', '', $domain, $path, $prefix);
 	}
-
-
-
 }

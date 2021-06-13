@@ -1,6 +1,9 @@
 <?php
 //include "MySQLAdapter.php";
-//namespace DB;
+namespace System\Database;
+
+use System\Database\Drivers\AdapterInterface;
+
 class Dbase
 {
 

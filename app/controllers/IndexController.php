@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 /**
  * Home page for this controller
  * home method call autometically if method not set on route
@@ -16,11 +18,10 @@ class IndexController extends Controller
 
 	public function index()
 	{
-		//echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 		return view("home.te");
 	}
 	public function test()
 	{
-		echo "test";
+		return "test";
 	}
 }

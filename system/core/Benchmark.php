@@ -1,4 +1,5 @@
 <?php
+namespace System\Core;
 /**
  * Benchmark Class
  * Mesuring Profiling

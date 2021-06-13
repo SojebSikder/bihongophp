@@ -1,8 +1,20 @@
 <?php
 
+namespace System\Core;
+
 /**
  * Command Class
  */
+
+use DatabaseSeeder;
+use System\Core\Autoload;
+use System\Core\Config;
+use System\Core\Database;
+use System\Core\Database\Builder;
+use System\Core\Database\Schema;
+use System\Core\Perser2;
+use System\Helpers\File;
+
 require "vendor/autoload.php";
 Autoload::init();
 const B_VERSION = '2.0.0';

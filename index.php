@@ -1,5 +1,7 @@
 <?php
 
+use System\Core\DotEnv;
+
 $base = "";
 /**
  * DO NOT Touch Here

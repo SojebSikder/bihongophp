@@ -1,5 +1,8 @@
 <?php
-//namespace DB;
+namespace System\Database\Drivers;
+
+use mysqli;
+
 //include "AdapterInterface.php";
 
 class MySQLAdapter implements AdapterInterface
