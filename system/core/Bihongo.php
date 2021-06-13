@@ -17,6 +17,7 @@ use System\Core\Server;
 //require "config/config.php";
 require $base . "config/database.php";
 require $base . "routes/web.php";
+require $base . "routes/api.php";
 require $base . "config/email.php";
 /**
  * Exception Files
