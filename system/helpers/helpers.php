@@ -9,6 +9,8 @@ use System\Core\DotEnv;
 use System\Core\Load;
 use System\Helpers\ArrayHelper;
 use System\Helpers\Format;
+use System\Helpers\Security;
+use System\Helpers\Url;
 
 if (!function_exists('view')) {
 

@@ -1,9 +1,7 @@
 <?php
+
 namespace System\Core;
-/**
- * Defined view resource file
- */
-//$view_folder_path = "resources/views";
+
 /**
  * Loader Class
  */

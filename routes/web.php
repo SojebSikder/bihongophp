@@ -16,6 +16,7 @@
  */
 
 use System\Core\Route;
+use App\Controllers\IndexController;
 
 /**
  * __________________________________________________
@@ -39,7 +40,7 @@ Route::get("/", function () {
     return view('home.te');
 });
 
-Route::get("/home", [App\Controllers\IndexController::class, 'index']);
+Route::get("/home", [IndexController::class, 'index']);
 
 Route::get("/test", function () {
     return "I'm from test";

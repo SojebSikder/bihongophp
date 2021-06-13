@@ -15,7 +15,9 @@ class IndexController extends Controller
 		parent::__construct();
 	}
 
-
+	/**
+	 * Home page
+	 */
 	public function index()
 	{
 		return view("home.te");

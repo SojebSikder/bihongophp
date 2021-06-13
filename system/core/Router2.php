@@ -2,7 +2,7 @@
 
 namespace System\Core;
 
-use App\Controllers;
+use App\Controllers\IndexController;
 
 class Route
 {
@@ -81,30 +81,21 @@ class Route
             $controller = $callback[0];
             $controllerMethod = $callback[1];
 
-
             //require $controller_url . $controller . ".php";
 
-            try {
-                //code...
 
+            //$class = new $controller();
 
+            $class = new IndexController(); //new \App\Controllers\IndexController();
 
-                //$class = new $controller();
+            echo "<pre>";
+            var_dump($class->index());
+            echo "</pre>";
 
-                echo "test";
+            echo "test";
 
-                $class = IndexController::class;
+            echo call_user_func(array($class, $controllerMethod));
 
-                echo $class;
-
-                $c = new $class(); //new \App\Controllers\IndexController();
-                echo $c->index();
-
-                //echo call_user_func(array($class, $controllerMethod));
-
-            } catch (\Throwable $th) {
-                throw $th;
-            }
         }
     }
 }
