@@ -34,12 +34,12 @@ $route['test'] = 'IndexController/test';
 
 
 
-$request = new Request();
-
-Route::setRequest($request);
-
 Route::get("/", function () {
     return "Hello World";
+});
+
+Route::get("/home", function () {
+    return view('home.te');
 });
 
 Route::get("/contact", function () {

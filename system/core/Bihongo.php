@@ -35,6 +35,12 @@ Config::init();
 const B_VERSION = '2.0.0';
 
 /**
+ * Pass request
+ */
+$request = new Request();
+Route::setRequest($request);
+
+/**
  * Server Setup
  */
 Server::init();
