@@ -70,9 +70,6 @@ class Route
         self::getInstance();
         $self = self::$_instance;
 
-        // $controller_url = $application_folder . "\/controllers/";
-        // $default_method = "home";
-
         $path = $self->request->getUrl();
         $method = $self->request->getMethod();
         $callback = $self->routes[$method][$path] ?? false;
@@ -81,10 +78,13 @@ class Route
             show_404();
             exit;
         }
+
         // If $callback is callable then call it
         if (is_callable($callback)) {
             echo call_user_func($callback, $self->request, $self->response);
         }
+
+        // --------------------------------------------------------------
 
         // Specify Controller and method
         if (is_array($callback)) {
