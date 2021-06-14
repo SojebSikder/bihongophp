@@ -20,7 +20,7 @@ class IndexController extends Controller
 
 		//$this->middleware('auth:api')->only(['store', 'update', 'destroy']);
 		//$this->middleware('auth:api');
-		$this->registerMiddleware(new CheckAge);
+		//$this->registerMiddleware(new CheckAge);
 	}
 
 	/**
