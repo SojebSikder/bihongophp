@@ -12,13 +12,10 @@ use System\Core\Request;
  * 
  */
 
-Route::get("/", function ($id, $name) {
-    echo "<pre>";
-    echo $id;
-    echo $name;
-    echo "</pre>";
+Route::get("/", function () {
     return view('home.te');
 });
 
-Route::get("/home", [IndexController::class, 'index']);
+Route::get("/home/[^/]+", [IndexController::class, 'index']);
 Route::get("/test", [IndexController::class, 'test']);
+

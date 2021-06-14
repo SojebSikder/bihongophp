@@ -2,6 +2,7 @@
 
 namespace System\Core;
 
+use ArrayIterator;
 use System\Helpers\ArrayHelper;
 
 class Route
@@ -161,12 +162,8 @@ class Route
             //echo call_user_func($callback, $self->request, $self->response);
             $user_request = $_REQUEST;
 
-            $varArr = [];
-            foreach ($user_request as $key) {
-                array_push($varArr, $key);
-            }
-            
-            echo call_user_func($callback, $varArr[0], $varArr[1]);
+
+            echo call_user_func($callback, $self->request, $self->response);
         }
 
         // --------------------------------------------------------------
