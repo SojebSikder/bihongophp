@@ -16,6 +16,5 @@ Route::get("/", function () {
     return view('home.te');
 });
 
-Route::get("/home/[^/]+", [IndexController::class, 'index']);
+Route::get("/home", [IndexController::class, 'index']);
 Route::get("/test", [IndexController::class, 'test']);
-

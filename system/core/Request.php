@@ -38,6 +38,32 @@ class Request
         }
     }
 
+    public function input($url)
+    {
+        global $config;
+
+        if ($config['csrf_protection'] == FALSE) {
+            if (isset($_REQUEST[$url])) {
+                return $_REQUEST[$url];
+            }
+        } else {
+
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            } else {
+            }
+            //session_start();
+
+            if (!empty($_REQUEST[$config['csrf_token_name']])) {
+                if (hash_equals($_SESSION[$config['csrf_token_name']], $_REQUEST[$config['csrf_token_name']])) {
+                    if (isset($_REQUEST[$url])) {
+                        return $_REQUEST[$url];
+                    }
+                }
+            }
+        }
+    }
+
     public function get($url)
     {
         global $config;
