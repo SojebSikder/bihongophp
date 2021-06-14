@@ -143,8 +143,6 @@ class Route
      */
     public static function resolve()
     {
-        global $application_folder;
-
         self::getInstance();
         $self = self::$_instance;
 
