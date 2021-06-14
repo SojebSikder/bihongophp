@@ -13,7 +13,6 @@ use System\Core\Request;
  */
 
 Route::get("/", function (Request $request) {
-    var_dump($request);
     return view('home.te');
 });
 
