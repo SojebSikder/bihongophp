@@ -12,14 +12,11 @@ use System\Core\Request;
  * 
  */
 
-
-
-
-Route::get("/api", function () {
+Route::prefix('api')->get("/api", function () {
     return "Api from base";
 });
 
 
-Route::get("/api/test", function () {
+Route::prefix('api')->get("/api/test", function () {
     return "Api from test";
 });
