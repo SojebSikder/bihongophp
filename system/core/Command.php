@@ -17,7 +17,7 @@ use System\Helpers\File;
 
 require "vendor/autoload.php";
 Autoload::init();
-const B_VERSION = '2.0.0';
+const B_VERSION = '3.0.0';
 
 function current_migrate($row)
 {

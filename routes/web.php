@@ -12,7 +12,11 @@ use System\Core\Request;
  * 
  */
 
-Route::get("/", function (Request $request) {
+Route::get("/", function ($id, $name) {
+    echo "<pre>";
+    echo $id;
+    echo $name;
+    echo "</pre>";
     return view('home.te');
 });
 

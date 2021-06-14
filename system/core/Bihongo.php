@@ -39,7 +39,7 @@ Config::init();
 /**
  * BihongoPHP Version
  */
-const B_VERSION = '2.0.0';
+const B_VERSION = '3.0.0';
 
 /**
  * Pass request

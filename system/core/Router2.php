@@ -2,6 +2,7 @@
 
 namespace System\Core;
 
+use System\Helpers\ArrayHelper;
 
 class Route
 {
@@ -157,7 +158,15 @@ class Route
 
         // If $callback is callable then call it
         if (is_callable($callback)) {
-            echo call_user_func($callback, $self->request, $self->response);
+            //echo call_user_func($callback, $self->request, $self->response);
+            $user_request = $_REQUEST;
+
+            $varArr = [];
+            foreach ($user_request as $key) {
+                array_push($varArr, $key);
+            }
+            
+            echo call_user_func($callback, $varArr[0], $varArr[1]);
         }
 
         // --------------------------------------------------------------
