@@ -564,260 +564,30 @@ class ' . $seedName . ' extends Seeder
     {
         global $application_folder, $system_path, $config;
 
-        require $system_path . "/core/dbloader.php";
-        Schema::create(function (Builder $table) {
-
-            $table->create_table('users', true, [
-                'id' => 'INT(11) NOT NULL AUTO_INCREMENT ,  PRIMARY KEY (id)',
-                'username' => 'VARCHAR(255) NOT NULL',
-                'email' => 'VARCHAR(255) NOT NULL',
-                'password' => 'VARCHAR(255) NOT NULL'
-            ]);
-        });
-
-
-
-        $login = '<!DOCTYPE html>
-<html>
-<head>
-    <base href="<?php echo ROOT ?>">
-    <meta charset="UTF-8">
-    <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Welcome to <?php echo TITLE ?></title>
-
-    <link rel="stylesheet" href="<?php echo ASSET ?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo ASSET ?>css/material.css">
-
-    <script src="<?php echo ASSET ?>js/jquery.min.js"></script>
-    <script src="<?php echo ASSET ?>js/jsoj.js"></script>
-    <script src="<?php echo ASSET ?>js/material.js"></script>
-</head>
-<body>
-
-
-<div class="container">
-<div class="m-justify"> 
-<div class="m-card">
-<div class="m-card-body">
-
-
-<?php echo Form::open("login",[
-    "method"=>"post",
-        "class"=> "form-signin"
-    ]); ?>
-
-    <h5 class="m-center">Login</h5>
-
-
-    <div class="m-input-group">
-    <input type="text" name="username" class="text-dark m-form-control" autofocus>
-    <label>Username or Email</label>
-    </div>
-    
-    <div class="m-input-group">
-    <input type="password" name="password" class="text-dark m-form-control">
-    <label>Password</label>
-    </div>
-
-    <a class="float-left" href="recover">Forget Account?</a>
-    <p class="float-right">Don\'t have an account? <a href="register">Register</a></p>
-    <input class="m-btn waves-effect m-btn-primary m-btn-block" name="submit" type="submit" value="Sign in">
-
-    </form>
-    
-</div>
-</div>
-</div>
-</div>
-        
-        ';
-
-        $register = '<!DOCTYPE html>
-<html>
-<head>
-    <base href="<?php echo ROOT ?>">
-    <meta charset="UTF-8">
-    <link rel="icon" href="<?php echo ICON ?>" type="image/png" sizes="16x16">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Welcome to <?php echo TITLE ?></title>
-
-    <link rel="stylesheet" href="<?php echo ASSET ?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo ASSET ?>css/material.css">
-
-    <script src="<?php echo ASSET ?>js/jquery.min.js"></script>
-    <script src="<?php echo ASSET ?>js/jsoj.js"></script>
-    <script src="<?php echo ASSET ?>js/material.js"></script>
-</head>
-<body>
-
-
-<div class="container">
-    <div class="m-justify">
-    <div class="m-card">
-    <div class="m-card-body">
-
-    <?php echo Form::open("register",[
-        "method"=>"post",
-        "class"=> "form-signin"
-    ]); ?>
-
-        <h3 class="m-center">Register</h3>
-        <p class="m-center">It\'s free!</p>
-
-
-        <div class="m-input-group">
-        <input type="text" name="username" class="text-dark m-form-control" autofocus>
-        <label>Name</label>
-        </div>
-
-        <div class="m-input-group">
-        <input type="text" name="email" class="text-dark m-form-control">
-        <label>Email address</label>
-        </div>
-
-        <div class="m-input-group">
-        <input type="password" name="password" class="text-dark m-form-control">
-        <label>Password</label>
-        </div>
-
-        
-        <input class="float-left m-hidden" id="psk" type="button" ng-click="showPass()">
-        <label class="float-left" for="psk">Show Password</label>
-
-        <p class="float-right">Already have an account? <a href="login">Login</a></p>
-        <input class="m-btn waves-effect m-btn-primary m-btn-block" name="submit" type="submit" value="Register">
-        </form>
-        
-    </div>
-    </div>
-    </div>
-</div>
-        ';
-
-        $controller = '<?php 
-session_start(); //this will start session
-
-class RegisterController extends Controller{
-    public function __construct(){
-        parent::__construct();
-    }
-
-
-    public function register(){
-
-        $userModel = $this->load->model("RegisterModel");
-
-        if($this->input->post("submit")){
-            $username = Format::Stext($this->input->post("username"));
-            $email = Format::Stext($this->input->post("email"));
-            $password = password_hash(Format::Stext($this->input->post("password")), PASSWORD_DEFAULT);
-
-            $exe = $userModel->register($username, $email, $password);
-
-            if($exe){
-                Format::goto("login");
-            }
-        }
-
-        $this->load->view("register");
-    }
-
-    public function login(){
-        $userModel =$this->load->model("RegisterModel");
-
-        if($this->input->post("submit")){
-            $username = Format::Stext($this->input->post("username"));
-            $password = Format::Stext($this->input->post("password"));
-
-            $exe = $userModel->login($username, $password);
-
-            echo "Login successfully";	
-            Format::goto("home");
-        }
-
-        $this->load->view("login");
-    }
-
-    public function logout(){
-        session_destroy();
-        Format::goto("home");
-    }
-
-
-}
-        ';
-
-        $model = '<?php
-
-class RegisterModel extends Model{
-    public function __construct(){
-        parent::__construct();
-    }
-
-    public function register($username, $email, $password){
-        $result = $this->db->insert("INSERT INTO users (username, email, password) 
-        VALUES(\'$username\', \'$email\', \'$password\')");
-
-        if($result){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public function login($username, $password){
-        $state = $this->db->select("SELECT * FROM users WHERE username=\'$username\'");
-
-        if($state){
-            if(mysqli_num_rows($state) > 0){
-                foreach ($state as $row) {
-                    if(password_verify($password, $row[\'password\'])){
-                        $_SESSION[\'username\'] = $row[\'username\'];
-                        $_SESSION[\'email\'] = $row[\'email\'];
-                    }else{
-                        return false;
-                    }
-                }
-            }
-        }else{
-            return false;
-        }
-    }
-}        
-        ';
-
         $routes = '
 /**
  * Login Register Route
  */
-$route["login"] = "RegisterController/login";
-$route["register"] = "RegisterController/register";
-$route["logout"] = "RegisterController/logout";
+
+Route::get("/login", [App\Controllers\RegisterController::class, "login"]);
+Route::get("/register", [App\Controllers\RegisterController::class, "register"]);
+Route::get("/logout", [App\Controllers\RegisterController::class, "logout"]);
         ';
 
         /**
          * Create view file
          */
-        File::writeFile($application_folder . "/" . "views/login.php", $login);
-        File::writeFile($application_folder . "/" . "views/register.php", $register);
+        copy($system_path . "/template/auth/views/login.te.php", "resources/views/login.te.php");
+        copy($system_path . "/template/auth/views/js/register.te.php", "resources/views/register.te.php");
 
         /**
          * Create route
          */
-        file_put_contents("config/routes.php", $routes, FILE_APPEND);
+        file_put_contents("routes/web.php", $routes, FILE_APPEND);
         /**
          * create controller/Model
          */
-        file_put_contents($application_folder . "/" . "controllers/RegisterController.php", $controller, FILE_APPEND);
-        file_put_contents($application_folder . "/" . "models/RegisterModel.php", $model, FILE_APPEND);
+        copy($system_path . "/template/auth/Controller/RegisterController.php", $application_folder . "/Controllers/RegisterController.php");
+        copy($system_path . "/template/auth/Models/Register.php", $application_folder . "/Models/Register.php");
     }
 }
