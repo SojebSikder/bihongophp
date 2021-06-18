@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <base href="{{ ROOT }}">
+    {{{ BASE }}}
     <meta charset="UTF-8">
     <link rel="icon" href="{{ ICON }}" type="image/png" sizes="16x16">
     <meta name="description" content="">
@@ -13,7 +13,7 @@
     <title>Welcome to {{ name }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ ASSET }}css/material.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/material.css') }}">
 
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/jsoj.js') }}"></script>
@@ -45,7 +45,7 @@
                     </div>
 
                     <a class="float-left" href="recover">Forget Account?</a>
-                    <p class="float-right">Don\'t have an account? <a href="register">Register</a></p>
+                    <p class="float-right">Don't have an account? <a href="register">Register</a></p>
                     <input class="m-btn waves-effect m-btn-primary m-btn-block" name="submit" type="submit" value="Sign in">
 
                     </form>

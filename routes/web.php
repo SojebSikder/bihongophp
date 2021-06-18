@@ -19,4 +19,3 @@ Route::get("/simple", function () {
 });
 
 Route::get("/test", [IndexController::class, 'test']);
-        

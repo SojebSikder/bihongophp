@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    {{ BASE }}
+    {{{ BASE }}}
     <meta charset="UTF-8">
     <link rel="icon" href="{{ ICON }}" type="image/png" sizes="16x16">
     <meta name="description" content="">

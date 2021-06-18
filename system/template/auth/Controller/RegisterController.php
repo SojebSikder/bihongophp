@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Controllers\Controller;
 use System\Core\Request;
 
@@ -16,10 +18,10 @@ class RegisterController extends Controller
 
         $userModel = model("Register");
 
-        if ($request->input->post("submit")) {
-            $username =  xss($request->input->post("username"));
-            $email = xss($request->input->post("email"));
-            $password = password_hash(xss($this->input->post("password")), PASSWORD_DEFAULT);
+        if ($request->input("submit")) {
+            $username =  xss($request->input("username"));
+            $email = xss($request->input("email"));
+            $password = password_hash(xss($request->input("password")), PASSWORD_DEFAULT);
 
             $exe = $userModel->register($username, $email, $password);
 
@@ -35,9 +37,9 @@ class RegisterController extends Controller
     {
         $userModel = model("Register");
 
-        if ($request->input->post("submit")) {
-            $username = xss($request->input->post("username"));
-            $password = xss($request->input->post("password"));
+        if ($request->input("submit")) {
+            $username = xss($request->input("username"));
+            $password = xss($request->input("password"));
 
             $exe = $userModel->login($username, $password);
 
