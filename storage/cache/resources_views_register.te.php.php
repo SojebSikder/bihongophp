@@ -1,8 +1,9 @@
+<?php class_exists('System\Core\Perser2') or exit; ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    {{{ BASE }}}
+    <?php echo BASE ?>
     <meta charset="UTF-8">
     <link rel="icon" href="" type="image/png" sizes="16x16">
     <meta name="description" content="">
@@ -10,14 +11,14 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to {{ name }}</title>
+    <title>Welcome to <?php echo htmlentities(name, ENT_QUOTES, 'UTF-8') ?></title>
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/material.css') }}">
+    <link rel="stylesheet" href="<?php echo htmlentities(asset('assets/css/bootstrap.min.css'), ENT_QUOTES, 'UTF-8') ?>">
+    <link rel="stylesheet" href="<?php echo htmlentities(asset('assets/css/material.css'), ENT_QUOTES, 'UTF-8') ?>">
 
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jsoj.js') }}"></script>
-    <script src="{{ asset('assets/js/material.js') }}"></script>
+    <script src="<?php echo htmlentities(asset('assets/js/jquery.min.js'), ENT_QUOTES, 'UTF-8') ?>"></script>
+    <script src="<?php echo htmlentities(asset('assets/js/jsoj.js'), ENT_QUOTES, 'UTF-8') ?>"></script>
+    <script src="<?php echo htmlentities(asset('assets/js/material.js'), ENT_QUOTES, 'UTF-8') ?>"></script>
 </head>
 
 <body>
