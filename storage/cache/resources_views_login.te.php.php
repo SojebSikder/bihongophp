@@ -30,7 +30,7 @@
                 <div class="m-card-body">
 
 
-                    <form class="form-signin" action="/login" method="post"></form>
+                    <form class="form-signin" action="/login" method="post">
 
                     <h5 class="m-center">Login</h5>
 

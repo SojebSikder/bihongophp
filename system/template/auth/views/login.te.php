@@ -29,24 +29,24 @@
                 <div class="m-card-body">
 
 
-                    <form class="form-signin" action="/login" method="post"></form>
+                    <form class="form-signin" action="/login" method="post">
 
-                    <h5 class="m-center">Login</h5>
+                        <h5 class="m-center">Login</h5>
 
 
-                    <div class="m-input-group">
-                        <input type="text" name="username" class="text-dark m-form-control" autofocus>
-                        <label>Username or Email</label>
-                    </div>
+                        <div class="m-input-group">
+                            <input type="text" name="username" class="text-dark m-form-control" autofocus>
+                            <label>Username or Email</label>
+                        </div>
 
-                    <div class="m-input-group">
-                        <input type="password" name="password" class="text-dark m-form-control">
-                        <label>Password</label>
-                    </div>
+                        <div class="m-input-group">
+                            <input type="password" name="password" class="text-dark m-form-control">
+                            <label>Password</label>
+                        </div>
 
-                    <a class="float-left" href="recover">Forget Account?</a>
-                    <p class="float-right">Don't have an account? <a href="register">Register</a></p>
-                    <input class="m-btn waves-effect m-btn-primary m-btn-block" name="submit" type="submit" value="Sign in">
+                        <a class="float-left" href="recover">Forget Account?</a>
+                        <p class="float-right">Don't have an account? <a href="register">Register</a></p>
+                        <input class="m-btn waves-effect m-btn-primary m-btn-block" name="submit" type="submit" value="Sign in">
 
                     </form>
 
