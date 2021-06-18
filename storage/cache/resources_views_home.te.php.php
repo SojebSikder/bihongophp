@@ -5,7 +5,7 @@
 <head>
     <?php echo BASE ?>
     <meta charset="<?php echo htmlentities(CHARSET, ENT_QUOTES, 'UTF-8') ?>">
-    <link rel="icon" href="<?php echo htmlentities(ICON, ENT_QUOTES, 'UTF-8') ?>" type="image/png" sizes="16x16">
+    <link rel="icon" href="" type="image/png" sizes="16x16">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
@@ -25,7 +25,7 @@
 
 <center>
     <h1>Hello, Welcome to <?php echo htmlentities(name, ENT_QUOTES, 'UTF-8') ?> Framework</h1>
-    <h3><?php echo htmlentities(SLOGAN, ENT_QUOTES, 'UTF-8') ?></h3>
+    Let's create awesome
 </center>
 
 

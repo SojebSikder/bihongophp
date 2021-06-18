@@ -4,7 +4,7 @@
 <head>
     {{{ BASE }}}
     <meta charset="UTF-8">
-    <link rel="icon" href="{{ ICON }}" type="image/png" sizes="16x16">
+    <link rel="icon" href="" type="image/png" sizes="16x16">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">

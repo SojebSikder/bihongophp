@@ -40,25 +40,6 @@ $config['url'] = [
 
 
 /**
- * Web Information
- */
-$config['web'] = [
-	"info" => [
-		"icon" => "youricon.png",
-		"slogan" => "Let's create awesome",
-	],
-];
-/**
- * User Information
- */
-$config['user'] = [
-	"user" => [
-		"user_name" => "",
-		"user_email" => ""
-	],
-];
-
-/**
  * Set mode
  * For develpment : 'development'
  * For production : 'production'
@@ -122,9 +103,6 @@ $config['right_deli'] = "}}";
 // Getting web name
 defined("name")
 	or define("name", $config['name']);
-//Getting Web Slogan
-defined("SLOGAN")
-	or define("SLOGAN", $config['web']['info']['slogan']);
 //Getting base url
 defined("ROOT")
 	or define("ROOT", $config['url']['baseUrl']);
@@ -137,9 +115,6 @@ defined("RESOURCE")
 //Getting base element
 defined("BASE")
 	or define("BASE", '<base href="' . ROOT . '">');
-//Get Icon
-defined("ICON")
-	or define("ICON", $config['web']['info']['icon']);
 //Get Charset
 defined("CHARSET")
 	or define("CHARSET", $config['charset']);

@@ -4,12 +4,12 @@
 
 <center>
     <h1>Hello, Welcome to {{name}} Framework</h1>
-    <h3>{{SLOGAN}}</h3>
+    Let's create awesome
 </center>
 
 
 {% block content %}
-    <h1>Helo World</h1>
+<h1>Helo World</h1>
 {% endblock %}
 
 
