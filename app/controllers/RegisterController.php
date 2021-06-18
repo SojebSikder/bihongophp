@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use System\Core\Request;
+use System\Helpers\Form;
 
 class RegisterController extends Controller
 {
