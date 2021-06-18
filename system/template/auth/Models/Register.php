@@ -3,7 +3,7 @@
 use System\Core\ORM;
 use System\Database\Facade\DB;
 
-class RegisterModel extends ORM
+class Register extends ORM
 {
     public function __construct()
     {

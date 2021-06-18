@@ -3,8 +3,6 @@
 use App\Controllers\Controller;
 use System\Core\Request;
 
-session_start(); //this will start session
-
 class RegisterController extends Controller
 {
     public function __construct()

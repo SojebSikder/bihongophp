@@ -578,7 +578,7 @@ Route::get("/logout", [App\Controllers\RegisterController::class, "logout"]);
          * Create view file
          */
         copy($system_path . "/template/auth/views/login.te.php", "resources/views/login.te.php");
-        copy($system_path . "/template/auth/views/js/register.te.php", "resources/views/register.te.php");
+        copy($system_path . "/template/auth/views/register.te.php", "resources/views/register.te.php");
 
         /**
          * Create route
