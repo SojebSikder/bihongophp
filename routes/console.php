@@ -3,7 +3,6 @@
 use System\Core\Command;
 use System\Inspiring;
 
-require $system_path . "/" . "Inspire.php";
 /**
  * Create console command
  * 

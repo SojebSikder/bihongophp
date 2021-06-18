@@ -4,8 +4,6 @@ namespace System;
 
 use System\Helpers\ArrayHelper;
 
-include "helpers/ArrayHelper.php";
-
 class Inspiring
 {
     /**
