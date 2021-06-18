@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Middleware\CheckAge;
 use System\Core\Request;
+use System\Libraries\Session;
 
 /**
  * Home page for this controller

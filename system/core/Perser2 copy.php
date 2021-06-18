@@ -12,9 +12,6 @@ class Perser2
 	static $cache_path = cache_path;
 	static $cache_enabled = true;
 
-	/**
-	 * Starting point
-	 */
 	static function view($file, $data = false)
 	{
 		$cached_file = self::cache($file);
@@ -25,9 +22,6 @@ class Perser2
 		require $cached_file;
 	}
 
-	/**
-	 * Cache
-	 */
 	static function cache($file)
 	{
 		if (!file_exists(self::$cache_path)) {
@@ -42,9 +36,6 @@ class Perser2
 		return $cached_file;
 	}
 
-	/**
-	 * Clear cache
-	 */
 	public static function clearCache()
 	{
 		foreach (glob(self::$cache_path . '*') as $file) {
@@ -129,11 +120,7 @@ class Perser2
 	{
 		return preg_replace('~\{{{\s*(.+?)\s*\}}}~is', '<?php echo $1 ?>', $code);
 	}
-	/**
-	 * Compile php files
-	 * example:
-	 * {% block %} {% endblock %}
-	 */
+
 	static function compileBlock($code)
 	{
 		preg_match_all('/{% ?block ?(.*?) ?%}(.*?){% ?endblock ?%}/is', $code, $matches, PREG_SET_ORDER);

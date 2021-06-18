@@ -12,9 +12,10 @@ use System\Core\Request;
  * 
  */
 
-Route::get("/", function () {
-    return view('home.te');
+Route::get("/", [IndexController::class, 'index']);
+
+Route::get("/simple", function () {
+    return "Hello from simple route";
 });
 
-Route::get("/home", [IndexController::class, 'index']);
 Route::get("/test", [IndexController::class, 'test']);

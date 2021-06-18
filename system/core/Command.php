@@ -433,13 +433,15 @@ class Command
     {
         $data = '<?php 
 
+namespace App\Controllers;
+
 class ' . $controllerName . ' extends Controller{
     public function __construct(){
         parent::__construct();
     }
 
     public function home(){
-        $this->load->view("home");
+        return view("home");
     }
 }
 
@@ -452,13 +454,11 @@ class ' . $controllerName . ' extends Controller{
     {
         $data = '<?php
 
-class ' . $modelName . ' extends Model{
+use System\Core\ORM;
+
+class ' . $modelName . ' extends ORM{
     public function __construct(){
         parent::__construct();
-    }
-
-    public function dataList($query){
-        return $this->db->select($query);
     }
 }
         
@@ -476,32 +476,35 @@ class ' . $modelName . ' extends Model{
         /**
          * Create Database
          */
-        require $system_path . "/core/dbloader.php";
+        // require $system_path . "/core/dbloader.php";
 
-        $db = new Database();
-
-
-        Schema::create(function (Builder $table) {
-            global $config;
-            $tableName = $config['migrations'];
-
-            $table->create_table($tableName, true, [
-                'id' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
-                'class' => 'VARCHAR(255) NOT NULL',
-                'migration' => 'VARCHAR(255) NOT NULL',
-                'version' => 'VARCHAR(255) NOT NULL',
-                'batch' => 'INT(11) NOT NULL AUTO_INCREMENT ,  PRIMARY KEY (batch)'
-            ]);
-        });
+        // $db = new Database();
 
 
-        $db->insert("INSERT INTO $tableName (migration, class, version) 
-        VALUES('$version', '$class', '$onlyVersion')");
+        // Schema::create(function (Builder $table) {
+        //     global $config;
+        //     $tableName = $config['migrations'];
+
+        //     $table->create_table($tableName, true, [
+        //         'id' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+        //         'class' => 'VARCHAR(255) NOT NULL',
+        //         'migration' => 'VARCHAR(255) NOT NULL',
+        //         'version' => 'VARCHAR(255) NOT NULL',
+        //         'batch' => 'INT(11) NOT NULL AUTO_INCREMENT ,  PRIMARY KEY (batch)'
+        //     ]);
+        // });
+
+
+        // $db->insert("INSERT INTO $tableName (migration, class, version) 
+        // VALUES('$version', '$class', '$onlyVersion')");
 
         //end That
 
 
         $data = '<?php
+
+use System\Core\Database\Builder;
+use System\Core\Database\Schema;
 
 class ' . $migrationName . '
 {
@@ -537,6 +540,8 @@ class ' . $migrationName . '
     {
 
         $data = '<?php
+
+use System\Core\Database\Seeder;
 
 class ' . $seedName . ' extends Seeder
 {

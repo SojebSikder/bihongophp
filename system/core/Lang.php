@@ -24,8 +24,8 @@ class Lang
             self::$langName = $config['locale'];
         }
 
-        if(file_exists($config['url']['asset']."/lang/".self::$langName.".php")){
-            require $config['url']['asset']."/lang/".self::$langName.".php";
+        if(file_exists($config['url']['resource']."/lang/".self::$langName.".php")){
+            require $config['url']['resource']."/lang/".self::$langName.".php";
             if(array_key_exists($key, $lang)){
                 return $lang[$key];
             }else{

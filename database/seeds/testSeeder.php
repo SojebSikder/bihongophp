@@ -1,5 +1,7 @@
 <?php
 
+use System\Core\Database\Seeder;
+
 class testSeeder extends Seeder
 {
     /**

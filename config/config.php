@@ -7,6 +7,14 @@
  */
 
 /**
+ * Application Name
+ * This value is the name of your application. This value is used when the
+ * framework needs to place the application's name in a notification or
+ * any other location as required by the application or its packages.
+ */
+$config['name'] = env('APP_NAME', 'Bihongo');
+
+/**
  * URL to your project root. This will your base URL, with a trailing slash:
  *  http://example.com
  * 
@@ -14,12 +22,9 @@
  */
 $config['url'] = [
 	/**
-	 * base url (Changeable) like: http://localhost/bihongophp/
-	 * OR
-	 * just -> / (slash)
-	 * Access this value on project using ROOT constant
+	 * base url of application
 	 */
-	"baseUrl" => env("SERVER_URL", "/bihongophp"), //"/bihongophp/",
+	"baseUrl" => env("SERVER_URL", "http://localhost"),
 
 	/**
 	 * asset directory for use assets(js/css etc.)
@@ -30,7 +35,7 @@ $config['url'] = [
 	/**
 	 * resource directory
 	 */
-	"resource" => "resources/"
+	"resource" => "resources/",
 ];
 
 
@@ -39,10 +44,9 @@ $config['url'] = [
  */
 $config['web'] = [
 	"info" => [
-		"web_icon" => "youricon.png",
-		"web_title" => env("APP_NAME", "Bihongo"),
-		"web_slogan" => "Let's create awesome"
-	]
+		"icon" => "youricon.png",
+		"slogan" => "Let's create awesome",
+	],
 ];
 /**
  * User Information
@@ -51,7 +55,7 @@ $config['user'] = [
 	"user" => [
 		"user_name" => "",
 		"user_email" => ""
-	]
+	],
 ];
 
 /**
@@ -64,7 +68,7 @@ $config['user'] = [
  * 
  * 
  */
-$config['mode'] = env('APP_ENV', 'development');
+$config['mode'] = env('APP_ENV', 'production');
 /**
  * Application folder
  */
@@ -115,12 +119,12 @@ $config['right_deli'] = "}}";
 /**
  * Importnt Constant || DO not Edit here
  */
-//Getting Web Title
-defined("TITLE")
-	or define("TITLE", $config['web']['info']['web_title']);
+// Getting web name
+defined("name")
+	or define("name", $config['name']);
 //Getting Web Slogan
 defined("SLOGAN")
-	or define("SLOGAN", $config['web']['info']['web_slogan']);
+	or define("SLOGAN", $config['web']['info']['slogan']);
 //Getting base url
 defined("ROOT")
 	or define("ROOT", $config['url']['baseUrl']);
@@ -135,7 +139,7 @@ defined("BASE")
 	or define("BASE", '<base href="' . ROOT . '">');
 //Get Icon
 defined("ICON")
-	or define("ICON", $config['web']['info']['web_icon']);
+	or define("ICON", $config['web']['info']['icon']);
 //Get Charset
 defined("CHARSET")
 	or define("CHARSET", $config['charset']);

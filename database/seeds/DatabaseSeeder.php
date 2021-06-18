@@ -1,4 +1,7 @@
 <?php
+
+use System\Core\Database\Seeder;
+
 /**
  * Do not delete this file
  */

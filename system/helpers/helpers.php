@@ -6,6 +6,7 @@
  */
 
 use System\Core\DotEnv;
+use System\Core\Lang;
 use System\Core\Load;
 use System\Core\Response;
 use System\Helpers\ArrayHelper;
@@ -19,10 +20,32 @@ if (!function_exists('response')) {
     /**
      * Load View
      */
-    function response()
+    function response($content = false, $statusCode = false)
     {
         $response = new Response();
-        return $response;
+        return $response->__construct($content, $statusCode);
+    }
+}
+
+if (!function_exists('trans')) {
+
+    /**
+     * Load View
+     */
+    function trans($key)
+    {
+        return Lang::trans($key);
+    }
+}
+
+if (!function_exists('setLocal')) {
+
+    /**
+     * Set Locale
+     */
+    function setLocal($langname)
+    {
+        return Lang::setLocale($langname);
     }
 }
 
