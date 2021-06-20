@@ -10,14 +10,8 @@ use System\Core\Command;
  * Reserved for app
  */
 
-
-
-
-/**
- * Command Class
- */
-
 use DatabaseSeeder;
+use System\Core\Application;
 use System\Core\Autoload;
 use System\Core\Config;
 use System\Core\Database;
@@ -28,7 +22,8 @@ use System\Helpers\File;
 
 require "vendor/autoload.php";
 Autoload::init();
-const B_VERSION = '3.0.0';
+
+define("B_VERSION", Application::$version);
 
 function current_migrate($row)
 {
