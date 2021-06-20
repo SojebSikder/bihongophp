@@ -2,7 +2,7 @@
 
 
 /**
- * Data
+ * Helpers
  */
 
 use System\Core\Config;
@@ -14,7 +14,7 @@ use System\Helpers\ArrayHelper;
 use System\Helpers\Format;
 use System\Helpers\Security;
 use System\Helpers\Url;
-
+use System\Libraries\Session;
 
 if (!function_exists('response')) {
 
@@ -28,10 +28,28 @@ if (!function_exists('response')) {
     }
 }
 
+if (!function_exists('session')) {
+
+    /**
+     * Get Session
+     */
+    function session($key = null, $value = null)
+    {
+        if (is_null($value)) {
+            return Session::get($key);
+        }
+        if (!is_null($key)) {
+            return Session::set($key, $value);
+        } else {
+            return Session::getInstance();
+        }
+    }
+}
+
 if (!function_exists('config')) {
 
     /**
-     * Load View
+     * Get Config
      */
     function config($key, $default = null)
     {

@@ -1,15 +1,17 @@
 <?php
+
 /**
  * Show error
  * @param string $text error description
  * @return void
  */
-function show_error($text, $errorType="Error"){
+function show_error($text, $errorType = "Error")
+{
     global $config;
-    
-    if($config['mode'] == "production"){
+
+    if ($config['mode'] == "production") {
         return false;
-    }else{    
+    } else {
         echo "<strong>$errorType:</strong> $text";
     }
 }
@@ -17,8 +19,10 @@ function show_error($text, $errorType="Error"){
 /**
  * Show 404 Error
  */
-function show_404(){
+function show_404()
+{
     $error = "404 Not Found";
+    $title = "Not Found";
 
     echo '
     <!DOCTYPE html>
@@ -27,7 +31,7 @@ function show_404(){
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
     
-            <title>Not Found</title>
+            <title>' . $title . '</title>
     
             <!-- Styles -->
             <style>
@@ -65,7 +69,7 @@ function show_404(){
             <div class="flex-center position-ref full-height">
     
                 <div class="message" style="padding: 10px;">
-                 <h1>'.$error.' </h1> 
+                 <h1>' . $error . ' </h1> 
                  </div>
             </div>
         </body>

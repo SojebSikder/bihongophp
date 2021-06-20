@@ -38,6 +38,15 @@ class Config
         global $config, $email;
         $all_config = array_merge($config, $email);
 
+        // $key = isset($key) ? $key : NULL;
+        // if ($key != NULL) {
+        //     $key = rtrim($key, '.');
+        //     $key = explode(".", filter_var($key));
+        // } else {
+        //     unset($key);
+        // }
+
+
         if ($all_config[$key] == null) {
             return $default;
         } else {
