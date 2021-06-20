@@ -5,6 +5,7 @@
  * Data
  */
 
+use System\Core\Config;
 use System\Core\DotEnv;
 use System\Core\Lang;
 use System\Core\Load;
@@ -24,6 +25,17 @@ if (!function_exists('response')) {
     {
         $response = new Response();
         return $response->__construct($content, $statusCode);
+    }
+}
+
+if (!function_exists('config')) {
+
+    /**
+     * Load View
+     */
+    function config($key, $default = null)
+    {
+        return Config::get($key, $default);
     }
 }
 
