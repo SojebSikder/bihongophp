@@ -149,6 +149,11 @@ class Perser2
 		return $code;
 	}
 
+	/**
+	 * Compile php files
+	 * example:
+	 * {% yield content %} for master page. And extend to child
+	 */
 	static function compileYield($code)
 	{
 		foreach (self::$blocks as $block => $value) {
