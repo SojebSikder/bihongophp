@@ -19,3 +19,9 @@ Command::set('ask', function () {
     $a = Command::ask("write your name: ");
     Command::danger($a);
 })->describe('This is just a demo')->usage('ask');
+
+
+
+Command::set('test', function () {
+    Command::exec('cd public && php -S localhost:8000');
+})->describe('This is test server')->usage('test');
