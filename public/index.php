@@ -2,7 +2,9 @@
 
 use System\Core\DotEnv;
 
-$base = "";
+define('BIHONGO_START', microtime(true));
+
+$base = __DIR__ . "/../";
 /**
  * DO NOT Touch Here
  */
@@ -11,9 +13,11 @@ $base = "";
  * Autoload Core
  */
 //Composer Autoload
-require $base . __DIR__ . '/vendor/autoload.php';
+// require $base . __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 //Initialize DotEnv
-DotEnv::init();
+(new DotEnv(__DIR__ . '/../.env'))->load();
+// DotEnv::init();
 
 /**
  * Load Config

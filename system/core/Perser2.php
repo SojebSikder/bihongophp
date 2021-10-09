@@ -30,10 +30,13 @@ class Perser2
 	 */
 	static function cache($file)
 	{
-		if (!file_exists(self::$cache_path)) {
-			mkdir(self::$cache_path, 0744);
+		if (!file_exists("../" . self::$cache_path)) {
+			// $str ="../" .  self::$cache_path . "info.txt";
+			// require $str;
+			// echo file($str);
+			mkdir("../" . self::$cache_path, 0744);
 		}
-		$cached_file = self::$cache_path . str_replace(array('/', '.html'), array('_', ''), $file . '.php');
+		$cached_file = "../".self::$cache_path . str_replace(array('/', '.html'), array('_', ''), $file . '.php');
 		if (!self::$cache_enabled || !file_exists($cached_file) || filemtime($cached_file) < filemtime($file)) {
 			$code = self::includeFiles($file);
 			$code = self::compileCode($code);
@@ -71,7 +74,12 @@ class Perser2
 	 */
 	static function includeFiles($file)
 	{
-		$code = file_get_contents($file);
+		// $str ="../" . $file;
+		// require $str;
+		// echo file($str);
+
+
+		$code = file_get_contents("../" .$file);
 		preg_match_all('/{% ?(extends|include) ?\'?(.*?)\'? ?%}/i', $code, $matches, PREG_SET_ORDER);
 		foreach ($matches as $value) {
 			$code = str_replace($value[0], self::includeFiles($value[2]), $code);
