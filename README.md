@@ -11,3 +11,6 @@ Run using CMD command
 ```
 php cmd serve
 ```
+
+## Contribution
+BihongoPHP is open for contribution.
