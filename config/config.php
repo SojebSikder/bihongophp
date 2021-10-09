@@ -20,25 +20,28 @@ $config['name'] = env('APP_NAME', 'Bihongo');
  * 
  * WARNING: You MUST set baseUrl value
  */
-$config['url'] = [
-	/**
-	 * base url of application
-	 */
-	"baseUrl" => env("SERVER_URL", "http://localhost"),
+// $config['url'] = [
+// 	/**
+// 	 * base url of application
+// 	 */
+// 	"baseUrl" => env("SERVER_URL", "http://localhost"),
 
-	/**
-	 * asset directory for use assets(js/css etc.)
-	 * Access this value on project using ASSET constant
-	 * If you want to change your asset/resource directory then you can
-	 */
-	// "asset" => "public/",
-	"asset" => "",
-	/**
-	 * resource directory
-	 */
-	"resource" => "resources/",
-];
+// 	/**
+// 	 * asset directory for use assets(js/css etc.)
+// 	 * Access this value on project using ASSET constant
+// 	 * If you want to change your asset/resource directory then you can
+// 	 */
+// 	// "asset" => "public/",
+// 	"asset" => "",
+// 	/**
+// 	 * resource directory
+// 	 */
+// 	"resource" => "resources/",
+// ];
 
+$config['url'] = env("SERVER_URL", "http://localhost");
+$config['asset'] = "";
+$config['resource'] = "resources/";
 
 /**
  * Set mode
@@ -106,13 +109,13 @@ defined("name")
 	or define("name", $config['name']);
 //Getting base url
 defined("ROOT")
-	or define("ROOT", $config['url']['baseUrl']);
+	or define("ROOT", $config['url']);
 //Get assets directory
 defined("ASSET")
-	or define("ASSET", $config['url']['baseUrl'] . "/" . $config['url']['asset']);
+	or define("ASSET", $config['url'] . "/" . $config['asset']);
 //Get resources directory
 defined("RESOURCE")
-	or define("RESOURCE", $config['url']['baseUrl'] . "/" . $config['url']['resource']);
+	or define("RESOURCE", $config['url'] . "/" . $config['resource']);
 //Getting base element
 defined("BASE")
 	or define("BASE", '<base href="' . ROOT . '">');
