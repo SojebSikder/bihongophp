@@ -70,9 +70,9 @@ class AppCommand
         Command::set('serve', function () {
             global $argv;
             if (isset($argv[2])) {
-                Command::exec('php -S localhost:' . $argv[2]);
+                Command::exec('cd public && php -S localhost:' . $argv[2]);
             } else {
-                Command::exec('php -S localhost:8000');
+                Command::exec('cd public && php -S localhost:8000');
             }
         })->describe("Serve the application on the PHP development server");
 
