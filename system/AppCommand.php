@@ -2,6 +2,7 @@
 
 namespace System;
 
+use Data;
 use System\Core\Command;
 
 /**
@@ -19,6 +20,7 @@ use System\Core\Database\Builder;
 use System\Core\Database\Schema;
 use System\Core\Perser2;
 use System\Helpers\File;
+use System\Helpers\StringHelper;
 
 require "vendor/autoload.php";
 Autoload::init();
@@ -166,23 +168,36 @@ class AppCommand
             global $argc, $argv, $application_folder, $system_path, $config;
 
             require $system_path . "/core/dbloader.php";
-            require $config['migration_path'] . current_migrate('migration') . ".php";
-            if (isset($argv[2])) {
-                //find current migrations
-                $class = current_migrate('class');
-                $test = new $class();
-                $method = $argv[2];
-                $test->$method();
-                //end that
-                Command::success("$method Migration");
-            } else {
-                //find current migrations
-                $class = current_migrate('class');
-                $test = new $class();
-                $test->up();
-                //end that
-                Command::success("Created Migration");
+            // require $config['migration_path'] . current_migrate('migration') . ".php";
+
+            Command::success("Hello");
+            foreach (glob($config['migration_path'] . '*.php') as $file) {
+                require $file;
+                $rep = str_replace($config['migration_path'], "", $file);
+                $rep2 = str_replace(".php", "", $rep);
+
+                $test = October_15_2020_12_07_pm_test::class;
+                $cl = $test;
+
+                Command::success($cl);
             }
+
+            // if (isset($argv[2])) {
+            //     //find current migrations
+            //     $class = current_migrate('class');
+            //     $test = new $class();
+            //     $method = $argv[2];
+            //     $test->$method();
+            //     //end that
+            //     Command::success("$method Migration");
+            // } else {
+            //     //find current migrations
+            //     $class = current_migrate('class');
+            //     $test = new $class();
+            //     $test->up();
+            //     //end that
+            //     Command::success("Created Migration");
+            // }
         })->describe('Database migrate command');
 
         /**
@@ -243,12 +258,14 @@ class AppCommand
         Command::set('make:migration', function () {
             global $application_folder, $config;
 
-            $name = Command::args(2);
+            $name = StringHelper::pluralize(2, strtolower(Command::args(2)));
+
 
             if (isset($name)) {
-                $time = time(); //date('F_j_Y_g_i_a', time());
-                File::writeFile($config['migration_path'] . $time . "-" . $name . ".php", self::createMigration($name, $time . "-" . $name, $name, $time));
-                Command::success("Created Migration: " . $time . "-" . $name);
+                // $time = time(); //date('F_j_Y_g_i_a', time());
+                $time = date('Y_j_g_i_s_u', time());
+                File::writeFile($config['migration_path'] . $time . "_" . $name . ".php", self::createMigration($name, $time . "-" . $name, $name, $time));
+                Command::success("Created Migration: " . $time . "_" . $name);
             } else {
                 Command::danger("2nd Argument not found");
             }

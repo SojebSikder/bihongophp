@@ -1,5 +1,7 @@
 <?php
 
+use App\Controllers\Controller;
+
 /**
  * Router Class
  */

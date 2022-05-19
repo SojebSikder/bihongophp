@@ -15,10 +15,12 @@ use System\Core\Request;
 Route::get("/", [IndexController::class, 'index']);
 
 Route::get("/simple", function () {
-    return "Hello from simple route";
+    // $time = date('F_j_Y_g_i_a', time());
+    $time = date('Y_j_g_i_s_u', time());
+    return $time;
+    //return "Hello from simple route";
 });
 
-Route::get("/test", [IndexController::class, 'test']);
 Route::get("/test", [IndexController::class, 'test']);
 
 /**

@@ -2,15 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Exceptions\ForbiddenException;
-use System\Core\Request;
+use Data;
 
-/**
- * Home page for this controller
- * home method call autometically if method not set on route
- * 
- * It recommended to use parameter upto 2.
- */
 class IndexController extends Controller
 {
 	public function __construct()
@@ -18,7 +11,7 @@ class IndexController extends Controller
 		parent::__construct();
 
 		//$this->middleware('auth:api')->only(['store', 'update', 'destroy']);
-		//$this->registerMiddleware(new CheckAge);
+		// $this->registerMiddleware(new CheckAge());
 	}
 
 	/**
@@ -30,6 +23,7 @@ class IndexController extends Controller
 	}
 	public function test()
 	{
-		return "test";
+		$data = Data::all();
+		return $data;
 	}
 }
