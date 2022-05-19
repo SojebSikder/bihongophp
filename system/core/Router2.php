@@ -43,6 +43,16 @@ class Route
     /**
      * Get request
      */
+    public static function resource($path, $callback)
+    {
+        Route::get($path, [$callback, 'index']);
+        Route::post($path, [$callback, 'store']);
+        Route::put($path, [$callback, 'update']);
+        Route::delete($path, [$callback, 'destroy']);
+    }
+    /**
+     * Get request
+     */
     public static function get($path, $callback)
     {
         self::getInstance();

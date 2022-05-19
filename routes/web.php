@@ -19,6 +19,7 @@ Route::get("/simple", function () {
 });
 
 Route::get("/test", [IndexController::class, 'test']);
+Route::get("/test", [IndexController::class, 'test']);
 
 /**
  * Login Register Route
