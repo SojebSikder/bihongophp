@@ -269,7 +269,7 @@ class AppCommand
          * Create Model
          */
         Command::set('make:model', function () {
-            global $application_folder;
+            global $argv, $application_folder;
 
             $name = Command::args(2);
             File::writeFile($application_folder . "/" . "models/" . $name . ".php", self::createModel($name));
@@ -278,8 +278,8 @@ class AppCommand
             if (isset($argv[3])) {
                 switch ($argv[3]) {
                     case '-m':
-                        $name = StringHelper::pluralize(2, strtolower($name));
                         Command::exec("php cmd make:migration " . $name);
+                        Command::success("$name migration created successfully");
                         break;
 
                     default:
