@@ -3,6 +3,7 @@
 use System\Core\Route;
 use App\Controllers\IndexController;
 use System\Core\Request;
+use System\Helpers\StringHelper;
 
 /**
  * ___________
@@ -15,10 +16,7 @@ use System\Core\Request;
 Route::get("/", [IndexController::class, 'index']);
 
 Route::get("/simple", function () {
-    // $time = date('F_j_Y_g_i_a', time());
-    $time = date('Y_j_g_i_s_u', time());
-    return $time;
-    //return "Hello from simple route";
+    return "Hello from simple route";
 });
 
 Route::get("/test", [IndexController::class, 'test']);

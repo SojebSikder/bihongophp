@@ -3,7 +3,7 @@
 use System\Core\Database\Builder;
 use System\Core\Database\Schema;
 
-class datas
+class Data
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class datas
     {
         //
         Schema::create(function (Builder $table) {
-            $table->create_table('datas', true, [
-                'id' => 'INT(11) NOT NULL',
-                'text' => 'VARCHAR(255) NOT NULL',
-            ])->add_key('id', true);
+            $table->create_table("datas", true, [
+                "id" => "INT(11) NOT NULL",
+                "text" => "VARCHAR(255) NOT NULL",
+            ])->add_key("id", true);
         });
     }
 
@@ -29,6 +29,6 @@ class datas
     public function down()
     {
         //
-        Schema::drop('datas');
+        Schema::drop("datas");
     }
 }
