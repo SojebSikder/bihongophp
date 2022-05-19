@@ -169,18 +169,39 @@ class AppCommand
 
             require $system_path . "/core/dbloader.php";
             // require $config['migration_path'] . current_migrate('migration') . ".php";
-
-            Command::success("Hello");
             foreach (glob($config['migration_path'] . '*.php') as $file) {
                 require $file;
-                $rep = str_replace($config['migration_path'], "", $file);
-                $rep2 = str_replace(".php", "", $rep);
+                // $fp = fopen("database/migrations/2022_19_8_36_14_000000_datas.php", 'r');
+                $fp = fopen($file, 'r');
+                $class = $buffer = '';
+                $i = 0;
+                while (!$class) {
+                    if (feof($fp)) break;
 
-                $test = October_15_2020_12_07_pm_test::class;
-                $cl = $test;
+                    $buffer .= fread($fp, 512);
+                    $tokens = token_get_all($buffer);
 
-                Command::success($cl);
+                    if (strpos($buffer, '{') === false) continue;
+
+                    for (; $i < count($tokens); $i++) {
+                        if ($tokens[$i][0] === T_CLASS) {
+                            for ($j = $i + 1; $j < count($tokens); $j++) {
+                                if ($tokens[$j] === '{') {
+                                    $class = $tokens[$i + 2][1];
+                                    $object = new $class();
+                                    $object->up();
+                                    Command::success("Migrated");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
             }
+
+
+
+
 
             // if (isset($argv[2])) {
             //     //find current migrations
