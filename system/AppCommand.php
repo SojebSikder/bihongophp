@@ -171,7 +171,11 @@ class AppCommand
             // require $config['migration_path'] . current_migrate('migration') . ".php";
             foreach (glob($config['migration_path'] . '*.php') as $file) {
                 require $file;
+
+                $fileName = str_replace($config['migration_path'], "", $file);
+
                 // $fp = fopen("database/migrations/2022_19_8_36_14_000000_datas.php", 'r');
+                // get class via file name
                 $fp = fopen($file, 'r');
                 $class = $buffer = '';
                 $i = 0;
@@ -190,7 +194,7 @@ class AppCommand
                                     $class = $tokens[$i + 2][1];
                                     $object = new $class();
                                     $object->up();
-                                    Command::success("Migrated");
+                                    Command::success("Migrated - " . $fileName);
                                     break;
                                 }
                             }
@@ -270,6 +274,18 @@ class AppCommand
             $name = Command::args(2);
             File::writeFile($application_folder . "/" . "models/" . $name . ".php", self::createModel($name));
             Command::success($name . " model created succesfully");
+
+            if (isset($argv[3])) {
+                switch ($argv[3]) {
+                    case '-m':
+                        $name = StringHelper::pluralize(2, strtolower($name));
+                        Command::exec("php cmd make:migration " . $name);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         })->describe("Create model")->usage("make:model [ModelName]");
 
 

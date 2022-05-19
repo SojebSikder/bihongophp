@@ -3,7 +3,7 @@
 use System\Core\Database\Builder;
 use System\Core\Database\Schema;
 
-class test
+class User
 {
     /**
      * Run the migrations.
@@ -12,6 +12,7 @@ class test
      */
     public function up()
     {
+        //
         Schema::create(function (Builder $table) {
             $table->create_table('users', true, [
                 'id' => 'INT(11) NOT NULL',
@@ -28,6 +29,7 @@ class test
      */
     public function down()
     {
-        Schema::drop('users');
+        //
+        Schema::drop("users");
     }
 }

@@ -25,3 +25,9 @@ Command::set('ask', function () {
 Command::set('test', function () {
     Command::exec('cd public && php -S localhost:8000');
 })->describe('This is test server')->usage('test');
+
+Command::set('check', function () {
+    global $argc, $argv;
+    Command::success($argv[2]);
+    Command::success($argv[3]);
+})->describe('This is test server')->usage('test');
