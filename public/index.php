@@ -23,6 +23,8 @@ require __DIR__ . '/../vendor/autoload.php';
  * Load Config
  */
 require $base . "config/config.php";
+require $base . "config/database.php";
+require $base . "config/email.php";
 
 /**
  * Exceptions

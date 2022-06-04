@@ -26,10 +26,10 @@ class Application
          * Setup Files
          */
         //require "config/config.php";
-        require $base . "config/database.php";
+        // require $base . "config/database.php";
         require $base . "routes/web.php";
         require $base . "routes/api.php";
-        require $base . "config/email.php";
+        // require $base . "config/email.php";
         /**
          * Exception Files
          */

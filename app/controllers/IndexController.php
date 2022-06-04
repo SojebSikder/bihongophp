@@ -24,6 +24,6 @@ class IndexController extends Controller
 	public function test()
 	{
 		$data = Data::all();
-		return $data;
+		return json($data);
 	}
 }

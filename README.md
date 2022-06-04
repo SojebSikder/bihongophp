@@ -7,7 +7,7 @@ Install using composer
 composer create-project sojebsikder/bihongophp project-name
 ```
 ## Run
-Run using CMD command
+Run using cmd command
 ```
 php cmd serve
 ```
