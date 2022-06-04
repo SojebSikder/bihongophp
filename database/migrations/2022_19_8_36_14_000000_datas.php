@@ -16,7 +16,8 @@ class Data
         Schema::create(function (Builder $table) {
             $table->create_table("datas", true, [
                 "id" => "INT(11) NOT NULL",
-                "text" => "VARCHAR(255) NOT NULL",
+                "title" => "VARCHAR(255) NULL",
+                "text" => "VARCHAR(255) NULL",
             ])->add_key("id", true);
         });
     }

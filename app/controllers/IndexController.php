@@ -24,9 +24,15 @@ class IndexController extends Controller
 	public function test()
 	{
 
-		Data::create([
-			'text' => 'hello world',
-		]);
+		// Data::create([
+		// 	'title' => 'test',
+		// 	'text' => 'hello world',
+		// ]);
+
+		// Data::where("id", "2")->update([
+		// 	'title' => 'go',
+		// 	'text' => 'golang is good',
+		// ]);
 		$data = Data::all();
 		return json($data);
 	}

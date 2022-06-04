@@ -112,10 +112,37 @@ abstract class ORM extends Model
       self::getInstance();
       $self = self::$_instance; //new static;
       $keys = ArrayHelper::arrayToString(array_keys($objectData));
-      $values = ArrayHelper::arrayToStringWithQ(array_keys($objectData));
+      $values = ArrayHelper::arrayToStringWithQ(array_values($objectData));
 
       $data = DB::insert("insert $self->_table ($keys) values ($values)");
       return $data;
+   }
+
+   /**
+    * update data
+    */
+   public static function update($objectData)
+   {
+      self::getInstance();
+      $self = self::$_instance; //new static;
+      $keys = '';
+      $values = '';
+      $set = '';
+
+      foreach ($objectData as $key => $value) {
+         $keys .= $key . ',';
+         $values .= "'" . $value . "',";
+         $set .= $key . "='" . $value . "',";
+      }
+      $set = trim($set, ',');
+
+      $data = DB::update("update $self->_table set $set $self->whereC");
+      return $data;
+   }
+
+   public function __get($attr)
+   {
+      return $this->$attr;
    }
 
    /**
@@ -146,6 +173,10 @@ abstract class ORM extends Model
 
          // return $properties;
          //echo $properties;
+
+         echo "<pre>";
+         var_dump(get_class_methods($self::class));
+         echo "</pre>";
       } else {
 
 
