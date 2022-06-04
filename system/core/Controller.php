@@ -8,7 +8,6 @@ use System\Core\Routing\ControllerMiddlewareOptions;
 /*
 * Main Controller
 */
-
 abstract class Controller
 {
     public $load = array();

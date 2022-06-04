@@ -104,9 +104,23 @@ abstract class ORM extends Model
       return $data;
    }
 
-   // /**
-   //  * save query data
-   //  */
+   /**
+    * insert data
+    */
+   public static function create($objectData)
+   {
+      self::getInstance();
+      $self = self::$_instance; //new static;
+      $keys = ArrayHelper::arrayToString(array_keys($objectData));
+      $values = ArrayHelper::arrayToStringWithQ(array_keys($objectData));
+
+      $data = DB::insert("insert $self->_table ($keys) values ($values)");
+      return $data;
+   }
+
+   /**
+    * save query data
+    */
    public function save()
    {
       self::getInstance();

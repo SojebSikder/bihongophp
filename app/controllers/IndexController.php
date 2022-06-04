@@ -23,6 +23,10 @@ class IndexController extends Controller
 	}
 	public function test()
 	{
+
+		Data::create([
+			'text' => 'hello world',
+		]);
 		$data = Data::all();
 		return json($data);
 	}

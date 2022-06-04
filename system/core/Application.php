@@ -19,6 +19,9 @@ class Application
      */
     public static $version = "3.0.0";
 
+    /**
+     * Initialize Application
+     */
     public static function init()
     {
         global $base, $system_path;

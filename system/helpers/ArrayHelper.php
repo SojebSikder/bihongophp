@@ -26,6 +26,17 @@ class ArrayHelper
 		}
 		return $result = rtrim($result, $separator);
 	}
+	/**
+	 * Convert array to string with quotation marks
+	 */
+	public static function arrayToStringWithQ($array, $separator = ',')
+	{
+		$result = '';
+		foreach ($array as $key) {
+			$result .= "'" . $key . "'" . ",";
+		}
+		return $result = rtrim($result, $separator);
+	}
 
 	/**
 	 * Convert array to json
