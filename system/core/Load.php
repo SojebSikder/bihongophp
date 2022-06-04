@@ -5,6 +5,7 @@ namespace System\Core;
 /**
  * Loader Class
  */
+
 class Load
 {
     /**
@@ -12,7 +13,7 @@ class Load
      */
     public function view($filename, $data = false)
     {
-        global $view_folder_path, $application_folder, $system_path, $config;
+        global $view_folder_path, $application_folder, $system_path, $config, $base;
 
         if ($data == true) {
             extract($data);

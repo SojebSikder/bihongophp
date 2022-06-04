@@ -12,8 +12,8 @@ class Server
     {
 
 
-        if (file_exists("storage/down")) {
-            $server_meta = json_decode(file_get_contents('storage/down'), true);
+        if (file_exists("../storage/down")) {
+            $server_meta = json_decode(file_get_contents('../storage/down'), true);
 
             //Access only Allowed Ip address
             if (isset($server_meta['allowed'])) {

@@ -3,6 +3,7 @@
 use System\Core\Route;
 use App\Controllers\IndexController;
 use System\Core\Request;
+use System\Helpers\StringHelper;
 
 /**
  * ___________

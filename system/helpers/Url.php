@@ -8,6 +8,13 @@ namespace System\Helpers;
 class Url
 {
     /**
+     * Get localhost
+     */
+    public static function localhost()
+    {
+        return $_SERVER['SERVER_NAME'];
+    }
+    /**
      * Get asset directory
      */
     public static function asset($url)

@@ -1,4 +1,5 @@
 <?php
+
 namespace System\Core;
 
 use System\Database\Facade\DB;
@@ -37,6 +38,7 @@ abstract class ORM extends Model
       if (self::$_instance === null) {
          self::$_instance = new static;
       }
+      return self::$_instance;
    }
 
    /**

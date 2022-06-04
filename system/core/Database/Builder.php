@@ -12,7 +12,7 @@ use System\Database\Drivers\SQLiteAdapter;
  */
 class Builder
 {
-    protected $db = array();
+    protected $db;
 
     public $table = '';
 

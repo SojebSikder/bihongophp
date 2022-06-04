@@ -2,6 +2,7 @@
 
 namespace System;
 
+use Data;
 use System\Core\Command;
 
 /**
@@ -19,6 +20,7 @@ use System\Core\Database\Builder;
 use System\Core\Database\Schema;
 use System\Core\Perser2;
 use System\Helpers\File;
+use System\Helpers\StringHelper;
 
 require "vendor/autoload.php";
 Autoload::init();
@@ -70,9 +72,9 @@ class AppCommand
         Command::set('serve', function () {
             global $argv;
             if (isset($argv[2])) {
-                Command::exec('php -S localhost:' . $argv[2]);
+                Command::exec('cd public && php -S localhost:' . $argv[2]);
             } else {
-                Command::exec('php -S localhost:8000');
+                Command::exec('cd public && php -S localhost:8000');
             }
         })->describe("Serve the application on the PHP development server");
 
@@ -166,23 +168,61 @@ class AppCommand
             global $argc, $argv, $application_folder, $system_path, $config;
 
             require $system_path . "/core/dbloader.php";
-            require $config['migration_path'] . current_migrate('migration') . ".php";
-            if (isset($argv[2])) {
-                //find current migrations
-                $class = current_migrate('class');
-                $test = new $class();
-                $method = $argv[2];
-                $test->$method();
-                //end that
-                Command::success("$method Migration");
-            } else {
-                //find current migrations
-                $class = current_migrate('class');
-                $test = new $class();
-                $test->up();
-                //end that
-                Command::success("Created Migration");
+            // require $config['migration_path'] . current_migrate('migration') . ".php";
+            foreach (glob($config['migration_path'] . '*.php') as $file) {
+                require $file;
+
+                $fileName = str_replace($config['migration_path'], "", $file);
+
+                // $fp = fopen("database/migrations/2022_19_8_36_14_000000_datas.php", 'r');
+                // get class via file name
+                $fp = fopen($file, 'r');
+                $class = $buffer = '';
+                $i = 0;
+                while (!$class) {
+                    if (feof($fp)) break;
+
+                    $buffer .= fread($fp, 512);
+                    $tokens = token_get_all($buffer);
+
+                    if (strpos($buffer, '{') === false) continue;
+
+                    for (; $i < count($tokens); $i++) {
+                        if ($tokens[$i][0] === T_CLASS) {
+                            for ($j = $i + 1; $j < count($tokens); $j++) {
+                                if ($tokens[$j] === '{') {
+                                    $class = $tokens[$i + 2][1];
+                                    $object = new $class();
+                                    $object->up();
+                                    Command::success("Migrated - " . $fileName);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
             }
+
+
+
+
+
+            // if (isset($argv[2])) {
+            //     //find current migrations
+            //     $class = current_migrate('class');
+            //     $test = new $class();
+            //     $method = $argv[2];
+            //     $test->$method();
+            //     //end that
+            //     Command::success("$method Migration");
+            // } else {
+            //     //find current migrations
+            //     $class = current_migrate('class');
+            //     $test = new $class();
+            //     $test->up();
+            //     //end that
+            //     Command::success("Created Migration");
+            // }
         })->describe('Database migrate command');
 
         /**
@@ -229,11 +269,23 @@ class AppCommand
          * Create Model
          */
         Command::set('make:model', function () {
-            global $application_folder;
+            global $argv, $application_folder;
 
             $name = Command::args(2);
             File::writeFile($application_folder . "/" . "models/" . $name . ".php", self::createModel($name));
             Command::success($name . " model created succesfully");
+
+            if (isset($argv[3])) {
+                switch ($argv[3]) {
+                    case '-m':
+                        Command::exec("php cmd make:migration " . $name);
+                        Command::success("$name migration created successfully");
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         })->describe("Create model")->usage("make:model [ModelName]");
 
 
@@ -243,12 +295,14 @@ class AppCommand
         Command::set('make:migration', function () {
             global $application_folder, $config;
 
-            $name = Command::args(2);
+            $name = StringHelper::pluralize(2, strtolower(Command::args(2)));
+
 
             if (isset($name)) {
-                $time = time(); //date('F_j_Y_g_i_a', time());
-                File::writeFile($config['migration_path'] . $time . "-" . $name . ".php", self::createMigration($name, $time . "-" . $name, $name, $time));
-                Command::success("Created Migration: " . $time . "-" . $name);
+                // $time = time(); //date('F_j_Y_g_i_a', time());
+                $time = date('Y_j_g_i_s_u', time());
+                File::writeFile($config['migration_path'] . $time . "_" . $name . ".php", self::createMigration($name, $time . "-" . $name, $name, $time));
+                Command::success("Created Migration: " . $time . "_" . $name);
             } else {
                 Command::danger("2nd Argument not found");
             }
@@ -366,6 +420,7 @@ class ' . $modelName . ' extends ORM{
     {
         global $system_path, $config;
         $tableName = $config['migrations'];
+        $migrationNamePascal = ucfirst(StringHelper::singularize($migrationName));
         /**
          * Create Database
          */
@@ -399,7 +454,7 @@ class ' . $modelName . ' extends ORM{
 use System\Core\Database\Builder;
 use System\Core\Database\Schema;
 
-class ' . $migrationName . '
+class ' . $migrationNamePascal . '
 {
     /**
      * Run the migrations.
@@ -409,6 +464,12 @@ class ' . $migrationName . '
     public function up()
     {
         //
+        Schema::create(function (Builder $table) {
+            $table->create_table("' . $migrationName . '", true, [
+                "id" => "INT(11) NOT NULL",
+                "text" => "VARCHAR(255) NOT NULL",
+            ])->add_key("id", true);
+        });
     }
 
     /**
@@ -419,6 +480,7 @@ class ' . $migrationName . '
     public function down()
     {
         //
+        Schema::drop("' . $migrationName . '");
     }
 }
 ';
