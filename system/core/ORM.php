@@ -194,6 +194,32 @@ abstract class ORM
          return $data;
       }
    }
+   /**
+    * delete query data
+    */
+   public function delete()
+   {
+      self::getInstance();
+      $self = self::$_instance; // new static;
+
+      $tableName = $self->_table;
+
+      /**
+       * delete data
+       */
+      if ($self->whereC == null) {
+
+         $sqlQuery = "DELETE FROM  $tableName";
+
+         $data = DB::delete($sqlQuery);
+         return $data;
+      }
+      // delete specific data
+      else {
+         $data = DB::delete("DELETE FROM $tableName $self->whereC");
+         return $data;
+      }
+   }
 
 
    public static function morph(array $object)
