@@ -197,7 +197,7 @@ abstract class ORM
    /**
     * delete query data
     */
-   public function delete()
+   public static function delete()
    {
       self::getInstance();
       $self = self::$_instance; // new static;
