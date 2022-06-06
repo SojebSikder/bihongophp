@@ -17,10 +17,14 @@ use System\Helpers\StringHelper;
 
 Route::get("/", [IndexController::class, 'index']);
 
-// Route3
-Route::get("/hello/test", function () {
-    return "Hello World";
+
+Route::get("/hello/test/{id}", function () {
+    return "Hello World ";
 });
+
+
+// $rt = new Route3();
+// $rt->add("/sojeb/{id}/{value}","test.php");
 
 
 

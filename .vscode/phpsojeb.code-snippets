@@ -18,7 +18,7 @@
 	
 	"echo var_dump": {
 		"scope": "php",
-		"prefix": ["var dump","echo", "echo dump"],
+		"prefix": ["var","var dump","echo", "echo dump"],
 		"body": [
 			"echo '<pre>';",
 			"echo var_dump($1);",
