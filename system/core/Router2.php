@@ -155,19 +155,16 @@ class Route
         preg_match_all($pattern, $content, $matches);
         // print_r($matches[1]);
 
+        // replace {params} with url
+        $content1 = preg_replace($pattern, $req_url, $content);
+        $content = implode('/', array_unique(explode('/', $content1)));
+
         //setting parameters names
         foreach ($matches[1] as $key) {
             // remove first and last forward slashes
             $key = preg_replace("/(^\/)|(\/$)/", "", $key);
             $self->paramKey[$content] = $key;
         }
-
-        // replace {params} with url
-        $content = preg_replace($pattern, $req_url, $content);
-        $content = implode('/',array_unique(explode('/', $content)));
-        // echo '<pre>';
-        // echo var_dump($content);
-        // echo '</pre>';
         $self->routes[$method][$content] = $callback;
     }
 
@@ -191,7 +188,7 @@ class Route
 
         // If $callback is callable then call it
         if (is_callable($callback)) {
-            echo call_user_func($callback, $self->request, $self->response);
+            echo call_user_func($callback,$self->request, $self->response);
         }
 
         // --------------------------------------------------------------
