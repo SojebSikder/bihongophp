@@ -18,10 +18,6 @@ use System\Helpers\StringHelper;
 Route::get("/", [IndexController::class, 'index']);
 
 
-Route::get("/hello/test/{id}", function () {
-});
-
-
 
 Route::get("/test", [IndexController::class, 'test']);
 
