@@ -164,9 +164,10 @@ class Route
 
         // replace {params} with url
         $content = preg_replace($pattern, $req_url, $content);
-        echo '<pre>';
-        echo var_dump($content);
-        echo '</pre>';
+        $content = implode('/',array_unique(explode('/', $content)));
+        // echo '<pre>';
+        // echo var_dump($content);
+        // echo '</pre>';
         $self->routes[$method][$content] = $callback;
     }
 
