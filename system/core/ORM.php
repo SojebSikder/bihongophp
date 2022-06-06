@@ -9,7 +9,7 @@ use System\Helpers\StringHelper;
 /**
  * Eloquont Model (Experimantal)
  */
-abstract class ORM
+abstract class ORM 
 {
    private static $_instance = null;
    /**

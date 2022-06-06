@@ -3,6 +3,7 @@
 use System\Core\Route;
 use App\Controllers\IndexController;
 use System\Core\Request;
+use System\Core\Route3;
 use System\Helpers\StringHelper;
 
 /**
@@ -13,11 +14,15 @@ use System\Helpers\StringHelper;
  * 
  */
 
+
 Route::get("/", [IndexController::class, 'index']);
 
-Route::get("/simple", function () {
-    return "Hello from simple route";
+// Route3
+Route::get("/hello/test", function () {
+    return "Hello World";
 });
+
+
 
 Route::get("/test", [IndexController::class, 'test']);
 
@@ -28,4 +33,3 @@ Route::get("/test", [IndexController::class, 'test']);
 Route::get("/login", [App\Controllers\RegisterController::class, "login"]);
 Route::get("/register", [App\Controllers\RegisterController::class, "register"]);
 Route::get("/logout", [App\Controllers\RegisterController::class, "logout"]);
-        

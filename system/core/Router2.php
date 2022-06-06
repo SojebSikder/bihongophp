@@ -5,6 +5,9 @@ namespace System\Core;
 use ArrayIterator;
 use System\Helpers\ArrayHelper;
 
+/**
+ * Router v2
+ */
 class Route
 {
     private static $_instance = null;
@@ -125,7 +128,6 @@ class Route
     }
 
 
-
     /**
      * Method
      */
@@ -134,18 +136,25 @@ class Route
         self::getInstance();
         $self = self::$_instance;
 
-        $self->routes[$method][$path] = $callback;
+        // $pattern = "{([^}]*)}";
+        $pattern = "/{(.*?)}/";
+
+        // remove first and last forward slashes
+        $content =  preg_replace("/(^\/)|(\/$)/", "", $path);
+
+        preg_match_all($pattern, $content, $matches);
+        // print_r($matches[1]);
+        $self->routes[$method][$content] = $callback;
     }
 
     /**
      * Set prefix
+     * @todo Implement prefix method
      */
     public static function prefix(string  $prefix)
     {
         self::getInstance();
         $self = self::$_instance;
-
-
 
         return $self;
     }
@@ -158,7 +167,7 @@ class Route
         self::getInstance();
         $self = self::$_instance;
 
-        $path = $self->request->getUrl();
+        $path =  preg_replace("/(^\/)|(\/$)/", "", $self->request->getUrl());
         $method = $self->request->getMethod();
         $callback = $self->routes[$method][$path] ?? false;
 
@@ -169,10 +178,6 @@ class Route
 
         // If $callback is callable then call it
         if (is_callable($callback)) {
-            //echo call_user_func($callback, $self->request, $self->response);
-            $user_request = $_REQUEST;
-
-
             echo call_user_func($callback, $self->request, $self->response);
         }
 
