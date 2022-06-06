@@ -103,7 +103,6 @@ class Request
                 session_start();
             } else {
             }
-            //session_start();
 
             if (!empty($_REQUEST[$config['csrf_token_name']])) {
                 if (hash_equals($_SESSION[$config['csrf_token_name']], $_REQUEST[$config['csrf_token_name']])) {
@@ -115,8 +114,6 @@ class Request
         }
     }
     // end
-
-
 
 
     public function getMethod()

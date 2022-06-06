@@ -7,7 +7,6 @@ namespace System\Core;
  */
 class Route3
 {
-
     private function simpleRoute($file, $route)
     {
 

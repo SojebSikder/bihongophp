@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Middleware\CheckAge;
 use Data;
 
 class IndexController extends Controller
@@ -10,7 +11,6 @@ class IndexController extends Controller
 	{
 		parent::__construct();
 
-		//$this->middleware('auth:api')->only(['store', 'update', 'destroy']);
 		// $this->registerMiddleware(new CheckAge());
 	}
 

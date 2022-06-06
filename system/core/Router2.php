@@ -16,7 +16,16 @@ class Route
     private Response $response;
 
     protected array $routes = [];
+    //will store all the parameters value in this array
+    protected array $params = [];
+    //will store all the parameters names in this array
     protected array $paramKey = [];
+
+    public function __construct()
+    {
+        $this->request = new Request();
+        $this->response = new Response();
+    }
 
     private static function getInstance()
     {
@@ -129,7 +138,6 @@ class Route
         $self->_method('options', $path, $callback);
     }
 
-
     /**
      * Method
      */
@@ -138,13 +146,14 @@ class Route
         self::getInstance();
         $self = self::$_instance;
 
-        // $pattern = "{([^}]*)}";
         $pattern = "/{(.*?)}/";
-        $replace = "{.*}";
+        $replace = "/{.*}/";
 
         // remove first and last forward slashes
         $content =  preg_replace("/(^\/)|(\/$)/", "", $path);
+        $req_url =  preg_replace("/(^\/)|(\/$)/", "", $self->request->getUrl());
         preg_match_all($pattern, $content, $matches);
+        // print_r($matches[1]);
 
         //setting parameters names
         foreach ($matches[1] as $key) {
@@ -152,35 +161,15 @@ class Route
             $key = preg_replace("/(^\/)|(\/$)/", "", $key);
             $self->paramKey[$content] = $key;
         }
+
         // replace {params} with url
-        // $content = preg_replace($pattern, "12", $content);
-
-        $server_path = new Request();
-        // remove first and last forward slashes
-         $req_url =  preg_replace("/(^\/)|(\/$)/", "", $server_path->getUrl());
-
-        // echo $content;
-        echo $req_url;
-        $content = preg_replace($pattern, "4225", $content);
-
+        $content = preg_replace($pattern, $req_url, $content);
         echo '<pre>';
         echo var_dump($content);
         echo '</pre>';
-        // print_r($matches[1]);
         $self->routes[$method][$content] = $callback;
     }
 
-    /**
-     * Set prefix
-     * @todo Implement prefix method
-     */
-    public static function prefix(string  $prefix)
-    {
-        self::getInstance();
-        $self = self::$_instance;
-
-        return $self;
-    }
 
     /**
      * Resolve routes

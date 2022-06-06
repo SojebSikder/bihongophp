@@ -22,6 +22,13 @@ Route::get("/hello/test/{id}", function () {
     return "Hello World ";
 });
 
+Route::get("/sojeb", function () {
+    $string1 = "localhost/blog/{id}";
+    $id = "localhost/blog/12";
+    $output = preg_replace("/\{id\}/", $id, $string1);
+    return $output;  // localhost/blog/12
+});
+
 
 // $rt = new Route3();
 // $rt->add("/sojeb/{id}/{value}","test.php");
